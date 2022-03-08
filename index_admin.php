@@ -183,7 +183,7 @@ $Position_name = $_SESSION['Position_name'];
            การจัดการเอกสาร
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" >นำเข้าเอกสาร</a></li>
+            <li><a class="dropdown-item" href="upload.php">นำเข้าเอกสาร</a></li>
             <li><a class="dropdown-item" href="#">ส่งออกเอกสาร</a></li>
             <li><a class="dropdown-item" href="form.php">เอกสารนำเข้า</a></li>
           </ul>

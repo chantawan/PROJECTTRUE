@@ -12,7 +12,7 @@ include "connect.php";
         where a.emp_firstname = '$emp_firstname' and a.emp_password = '$emp_password' and a.Position_id = 4";
         $result = mysqli_query($conn,$sql_query);
         $num_row = mysqli_num_rows($result);
-    gg
+    
         if($num_row == 1){
             $row = mysqli_fetch_array($result);
             $emp_id = $row['emp_id'];

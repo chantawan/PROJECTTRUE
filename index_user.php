@@ -71,9 +71,13 @@ date_default_timezone_set("Asia/Bangkok");
           <li><a class="nav-link scrollto" href="#">คู่มือ</a></li>
           <li><a class="nav-link scrollto" href="logout.php?option=2">ออกจากระบบ</a></li>
         </ul>
+        
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-      
+      <div style="text-align:right; float:right;">
+        <label style="color:#FFFFFF83">ชื่อผู้ใช้ : <?php echo $emp_firstname ?> &nbsp</label>
+        <label style="color:#FFFFFF83">บทบาท : <?php echo $Position_name ?> &nbsp</label>
+      </div>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 

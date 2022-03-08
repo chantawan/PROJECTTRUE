@@ -51,8 +51,19 @@
 
     <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto  " href="index_user2.php">หน้าแรก</a></li>
-          <li><a class="nav-link scrollto active" href="document_recive_user.php">เอกสารถึงตัวท่าน</a></li>
+          <li><a class="nav-link scrollto  " href="index_manager.php">หน้าแรก</a></li>
+          <!-- Example single danger button -->
+          <div class="dropdown ">
+          <button class="btn  btn-sm dropdown-toggle"  style="width:100%; margin-left:5%; color:white; font-size:18px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+           การจัดการเอกสาร
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="document_recive_user.php" >เอกสารถึงตัวท่าน</a></li>
+            <li><a class="dropdown-item" >เอกสารรอดำเนินการ</a></li>
+            <li><a class="dropdown-item" >ส่งข้อความ</a></li>
+            
+          </ul>
+        </div>
           <li><a class="nav-link scrollto" href="#">แฟ้มเอกสาร</a></li>
           <li><a class="nav-link scrollto" href="#">คู่มือ</a></li>
           <li><a class="nav-link scrollto" href="logout.php?option=2">ออกจากระบบ</a></li>

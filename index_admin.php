@@ -151,10 +151,15 @@ $Position_name = $_SESSION['Position_name'];
 </head>
 
 <body>
+<div id="hero" class="hero route bg-image" style="background-image: url(assets/img/wall.jpg)">
+    <div class="overlay-itro"></div>
+    <div class="hero-content display-table">
+      <div class="table-cell">
+        <div class="container">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-auto" style="width:100%">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-auto" style="width:200%">
           <div class="container-fluid">
             <div class="col-md-6">
               <a class="navbar-brand" href="index_admin.php"><img src="img/icon.png" width="5%">
@@ -173,13 +178,13 @@ $Position_name = $_SESSION['Position_name'];
         </nav>
       </div>
     </div>
-    <div class="container mx-auto" style="width:100%">
+    <div class="container mx-auto" style="width:500%">
       <div class="row">
-        <div class="col-2 bgLeft" style="height:150vh"><br>
-        <button class="btn btn-secondary btn-sm" style="width:100%; margin-bottom:3%;"
+        <div class="col-2 bgLeft" style="height:120vh"><br>
+        <button class="btn btn-secondary btn-sm" style="width:100%; margin-bottom:3%;font-size:25px;"
         onclick="show_index()">หน้าแรก</button>
         <div class="dropdown">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" style="width:100%; margin-bottom:3%;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <button class="btn btn-secondary btn-sm dropdown-toggle" style="width:100%; margin-bottom:3%;font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
            การจัดการเอกสาร
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -189,7 +194,7 @@ $Position_name = $_SESSION['Position_name'];
           </ul>
         </div>
         <div class="dropdown">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" style="width:100%; margin-bottom:3%;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <button class="btn btn-secondary btn-sm dropdown-toggle" style="width:100%; margin-bottom:3%;font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
            การจัดการข้อมูล
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -198,9 +203,9 @@ $Position_name = $_SESSION['Position_name'];
             <li><a class="dropdown-item" onclick="show_history()">สถิติการรับ-ส่งเอกสาร</a></li>
           </ul>
         </div>
-          <button class="btn btn-secondary btn-sm" style="width:100%; margin-bottom:3%;"
+          <button class="btn btn-secondary btn-sm" style="width:100%; margin-bottom:3%;font-size:25px;"
             onclick="show_manual()">คู่มือ</button>
-           <button class="btn btn-danger btn-sm" style="width:100%; margin-bottom:3%;">
+           <button class="btn btn-danger btn-sm" style="width:100%; margin-bottom:3%;font-size:25px;">
             <a class="nav-link" href="logout.php?option=1" style = "color:black">ออกจากระบบ</a></button> 
             
           <!-- Button trigger modal -->
@@ -278,12 +283,13 @@ $Position_name = $_SESSION['Position_name'];
             <center>
               <h2>ประชาสัมพันธ์</h2>
               <div class="mb-3">
+              <input type="text" name="board_num" id="board_num" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) onKeyPress="if(this.value.length==1) return false;" placeholder="รูปภาพที่ 1-3" onKeyUp="if(isNaN(this.value)){ Swal.fire({ icon: 'error', title: 'กรุณากรอกตัวเลข', }); this.value='';}"  required />
               <input id="board_name" type='file'  accept="image/png, image/jpeg">
             <input type="hidden" id="b64">
             <img id="img" height="120">
                         
                       </div>
-              <button type="button" class="btn btn-success" id="botsave_file" >อัพโหลด</button>
+              <button type="button" class="btn btn-success" id="botsave_file" style = "font-size:28px; width: 10%">อัพโหลด</button>
             </center>
            
             <div class="table-responsive-sm">
@@ -575,8 +581,8 @@ $Position_name = $_SESSION['Position_name'];
                     </div>
                   <div class="col-md-6">
                       <div class="mb-3">
-                        <input type="number" class="form-control" name="emp_cardid" id="emp_cardid2"
-                          placeholder="เลขบัตรประชาชน 13 หลัก">
+                        <input type="number" class="form-control" name="emp_cardid" id="emp_cardid2" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==13) return false;"
+                         placeholder="เลขบัตรประชาชน 13 หลัก">
                       </div>
                     </div>
                   
@@ -647,7 +653,7 @@ $Position_name = $_SESSION['Position_name'];
                     </div>
                     <div class="col-md-5">
                       <div class="mb-3">
-                      <input type="text" class="form-control" name="emp_tel" id="emp_tel2" placeholder="เบอร์โทรศัพท์" onKeyUp="if(isNaN(this.value)){ Swal.fire({ icon: 'error', title: 'กรุณากรอกตัวเลข', }); this.value='';}"  required />
+                      <input type="text" class="form-control" name="emp_tel" id="emp_tel2" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" placeholder="เบอร์โทรศัพท์" onKeyUp="if(isNaN(this.value)){ Swal.fire({ icon: 'error', title: 'กรุณากรอกตัวเลข', }); this.value='';}"  required />
                       </div>
                     </div>
                   </div>
@@ -1110,7 +1116,7 @@ $("#myInput5").on('change', function () {
 
     $(document).ready(function () {
       $('#botsave_file').on('click', function () {
-
+        var board_num = $('#board_num').val();
         var board_name = $('#board_name').val();
         var board_name = document.getElementById("img").src;
 
@@ -1119,6 +1125,7 @@ $("#myInput5").on('change', function () {
             url: "save_file.php",
             type: "POST",
             data: {
+              board_num:board_num,
               board_name: board_name
             },
             cache: false,

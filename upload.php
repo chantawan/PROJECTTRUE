@@ -197,6 +197,7 @@ if(isset($_POST['submit'])!=""){
 					<input type="file" name="file" id="file" /></td>
 					<input type="submit" name="submit" id="submit" value="Submit" />
 			</form>
+      <footer style="font-size: 12px"><b>File Type:</b><font color="red"><i>.docx .doc .pptx .xlsx .xls .pdf</i></font></footer>
 		<br />
 		<br />
 		<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">

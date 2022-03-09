@@ -66,7 +66,7 @@ date_default_timezone_set("Asia/Bangkok");
 
     <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active " style="font-size:25px;" href="#">หน้าแรก</a></li>
+          <li><a class="nav-link scrollto  " style="font-size:25px;" href="#">หน้าแรก</a></li>
           <!-- Example single danger button -->
           <div class="dropdown">
           <button class="btn  btn-sm dropdown-toggle"  style="width:100%; margin-left:5%; color:white; font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -75,7 +75,7 @@ date_default_timezone_set("Asia/Bangkok");
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li><a class="dropdown-item" href="document_recive_user.php" >เอกสารถึงตัวท่าน</a></li>
             <li><a class="dropdown-item" >เอกสารรอดำเนินการ</a></li>
-            <li><a class="dropdown-item" href="sent_message.php" >ส่งข้อความ</a></li>
+            <li><a class="dropdown-item" >ส่งข้อความ</a></li>
             
           </ul>
         </div>
@@ -101,95 +101,57 @@ date_default_timezone_set("Asia/Bangkok");
   <!-- ======= Hero Section ======= -->
   <div id="hero" class="hero route bg-image" style="background-image: url(assets/img/wall.jpg)">
     <div class="overlay-itro"></div>
+    
     <div class="hero-content display-table">
       <div class="table-cell">
-        <div class="container">
-        
-                
+      
+        <div class="container" style = "width = 100%; text-align: left">
+           <h2 style = "font-size: 40px; color:white;">เรื่อง     <input type="text" name="mes_name" id="mes_name" style = "text-align: center; margin-left:8%;font-size: 20px;width: 30%" placeholder = "กรุณาป้อนหัวเรื่อง"></h2> 
+           <br>
+           <br>
+           <h2 style = "font-size: 40px; color:white;">รายละเอียด </h2>    <textarea name="mes_detial" id="mes_detial" cols="50" rows="5"></textarea>
+           <h2 style = "font-size: 20px; color:white;">แนบเอกสารเพิ่มเติม    <input type="file" name="file_mes" id="file_mes"></h2>
+           <div>
+           <h2 style = "font-size: 20px; color:white;">รายชื่อกอง
+                        <?php
+                          $sql = "SELECT * from divistion";
+
+                          $result = mysqli_query($conn,$sql);
+                        ?>
+                        <select name="divistion_id" id="divistion_id" class="form-select"style = "text-align: center; width: 10%; " >
+                          <option value="กอง">กอง</option>
+                        <?php
+                          while($row = mysqli_fetch_assoc($result)){
+                        ?>
+                              <option value="<?php echo $row["divistion_id"]?>"><?php echo $row["divistion_name"]?></option>              
+                            <?php
+                          }
+                        ?>
+                        
+                        </select>
+                        <h2 style = "font-size: 20px; color:white;">รายชื่อบุคลากรภายในกอง
+                        <?php
+                          $sql = "SELECT * from employee";
+
+                          $result = mysqli_query($conn,$sql);
+                        ?>
+                        <select name="emp_id" id="emp_id" class="form-select"style = "text-align: center; width: 10%; " >
+                          <option value="ชื่อ">ชื่อบุคลากร</option>
+                        <?php
+                          while($row = mysqli_fetch_assoc($result)){
+                        ?>
+                              <option value="<?php echo $row["emp_id"]?>"><?php echo $row["emp_firstname"] ?> &nbsp; <?php echo $row["emp_lastname"] ?></option>              
+                            <?php
+                          }
+                        ?>
+                        </select>
+                        <br> <br> 
+                        <button type="button" class="btn btn-success" id="save_mes" style = "margin-left: 50%">ส่งข้อความ</button>
+                        </div>
                    
         <div>
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-    <?php                 
-                    $sql_query = "SELECT board_name,board_num
-                    FROM board
-                    Where board_num = 1
-                    ORDER BY `board_id` ASC";
-
-                    $result = mysqli_query($conn,$sql_query);
-                    $num_row = mysqli_num_rows($result);
-
-                    while($row = $result->fetch_assoc()) {
-                  ?>	
-                      <th>
-                          <?php
-                      echo "<td>"."<img src='".$row['board_name']."' width='600px' height='400px'>"."</td>"?>
-                      </th>
-                    <?php	
-                    }                            
-                    ?>
-    </div>
-    <div class="carousel-item">
-    <?php                 
-                    $sql_query = "SELECT board_name,board_num
-                    FROM board
-                    Where board_num = 2";
-
-                    $result = mysqli_query($conn,$sql_query);
-                    $num_row = mysqli_num_rows($result);
-
-                    while($row = $result->fetch_assoc()) {
-                  ?>	
-                      <th>
-                          <?php
-                      echo "<td>"."<img src='".$row['board_name']."' width='600px' height='400px'>"."</td>"?>
-                      </th>
-                    <?php	
-                    }                            
-                    ?>
-    </div>
-    <div class="carousel-item">
-    <?php                 
-                    $sql_query = "SELECT board_name,board_num
-                    FROM board
-                    Where board_num = 3";
-
-                    $result = mysqli_query($conn,$sql_query);
-                    $num_row = mysqli_num_rows($result);
-
-                    while($row = $result->fetch_assoc()) {
-                  ?>	
-                      <th>
-                          <?php
-                      echo "<td>"."<img src='".$row['board_name']."' width='600px' height='400px'>"."</td>"?>
-                      </th>
-                    <?php	
-                    }                            
-                    ?>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-            
-<div class="row mx-auto" id="show_about">
-<h2 class="text-white" style="padding-left:150px"><br><img src="img/logoUser.png" width="10%" alt=""> เทศบาลเมืองปัตตานี
-ถนนเดชา ตำบลสะบารัง อำเภอเมือง จังหวัดปัตตานี 94000</h2>
-        <p class="text-white" style="font-size:20px;">
-        <img src="img/phone.png" width="5%" alt=""> โทร. 073-335918<br><br>
-        <img src="img/phone.png" width="5%" alt=""> โทรสาร 073-335919<br><br>
-        <img src="img/registration.jpg" width="5%" alt=""> saraban@patta<br>
-      </div>
-      
-    </div>
-
+  
   </main><!-- End #main -->
   
   

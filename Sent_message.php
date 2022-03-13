@@ -97,7 +97,7 @@ date_default_timezone_set("Asia/Bangkok");
 
     </div>
   </header><!-- End Header -->
-
+   
   <!-- ======= Hero Section ======= -->
   <div id="hero" class="hero route bg-image" style="background-image: url(assets/img/wall.jpg)">
     <div class="overlay-itro"></div>
@@ -106,7 +106,10 @@ date_default_timezone_set("Asia/Bangkok");
       <div class="table-cell">
       
         <div class="container" style = "width = 100%; text-align: left">
-           <h2 style = "font-size: 40px; color:white;">เรื่อง     <input type="text" name="mes_name" id="mes_name" style = "text-align: center; margin-left:8%;font-size: 20px;width: 30%" placeholder = "กรุณาป้อนหัวเรื่อง"></h2> 
+        
+           <h2 style = "font-size: 40px; color:white;">เรื่อง     <input type="text" name="mes_name" id="mes_name" style = "text-align: center; margin-left:8%;font-size: 20px;width: 30%" placeholder = "กรุณาป้อนหัวเรื่อง"></h2>
+          
+          </input> 
            <br>
            <br>
            <h2 style = "font-size: 40px; color:white;">รายละเอียด </h2>    <textarea name="mes_detial" id="mes_detial" cols="50" rows="5"></textarea>
@@ -127,6 +130,7 @@ date_default_timezone_set("Asia/Bangkok");
                             <?php
                           }
                         ?>
+                        
                         </select>
                         <h2 style = "font-size: 20px; color:white;">
                         <label for="emp_id">รายชื่อบุคลากรภายในกอง</label><br> 
@@ -136,7 +140,7 @@ date_default_timezone_set("Asia/Bangkok");
                         <br> <br> 
                         <button type="button" class="btn btn-success" id="save_mes" style = "margin-left: 50%">ส่งเอกสาร</button>
                         </div>
-                   
+                  
         <div>
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   

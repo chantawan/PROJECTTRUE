@@ -9,6 +9,8 @@ if(isset($_POST['function']) && $_POST['function'] == "divistion_id"){
         echo '<option selected disabled>รายชื่อภายในกอง</option>';
     foreach($query as $value){
         echo '<option value="'.$value['emp_id'].'">'.$value['emp_firstname'].$value['emp_lastname'].'</option>';
+        
+        
     }
     exit();
 }

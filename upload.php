@@ -15,7 +15,7 @@
 </head>
 
 <?php
-$conn = new PDO('mysql:host=localhost; dbname=project', 'root', '') or die(mysql_error());
+$conn = new PDO('mysql:host=localhost; dbname=upload', 'root', '') or die(mysql_error());
 if (isset($_POST['submit']) != "") {
   $name = $_FILES['file']['name'];
   $size = $_FILES['file']['size'];

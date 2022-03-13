@@ -66,7 +66,7 @@ date_default_timezone_set("Asia/Bangkok");
 
     <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto  " style="font-size:25px;" href="#">หน้าแรก</a></li>
+          <li><a class="nav-link scrollto  " style="font-size:25px;" href="index_manager.php">หน้าแรก</a></li>
           <!-- Example single danger button -->
           <div class="dropdown">
           <button class="btn  btn-sm dropdown-toggle"  style="width:100%; margin-left:5%; color:white; font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -129,24 +129,13 @@ date_default_timezone_set("Asia/Bangkok");
                         ?>
                         
                         </select>
-                        <h2 style = "font-size: 20px; color:white;">รายชื่อบุคลากรภายในกอง
-                        <?php
-                          $sql = "SELECT * from employee";
-
-                          $result = mysqli_query($conn,$sql);
-                        ?>
-                        <select name="emp_id" id="emp_id" class="form-select"style = "text-align: center; width: 10%; " >
-                          <option value="ชื่อ">ชื่อบุคลากร</option>
-                        <?php
-                          while($row = mysqli_fetch_assoc($result)){
-                        ?>
-                              <option value="<?php echo $row["emp_id"]?>"><?php echo $row["emp_firstname"] ?> &nbsp; <?php echo $row["emp_lastname"] ?></option>              
-                            <?php
-                          }
-                        ?>
-                        </select>
+                        <h2 style = "font-size: 20px; color:white;">
+                        <label for="emp_id">รายชื่อบุคลากรภายในกอง</label><br> 
+                            <select name="emp_id" id="emp_id" class="form-select" aria-label="Default select example">
+                                <option value="" selected disabled>กรุณาเลือกชื่อบุคลากรภายในกอง</option>
+                            </select>
                         <br> <br> 
-                        <button type="button" class="btn btn-success" id="save_mes" style = "margin-left: 50%">ส่งข้อความ</button>
+                        <button type="button" class="btn btn-success" id="save_mes" style = "margin-left: 50%">ส่งเอกสาร</button>
                         </div>
                    
         <div>
@@ -165,7 +154,73 @@ date_default_timezone_set("Asia/Bangkok");
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script>
+    
+    
+    $(document).ready(function () {
+      
+      $('#divistion_id').change(function(){
+        var divistion_id = $(this).val();
+        $.ajax({
+            type:"post",
+            url:"SelectDivistion.php",
+            data:{
+                id:divistion_id,
+                function:'divistion_id'
+            },
+            success: function(data){
+                $('#emp_id').html(data);
+            }    
+        });
+    });
+      $('#save_mes').on('click', function () {
+
+        var mes_name = $('#mes_name').val();
+        var mes_detial = $('#mes_detial').val();
+        var file_mes = $('#file_mes').val();
+        var divistion_id = $('#divistion_id').val();
+        var emp_id = $('#emp_id').val();
+        
+
+
+        if (mes_name != "" && mes_detial != "" && divistion_id != "" && emp_id != "" ) {
+          $.ajax({
+            url: "save_text.php",
+            type: "POST",
+            data: {
+              mes_name: mes_name,
+              mes_detial: mes_detial,
+              file_mes: file_mes,
+              divistion_id: divistion_id,
+              emp_id: emp_id
+            },
+            cache: false,
+            success: function (dataResult) {
+              var dataResult = JSON.parse(dataResult);
+              if (dataResult.statusCode == 200) {
+                show_divistion();
+                Swal.fire({
+                  icon: 'success',
+                  title: 'ส่งข้อความสำเร็จ',
+                })
+               
+              }
+              else if (dataResult.statusCode == 201) {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'ส่งข้อความไม่สำเร็จ',
+                })
+              }
+             
+            }
+          });
+        }
+        else {
+          Swal.fire('กรุณากรอกข้อมูลให้ครบ');
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>

@@ -127,12 +127,11 @@ date_default_timezone_set("Asia/Bangkok");
                             <?php
                           }
                         ?>
-                        
                         </select>
                         <h2 style = "font-size: 20px; color:white;">
                         <label for="emp_id">รายชื่อบุคลากรภายในกอง</label><br> 
-                            <select name="emp_id" id="emp_id" class="form-select" aria-label="Default select example">
-                                <option value="" selected disabled>กรุณาเลือกชื่อบุคลากรภายในกอง</option>
+                            <select name="emp_id" id="emp_id" class="form-select" style = "text-align: center; width: 20%;" aria-label="Default select example">
+                                <option value="" selected disabled>กรุณาเลือกชื่อกอง</option>
                             </select>
                         <br> <br> 
                         <button type="button" class="btn btn-success" id="save_mes" style = "margin-left: 50%">ส่งเอกสาร</button>

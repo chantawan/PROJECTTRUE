@@ -6,9 +6,9 @@ if(isset($_POST['function']) && $_POST['function'] == "divistion_id"){
     $id = $_POST['id'];
     $sql = "SELECT * FROM Employee WHERE divistion_id = '$id'";
     $query = mysqli_query($conn,$sql);
-        echo '<option selected disabled>กรุณารายชื่อ</option>';
+        echo '<option selected disabled>รายชื่อภายในกอง</option>';
     foreach($query as $value){
-        echo '<option value="'.$value['emp_id'].'">'.$value['emp_firstname'].'</option>';
+        echo '<option value="'.$value['emp_id'].'">'.$value['emp_firstname'].$value['emp_lastname'].'</option>';
     }
     exit();
 }

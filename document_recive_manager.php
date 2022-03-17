@@ -73,7 +73,7 @@ date_default_timezone_set("Asia/Bangkok");
            การจัดการเอกสาร
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="document_recive_manager.php" >เอกสารถึงตัวท่าน</a></li>
+          <li><a class="dropdown-item" href="document_recive_user.php" >เอกสารถึงตัวท่าน</a></li>
             <li><a class="dropdown-item" >เอกสารรอดำเนินการ</a></li>
             <li><a class="dropdown-item" href="sent_message.php" >ส่งข้อความ</a></li>
             
@@ -104,90 +104,19 @@ date_default_timezone_set("Asia/Bangkok");
     <div class="hero-content display-table">
       <div class="table-cell">
         <div class="container">
-        
-                
-                   
-        <div>
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-    <?php                 
-                    $sql_query = "SELECT board_name,board_num
-                    FROM board
-                    Where board_num = 1
-                    ORDER BY `board_id` ASC";
-
-                    $result = mysqli_query($conn,$sql_query);
-                    $num_row = mysqli_num_rows($result);
-
-                    while($row = $result->fetch_assoc()) {
-                  ?>	
-                      <th>
-                          <?php
-                      echo "<td>"."<img src='".$row['board_name']."' width='600px' height='400px'>"."</td>"?>
-                      </th>
-                    <?php	
-                    }                            
-                    ?>
-    </div>
-    <div class="carousel-item">
-    <?php                 
-                    $sql_query = "SELECT board_name,board_num
-                    FROM board
-                    Where board_num = 2";
-
-                    $result = mysqli_query($conn,$sql_query);
-                    $num_row = mysqli_num_rows($result);
-
-                    while($row = $result->fetch_assoc()) {
-                  ?>	
-                      <th>
-                          <?php
-                      echo "<td>"."<img src='".$row['board_name']."' width='600px' height='400px'>"."</td>"?>
-                      </th>
-                    <?php	
-                    }                            
-                    ?>
-    </div>
-    <div class="carousel-item">
-    <?php                 
-                    $sql_query = "SELECT board_name,board_num
-                    FROM board
-                    Where board_num = 3";
-
-                    $result = mysqli_query($conn,$sql_query);
-                    $num_row = mysqli_num_rows($result);
-
-                    while($row = $result->fetch_assoc()) {
-                  ?>	
-                      <th>
-                          <?php
-                      echo "<td>"."<img src='".$row['board_name']."' width='600px' height='400px'>"."</td>"?>
-                      </th>
-                    <?php	
-                    }                            
-                    ?>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-            
-<div class="row mx-auto" id="show_about">
-<h2 class="text-white" style="padding-left:150px"><br><img src="img/logoUser.png" width="10%" alt=""> เทศบาลเมืองปัตตานี
-ถนนเดชา ตำบลสะบารัง อำเภอเมือง จังหวัดปัตตานี 94000</h2>
-        <p class="text-white" style="font-size:20px;">
-        <img src="img/phone.png" width="5%" alt=""> โทร. 073-335918<br><br>
-        <img src="img/phone.png" width="5%" alt=""> โทรสาร 073-335919<br><br>
-        <img src="img/registration.jpg" width="5%" alt=""> saraban@patta<br>
-      </div>
-      
+        <table class="table" style = "margin-bottom: 50%">
+  <thead style = "border: 3px;">
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">หัวข้อ</th>
+      <th scope="col">รายละเอียด</th>
+      <th scope="col">วันที่</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>
     </div>
 
   </main><!-- End #main -->

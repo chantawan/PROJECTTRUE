@@ -61,8 +61,8 @@ date_default_timezone_set("Asia/Bangkok");
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
+  <header id="header" class="fixed-top" > 
+    <div class="container d-flex align-items-center justify-content-between" >
 
     <nav id="navbar" class="navbar">
         <ul>
@@ -105,7 +105,7 @@ date_default_timezone_set("Asia/Bangkok");
     <div class="hero-content display-table">
       <div class="table-cell">
       
-        <div class="container" style = "width = 100%; text-align: left">
+        <div class="container" style = "width = 100%; text-align: left" >
         
            <h2 style = "font-size: 40px; color:white;">เรื่อง     <input type="text" name="mes_name" id="mes_name" style = "text-align: center; margin-left:8%;font-size: 20px;width: 30%" placeholder = "กรุณาป้อนหัวเรื่อง"></h2>
           
@@ -113,7 +113,7 @@ date_default_timezone_set("Asia/Bangkok");
            <br>
            <br>
            <h2 style = "font-size: 40px; color:white;">รายละเอียด </h2>    <textarea name="mes_detial" id="mes_detial" cols="50" rows="5"></textarea>
-           <h2 style = "font-size: 20px; color:white;">แนบเอกสารเพิ่มเติม    <input type="file" name="file_mes" id="file_mes"></h2>
+           
            <div>
            <h2 style = "font-size: 20px; color:white;">รายชื่อกอง
                         <?php
@@ -138,7 +138,7 @@ date_default_timezone_set("Asia/Bangkok");
                                 <option value="" selected disabled>กรุณาเลือกชื่อกอง</option>
                             </select>
                         <br> <br> 
-                        <button type="button" class="btn btn-success" id="save_mes" style = "margin-left: 50%">ส่งเอกสาร</button>
+                        <button type="button" class="btn btn-success" id="save_mes" style = "margin-left: 50%" >ส่งเอกสาร</button>
                         </div>
                   
         <div>
@@ -180,7 +180,6 @@ date_default_timezone_set("Asia/Bangkok");
 
         var mes_name = $('#mes_name').val();
         var mes_detial = $('#mes_detial').val();
-        var file_mes = $('#file_mes').val();
         var divistion_id = $('#divistion_id').val();
         var emp_id = $('#emp_id').val();
         
@@ -193,7 +192,6 @@ date_default_timezone_set("Asia/Bangkok");
             data: {
               mes_name: mes_name,
               mes_detial: mes_detial,
-              file_mes: file_mes,
               divistion_id: divistion_id,
               emp_id: emp_id
             },
@@ -201,11 +199,12 @@ date_default_timezone_set("Asia/Bangkok");
             success: function (dataResult) {
               var dataResult = JSON.parse(dataResult);
               if (dataResult.statusCode == 200) {
-                show_divistion();
                 Swal.fire({
                   icon: 'success',
                   title: 'ส่งข้อความสำเร็จ',
+
                 })
+                $('#g1').modal('show');
                
               }
               else if (dataResult.statusCode == 201) {
@@ -221,8 +220,11 @@ date_default_timezone_set("Asia/Bangkok");
         else {
           Swal.fire('กรุณากรอกข้อมูลให้ครบ');
         }
+        
       });
     });
+
+    
   </script>
 </body>
 

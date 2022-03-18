@@ -298,7 +298,6 @@ $Position_name = $_SESSION['Position_name'];
                   <tr style="background-color:#212529; color:white;">
                     <th class="thcenter">รูป</th>
                     <th class="thcenter">การจัดการ</th>
-                    
                   </tr>
                 </thead>
                 <tbody id="pacha" style="border:1px; width:100%">
@@ -344,7 +343,6 @@ $Position_name = $_SESSION['Position_name'];
             <div style="float:right">
             วัน/เดือน/ปี : <input id="myInput4" type="date"><br><br>
             </div>
-
             <div class="table-responsive-sm">
               <table class="table table-bordered table-sm" style="border:1px; width:100%">
                 <thead>

@@ -73,7 +73,7 @@ date_default_timezone_set("Asia/Bangkok");
            การจัดการเอกสาร
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="document_recive_user.php" >เอกสารถึงตัวท่าน</a></li>
+          <li><a class="dropdown-item" href="document_recive_manager.php" >เอกสารถึงตัวท่าน</a></li>
             <li><a class="dropdown-item" >เอกสารรอดำเนินการ</a></li>
             <li><a class="dropdown-item" href="sent_message.php" >ส่งข้อความ</a></li>
             
@@ -104,7 +104,7 @@ date_default_timezone_set("Asia/Bangkok");
     <div class="hero-content display-table">
       <div class="table-cell">
         <div class="container">
-        <table class="table" style = "margin-bottom: 50%">
+        <table class="table" style = "margin-bottom: 50%; color: white;">
   <thead style = "border: 3px;">
     <tr>
       <th scope="col">No</th>

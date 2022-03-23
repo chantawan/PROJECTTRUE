@@ -48,6 +48,125 @@ position:absolute;
         background: url('img/lg.flip-book-loader.gif') 50% 50% no-repeat rgb(249,249,249);
         opacity: 1;
     }
+    
+  * {
+    font-family: 'supermarket';
+  }
+
+  body {
+    background-image: url('img/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: 100% 100%, auto;
+  }
+
+  #show_employee {
+    display: none;
+  }
+
+  #show_index {
+    display: block;
+  }
+
+  #show_divistion {
+    display: none;
+  }
+
+  #show_manual {
+    display: none;
+  }
+
+  #show_history {
+    display: none;
+  }
+
+  th.thcenter {
+    text-align: center;
+  }
+
+  #modal {
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: none;
+  }
+
+  .bgLeft {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .glow-on-hover {
+    width: 300px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 50px;
+  }
+
+  .glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+  }
+
+  .glow-on-hover:active {
+    color: #000
+  }
+
+  .glow-on-hover:active:after {
+    background: transparent;
+  }
+
+  .glow-on-hover:hover:before {
+    opacity: 1;
+  }
+
+  .glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+  }
+
+  @keyframes glowing {
+    0% {
+      background-position: 0 0;
+    }
+
+    50% {
+      background-position: 400% 0;
+    }
+
+    100% {
+      background-position: 0 0;
+    }
+  }
   </style>
   
 </head>
@@ -57,14 +176,14 @@ position:absolute;
      require_once("connect.php");
 
 
-               $id = mysqli_real_escape_string($conn,$_SESSION['fname']);
+               $id = mysqli_real_escape_string($conn,$_SESSION['name']);
 
 
-              $r = mysqli_query($conn,"SELECT * FROM upload where id = '$id'") or die (mysqli_error($con));
+              $r = mysqli_query($conn,"SELECT * FROM document where id = '$id'") or die (mysqli_error($con));
 
               $row = mysqli_fetch_array($r);
 
-               $id=$row['fname'];
+               $id=$row['name'];
                // $fname=$row['fname'];
                // $lname=$row['lname'];
 
@@ -121,7 +240,7 @@ position:absolute;
 
                        require_once("connect.php");
 
-                             $sql ="SELECT *,count(name) as count FROM upload group by name;";
+                             $sql ="SELECT *,count(name) as count FROM document group by name;";
                              $result = mysqli_query($conn,$sql);
                              $chart_data="";
                              while ($row = mysqli_fetch_array($result)) { 

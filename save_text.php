@@ -4,7 +4,7 @@
 	$mes_name=$_POST['mes_name'];
 	$mes_detial=$_POST['mes_detial'];
     $divistion_id=$_POST['divistion_id'];
-	$emp_id=$_POST['emp_id'];
+	$emid=$_POST['emid'];
    
 
 	$sql_query = "SELECT * from document where document_name = '$mes_name'";
@@ -13,7 +13,7 @@
 
     if($num_row == 0){
 		$sql = "INSERT INTO `document`( `document_name`,`document_detail`,`divistion_id`,`emp_id`) 
-		VALUES ('$mes_name','$mes_detial','$divistion_id','$emp_id')";
+		VALUES ('$mes_name','$mes_detial','$divistion_id','$emid')";
 
 		$result = mysqli_query($conn,$sql);
 		echo json_encode(array("statusCode"=>200));

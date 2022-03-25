@@ -204,7 +204,7 @@ $Position_name = $_SESSION['Position_name'];
           </ul>
         </div>
           <button class="btn btn-secondary btn-sm" style="width:100%; margin-bottom:3%;font-size:25px;"
-            onclick="show_manual()">คู่มือ</button>
+          show_document_now()>คู่มือ</button>
            <button class="btn btn-danger btn-sm" style="width:100%; margin-bottom:3%;font-size:25px;">
             <a class="nav-link" href="logout.php?option=1" style = "color:black">ออกจากระบบ</a></button> 
             

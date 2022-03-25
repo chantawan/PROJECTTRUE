@@ -133,8 +133,8 @@ date_default_timezone_set("Asia/Bangkok");
                         
                         </select>
                         <h2 style = "font-size: 20px; color:white;">
-                        <label for="emp_id">รายชื่อบุคลากรภายในกอง</label><br> 
-                            <select name="emp_id" id="emp_id" class="form-select" style = "text-align: center; width: 20%;" aria-label="Default select example">
+                        <label for="emid">รายชื่อบุคลากรภายในกอง</label><br> 
+                            <select name="emid" id="emid" class="form-select" style = "text-align: center; width: 20%;" aria-label="Default select example">
                                 <option value="" selected disabled>กรุณาเลือกชื่อกอง</option>
                             </select>
                         <br> <br> 
@@ -164,6 +164,7 @@ date_default_timezone_set("Asia/Bangkok");
       
       $('#divistion_id').change(function(){
         var divistion_id = $(this).val();
+        
         $.ajax({
             type:"post",
             url:"SelectDivistion.php",
@@ -172,7 +173,7 @@ date_default_timezone_set("Asia/Bangkok");
                 function:'divistion_id'
             },
             success: function(data){
-                $('#emp_id').html(data);
+                $('#emid').html(data);
             }    
         });
     });
@@ -181,11 +182,11 @@ date_default_timezone_set("Asia/Bangkok");
         var mes_name = $('#mes_name').val();
         var mes_detial = $('#mes_detial').val();
         var divistion_id = $('#divistion_id').val();
-        var emp_id = $('#emp_id').val();
+        var emid = $('#emid').val();
         
 
 
-        if (mes_name != "" && mes_detial != "" && divistion_id != "" && emp_id != "" ) {
+        if (mes_name != "" && mes_detial != "" && divistion_id != "" && emid != "" ) {
           $.ajax({
             url: "save_text.php",
             type: "POST",
@@ -193,7 +194,7 @@ date_default_timezone_set("Asia/Bangkok");
               mes_name: mes_name,
               mes_detial: mes_detial,
               divistion_id: divistion_id,
-              emp_id: emp_id
+              emid: emid
             },
             cache: false,
             success: function (dataResult) {

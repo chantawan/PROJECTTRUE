@@ -303,7 +303,7 @@ if (isset($_POST['submit']) != "") {
                         <p>
                           <label for="documenttypeId"></label>
                           ประเภทเอกสาร
-</br>
+                          </br>
                           <input type="radio" name="documenttype_id" id="documenttypeId" value="1">
                           <label for="documenttypeId"></label>
                           &nbsp;เอกสารของหน่วยงาน&nbsp;
@@ -321,7 +321,7 @@ if (isset($_POST['submit']) != "") {
 
                         <div class="d-flex justify-content-center pull-right">
                           <p>ชั้นความเร็ว :
-</br>
+                            </br>
                             <select name="speed_send" id="speedSend">
                               <option value="0">--เลือกชั้นความเร็ว--</option>
                               <option value="1">--ด่วน--</option>

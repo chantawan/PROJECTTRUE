@@ -166,7 +166,7 @@
     // $caption1=$_POST['caption'];
     // $link=$_POST['link'];
     $fname = date("YmdHis") . '_' . $name;
-    $chk = $conn->query("SELECT * FROM  upload where name = '$name' ")->rowCount();
+    $chk = $conn->query("SELECT * FROM  document where name = '$name' ")->rowCount();
     if ($chk) {
       $i = 1;
       $c = 0;
@@ -175,7 +175,7 @@
         $reversedParts = explode('.', strrev($name), 2);
         $tname = (strrev($reversedParts[1])) . "_" . ($i) . '.' . (strrev($reversedParts[0]));
         // var_dump($tname);exit;
-        $chk2 = $conn->query("SELECT * FROM  upload where name = '$tname' ")->rowCount();
+        $chk2 = $conn->query("SELECT * FROM  document where name = '$tname' ")->rowCount();
         if ($chk2 == 0) {
           $c = 1;
           $name = $tname;
@@ -184,7 +184,7 @@
     }
     $move =  move_uploaded_file($temp, "upload/" . $fname);
     if ($move) {
-      $query = $conn->query("insert into upload(name,fname)values('$name','$fname')");
+      $query = $conn->query("insert into document(name,fname)values('$name','$fname')");
       if ($query) {
         header("location:upload.php");
       } else {
@@ -259,68 +259,65 @@
         </h1>
         <br />
         <br />
-        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
-          <thead>
-            <tr>
-              <th width="70%" align="center">ชื่อไฟล์</th>
-              <th align="center">แผนก</th>
-              <th align="center">ประเภทเอกสาร</th>
-              <th align="center">ลงเมื่อวันที่</th>
-              <th align="center">ดาวน์โหลด</th>
-            </tr>
-          </thead>
-          <?php
-          $query = $conn->query("select * from upload order by id desc");
-          while ($row = $query->fetch()) {
-            $name = $row['name'];
-          ?>
+        <center>
+          <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+            <thead>
+              <tr>
+                <th width="70%" align="center">ชื่อไฟล์</th>
+                <th align="center">แผนก</th>
+                <th align="center">ประเภทเอกสาร</th>
+                <th align="center">ลงเมื่อวันที่</th>
+                <th align="center">ดาวน์โหลด</th>
+              </tr>
+            </thead>
             <?php
-            $query = $conn->query("select * from document order by document_id desc");
+            $query = $conn->query("select * from document order by id desc");
             while ($row = $query->fetch()) {
-              $divistion_id = $row['divistion_id'];
+              $name = $row['name'];
             ?>
               <?php
-              $query = $conn->query("select * from document order by document_id desc");
+              $query = $conn->query("select * from document order by document_detail desc");
               while ($row = $query->fetch()) {
-                $documenttype_id = $row['documenttype_id'];
+                $document_detail = $row['document_detail'];
               ?>
                 <?php
-                $query = $conn->query("select * from document order by document_id desc");
+                $query = $conn->query("select * from document order by documenttype_id desc");
                 while ($row = $query->fetch()) {
-                  $document_date = $row['document_date'];
+                  $documenttype_id = $row['documenttype_id'];
                 ?>
-                  <tr>
+                  <?php
+                  $query = $conn->query("select * from document order by document_date desc");
+                  while ($row = $query->fetch()) {
+                    $document_date = $row['document_date'];
+                  ?>
+                    <tr>
 
+                      <td>
+                        &nbsp;<?php echo $name; ?>
+                      </td>
+                      <td>
+                        &nbsp;<?php echo $document_detail; ?>
+                      </td>
+                    <?php } ?>
                     <td>
-                      &nbsp;<?php echo $name; ?>
-                    </td>
-                    <td>
-                      &nbsp;<?php echo $divistion_id; ?>
+                      &nbsp;<?php echo $documenttype_id; ?>
                     </td>
                   <?php } ?>
                   <td>
-                    &nbsp;<?php echo $documenttype_id; ?>
+                    &nbsp;<?php echo $document_date; ?>
                   </td>
                 <?php } ?>
                 <td>
-                  &nbsp;<?php echo $document_date; ?>
+                  <button class="alert-success"><a href="download.php?filename=<?php echo $name; ?>&f=<?php echo $row['fname'] ?>">ดาวน์โหลด</a></button>
                 </td>
-              <?php } ?>
-              <td>
-                <button class="alert-success"><a href="download.php?filename=<?php echo $name; ?>&f=<?php echo $row['fname'] ?>">ดาวน์โหลด</a></button>
-              </td>
-                  </tr>
-                <?php } ?>
-        </table>
+                    </tr>
+                  <?php } ?>
+          </table>
       </div>
     </div>
     </div>
-    <div class="">
-
-      <a href="add_file.php"><button type="button" class="btn btn-success"><i class="fas fa-file-medical"></i> เพิ่มไฟล์</button></a>
-    </div>
-
     <hr>
+    </center>
 </body>
 
 </html>

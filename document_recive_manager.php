@@ -99,7 +99,7 @@ tr:nth-child(even) {
             
           </ul>
         </div>
-          <li><a class="nav-link scrollto"style="font-size:25px;" href="#">แฟ้มเอกสาร</a></li>
+          <li><a class="nav-link scrollto"style="font-size:25px;" href="document_storage.php">แฟ้มเอกสาร</a></li>
           <li><a class="nav-link scrollto"style="font-size:25px;" href="#">คู่มือ</a></li>
           <li><a class="nav-link scrollto"style="font-size:25px;" href="logout.php?option=2">ออกจากระบบ</a></li>
         </ul>

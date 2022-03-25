@@ -142,6 +142,10 @@ date_default_timezone_set("Asia/Bangkok");
 <!--/.Navbar -->
 <br><Br><br>
 <!-- Card -->
+<div id="hero" class="hero route bg-image" style="background-image: url(assets/img/wall.jpg)">
+    <div class="overlay-itro"></div>
+    
+    <div class="hero-content display-table">
 <div class="container">
   <div class="row">
      <div class="col-md-9">

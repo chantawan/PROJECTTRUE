@@ -191,16 +191,16 @@ tr:nth-child(even) {
             if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
           ?>	
-              <tr style="background-color:white; color:black;">
+              <tr style="background-color:white; color:black;" >
               <td class="pl-3">
               <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" id="docId"/>
               <label class="custom-control-label" for="docId">&nbsp;</label>
               </div>
               </td>
-                  <td><?=$row['document_name'];?></td>
-                  <td><?=$row['document_detail'];?></td>
-                  <td><?=$row['document_date'];?></td>
+                  <td><a href="your link"><?=$row['document_name'];?></a></td>
+                  <td><a href="your link"><?=$row['document_detail'];?></a></td>
+                  <td><a href="your link"><?=$row['document_date'];?></a></td>
                   
               </tr>
             

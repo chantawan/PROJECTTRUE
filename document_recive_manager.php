@@ -198,9 +198,9 @@ tr:nth-child(even) {
               <label class="custom-control-label" for="docId">&nbsp;</label>
               </div>
               </td>
-                  <td><a href="your link"><?=$row['document_name'];?></a></td>
-                  <td><a href="your link"><?=$row['document_detail'];?></a></td>
-                  <td><a href="your link"><?=$row['document_date'];?></a></td>
+                  <td><?=$row['document_name'];?></a></td>
+                  <td><?=$row['document_detail'];?></a></td>
+                  <td><?=$row['document_date'];?></a></td>
                   
               </tr>
             

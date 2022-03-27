@@ -1,3 +1,8 @@
+<?php
+include "connect2.php";
+
+date_default_timezone_set("Asia/Bangkok");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -164,56 +169,53 @@
         <hr>
         <table id="dtable" class="table table-striped" style="">
           <thead>
-
-            <th>ชื่อไฟล์</th>
-            <th>แผนก</th>
+            <th>เลขที่เอกสาร</th>
+            <th>เรื่อง</th>
+            <th>วันที่นำเข้าเอกสาร</th>
+            <th>วันหมดอายุเอกสาร</th>
             <th>ประเภทเอกสาร</th>
-            <th>วัน/เวลา</th>
-            <th>ดาวน์โหลด</th>
-            <th>ลบ</th>
-
+            <th>การจัดการ</th>
           </thead>
-          <tbody>
+          <tbody id="Input_doc" style=" width:100%; height:100%">
+          <?php                 
+            $search1 = date("Y/m/d");
 
-            <?php
-            $sql_query = "SELECT id
-                    FROM document
-                    ORDER BY `id` ASC";
+            $sql_query = "SELECT a.Doc_id,a.document_number,a.document_name,a.document_date,b.documenttype_name
+            FROM document a , documenttype b
+            Where a.documenttype_id = b.documenttype_id
+            ORDER BY `document_date` DESC";
 
-            $result = mysqli_query($conn, $sql_query);
+            $result = mysqli_query($conn,$sql_query);
             $num_row = mysqli_num_rows($result);
+            if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+          ?>	
+              <tr style="background-color:white; color:black;" >
+                   <td><?=$row['document_number'];?></a></td>
+                  <td><?=$row['document_name'];?></a></td>
+                  <td><?=$row['document_date'];?></a></td>
+                  <td><?=$row['document_date'];?></a></td>
+                  <td><?=$row['documenttype_name'];?></a></td>
+                  <td style="width:20%;">
+                  <button type="button" class="btn btn-success" id="select_input">เลือก</button>
+                  <button onclick="OnDelete4(<?=$row['Doc_id'];?>)" type="button" class="btn btn-danger">ลบ</button>
+              </td>
 
-            while ($row = $result->fetch_assoc()) {
-            ?>
-              <tr>
-                <?php
-
-                require_once("connect.php");
-
-                $query = mysqli_query($conn, "SELECT id,download,document_detail,documenttype_id,mydate FROM document group by download DESC") or die(mysqli_error($conn));
-                while ($row = mysqli_fetch_array($query)) {
-                  $id =  $row['id'];
-                  $download =  $row['download'];
-                  $document_detail =  $row['document_detail'];
-                  $documenttype_id =  $row['documenttype_id'];
-                  $document_date =  $row['mydate'];
-                  $downloadd =  $row['download'];
-
-                ?>
-
-                  <td width="19%"><?php echo  $download; ?></td>
-                  <td><?php echo $document_detail; ?></td>
-                  <td><?php echo $documenttype_id; ?></td>
-                  <td><?php echo $document_date; ?></td>
-                  <td <?php echo $downloadd; ?>class="alert-success"><a href='download.php?filename=<?php echo $name; ?>'><?php echo $row['download'] ?><img src="img/698569-icon-57-document-download-128.png" width="30px" height="30px" title="Download File"></a> </td>
-                  <td onclick="OnDelete4(<?= $row['id']; ?>)" type="button" class="alert-success"><img src="img/delete.png" width="30px" height="30px" title="Delete File"></a> </td>
               </tr>
-              <?php }
-               ?>
-          <?php }
-               ?>
-          </tbody>
+            
+            <?php	
+             }  
+             
+            }else {
+              
+            }
+            ?>
+           
+            
+        </tbody>
         </table>
+
+            
       </div>
 
 
@@ -263,10 +265,10 @@
                   if (result.isConfirmed) {
                     $.ajax({
 
-                      url: "delete2.php",
+                      url: "delete_inputDoc.php",
                       type: 'post',
                       data: {
-                        ID: id
+                        Doc_id: id
                       },
                       success: function(dataResult) {
                         var dataResult = JSON.parse(dataResult);

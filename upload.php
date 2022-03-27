@@ -1,6 +1,19 @@
+<?php
+include "connect.php";
+
+// Check user login or not
+if (!isset($_SESSION['emp_id'])) {
+  header('Location: login_admin.php');
+}
+
+$emp_id = $_SESSION['emp_id'];
+$emp_firstname = $_SESSION['emp_firstname'];
+$Position_name = $_SESSION['Position_name'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
+ss
 <head>
   <link rel="icon" href="img/login2.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -13,9 +26,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>อัพโหลดเอกสาร</title>
 </head>
-
 <?php
-$conn = new PDO('mysql:host=localhost; dbname=project2', 'root', '') or die(mysql_error());
+$con = new PDO('mysql:host=localhost; dbname=project', 'root', '') or die(mysql_error());
 if (isset($_POST['submit']) != "") {
   $name = $_FILES['file']['name'];
   $size = $_FILES['file']['size'];
@@ -24,7 +36,7 @@ if (isset($_POST['submit']) != "") {
   // $caption1=$_POST['caption'];
   // $link=$_POST['link'];
   $fname = date("YmdHis") . '_' . $name;
-  $chk = $conn->query("SELECT * FROM  document where name = '$name' ")->rowCount();
+  $chk = $con->query("SELECT * FROM  document where name = '$name' ")->rowCount();
   if ($chk) {
     $i = 1;
     $c = 0;
@@ -33,7 +45,7 @@ if (isset($_POST['submit']) != "") {
       $reversedParts = explode('.', strrev($name), 2);
       $tname = (strrev($reversedParts[1])) . "_" . ($i) . '.' . (strrev($reversedParts[0]));
       // var_dump($tname);exit;
-      $chk2 = $conn->query("SELECT * FROM  document where name = '$tname' ")->rowCount();
+      $chk2 = $con->query("SELECT * FROM  document where name = '$tname' ")->rowCount();
       if ($chk2 == 0) {
         $c = 1;
         $name = $tname;
@@ -42,7 +54,7 @@ if (isset($_POST['submit']) != "") {
   }
   $move =  move_uploaded_file($temp, "upload/" . $fname);
   if ($move) {
-    $query = $conn->query("insert into document(fname,name)values('$fname','$name')");
+    $query = $con->query("insert into document(fname,name)values('$fname','$name')");
     if ($query) {
       header("location:upload.php");
     } else {
@@ -51,14 +63,14 @@ if (isset($_POST['submit']) != "") {
   }
 }
 ?>
-
-<html>
-<title>อัพโหลดเอกสาร</title>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+<script src="js/validation.js"></script>
+<link rel="stylesheet" href="css/style.css">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
 <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
 </head>
-<script src="js/jquery.js" type="text/javascript"></script>
-<script src="js/bootstrap.js" type="text/javascript"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript" charset="utf-8" language="javascript" src="js/jquery.dataTables.js"></script>
 <script type="text/javascript" charset="utf-8" language="javascript" src="js/DT_bootstrap.js"></script>
@@ -92,7 +104,7 @@ if (isset($_POST['submit']) != "") {
   }
 
   body {
-    background-image: url('img/background.jpg');
+    background-image: url('img/wall.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -206,173 +218,160 @@ if (isset($_POST['submit']) != "") {
     }
   }
 </style>
+<div class="container contact">
+  <div class="row">
+    <div class="col-md-9">
+      <center>
+        <h2>กรอกข้อมูลเอกสาร</h2>
+      </center>
+      </br>
+      <center>
+        <h2>คำชี้แจง : โปรดกรอกรายละเอียดให้ครบถ้วน</h2>
+      </center>
 
-<body>
-  <div class="row-fluid">
-    <div class="span12">
-      <div class="container">
-        <br />
-        <h1>
-          <p>อัพโหลดเอกสาร</p>
-        </h1>
-        <br />
-        <br />
-        <form enctype="multipart/form-data" action="" name="form" method="post">
-          เลือกไฟล์
-          <input type="file" name="file" id="file" /></td>
-          <input type="submit" name="submit" id="submit" value="Submit" />
-        </form>
-        <footer style="font-size: 12px"><b>ชนิดไฟล์:</b>
-          <font color="red"><i>.pdf</i></font>
-        </footer>
-        <hr>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="documentNumber">เลขที่หนังสือ:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="document_number" name="document_number" placeholder="Enter Number">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="documentName">ชื่อหนังสือ:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="document_name" name="document_name" placeholder="Enter Name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="documentDetaile">รายละเอียด:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="document_detail" name="document_detail" placeholder="Enter Detaile">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="divistionId">รหัส:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="divistion_id" name="divistion_id" placeholder="Enter Divistionid">
+        </div>
+      </div>
+      <div class="form-group">
+        <p>ประเภทเอกสาร:
+          </br>
+          <select name="documenttype_id" id="documenttype_id">
+            <option value="0">--เลือกประเภทเอกสาร--</option>
+            <option value="1">--เอกสารของหน่วยงาน--</option>
+            <option value="2">--หน่วยงานภายใน--</option>
+            <option value="3">--หน่วยงานภายนอก--</option>
+          </select>
+      </div>
+      </p>
+      </p>
+
+      <div class="d-flex justify-content-center pull-right">
+        <p>ชั้นความเร็ว :
+          <?php
+          $sql = "SELECT * from speedclass";
+
+          $result = mysqli_query($conn, $sql);
+          ?>
+          <select name="speed_send" id="speed_send" class="form-select">
+            <option value="ชั้นความเร็ว">ชั้นความเร็ว</option>
+            <?php
+            while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+              <option value="<?php echo $row["speedclass_id"] ?>"><?php echo $row["speedclass_name"] ?></option>
+            <?php
+            }
+            ?>
+          </select>
+        </p>
+        <p>ชั้นความลับ :
+          <?php
+          $sql = "SELECT * from secretclass";
+
+          $result = mysqli_query($conn, $sql);
+          ?>
+          <select name="secret_send" id="secret_send" class="form-select">
+            <option value="ชั้นความเร็ว">ชั้นความเร็ว</option>
+            <?php
+            while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+              <option value="<?php echo $row["Secretclass_Id"] ?>"><?php echo $row["Secretclass_Name"] ?></option>
+            <?php
+            }
+            ?>
+          </select>
+        </p>
+        <p>เก็บไว้ถึงปี พ.ศ.&nbsp;:
+          <label for="documentDate"></label>
+          <input type="date" name="mydate" id="mydate">
+        </p>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="DocumentFI">อัพโหลดไฟล์:</label>
+        <div class="col-sm-10">
+          <input type="file" class="form-control" id="download" name="download">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <footer><button type="submit" class="btn btn-default" id="save_document">บันทึก</button></footer>
+        </div>
       </div>
     </div>
   </div>
-  <center>
-    <main class="pt-5 mx-lg-5">
-      <div class="container-fluid mt-5">
+</div>
+<script>
+  $(document).ready(function() {
+    $('#save_document').on('click', function() {
 
-        <!-- Heading -->
-        <div class="card mb-4 wow fadeIn">
+      var document_number = $('#document_number').val();
+      var document_name = $('#document_name').val();
+      var document_detail = $('#document_detail').val();
+      var divistion_id = $('#divistion_id').val();
+      var documenttype_id = $('#documenttype_id').val();
+      var speed_send = $('#speed_send').val();
+      var secret_send = $('#secret_send').val();
+      var mydate = $('#mydate').val();
+      var download = $('#download').val();
 
-          <!--Card content-->
-          <div class="card-body d-sm-flex justify-content-between">
 
-            <h4 class="mb-2 mb-sm-0 pt-1">
-              <a href="index_admin.php">หน้าหลัก</a>
-              <span>/</span>
-              <span>เอกสารนำเข้า</span>
-            </h4>
-
-            <div class="d-flex justify-content-center pull-right">
-              <a href="add_document.php">
-                <button class="btn btn-warning"><i class="far fa-file-image"></i> ดูไฟล์</button></a>
-            </div>
-          </div>
-          <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header text-center">
-                  <h4 class="modal-title w-100 font-weight-bold">Add File Form</h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body mx-2">
-                </div>
-              </div>
-            </div>
-          </div>
-          <center>
-            <div class="text-center col-md-8">
-              <div class="card">
-                <table width="850" height="550" border="0" align="center" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <th width="1819" bgcolor="#CCCCCC" scope="col">กรอกข้อมูลเอกสาร</th>
-                  </tr>
-                  <tr>
-                    <td bgcolor="#CCCCCC">
-                      <table width="522" border=0" align="center">
-                        <tr bgcolor="#999999">
-                          <th align="center" valign="middle" scope="col" colortxt="red">คำชี้แจง : โปรดกรอกรายละเอียดให้ครบถ้วน</th>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr align="left">
-                    <td>
-                      <form action="insert.php" name="form" method="post">
-                        <br>
-                        <p>เลขที่หนังสือ :
-                          <label for="documentNumber"></label>
-                          <input type="text" name="document_number" id="documentNumber">
-                          <label for="document_number"></label>
-                        <p>
-                          <label for="documentName">ชื่อหนังสือ:</label>
-                          <input type="text" name="document_name" id="documentName">
-                        </p>
-                        <p>
-                          <label for="documentDetail">รายละเอียด:</label>
-                          <input type="text" name="document_detail" id="documentDetail">
-                        </p>
-                        <p>
-                          <label for="divistionId">รหัส:</label>
-                          <input type="text" name="divistion_id" id="divistionId">
-                        </p>
-                        <p>
-                          <label for="documenttypeId"></label>
-                          ประเภทเอกสาร
-                          </br>
-                          <input type="radio" name="documenttype_id" id="documenttypeId" value="1">
-                          <label for="documenttypeId"></label>
-                          &nbsp;เอกสารของหน่วยงาน&nbsp;
-                          <input type="radio" name="documenttype_id" id="documenttypeId" value="2">
-                          <label for="documenttypeId"></label>
-                          &nbsp;หน่วยงานภายใน&nbsp;
-                          <input type="radio" name="documenttype_id" id="documenttypeId" value="3">
-                          <label for="documenttypeId"></label>
-                          &nbsp;หน่วยงานภายนอก&nbsp;
-                          <input type="radio" name="documenttype_id" id="documenttypeId" value="4">
-                          &nbsp;อื่นๆ (โปรดระบุ)&nbsp;
-                          <label for="documenttypeId"></label>
-                          <textarea type="radio" name="documenttype_id" cols="100" id="documenttypeId"></textarea>
-                        </p>
-
-                        <div class="d-flex justify-content-center pull-right">
-                          <p>ชั้นความเร็ว :
-                            </br>
-                            <select name="speed_send" id="speedSend">
-                              <option value="0">--เลือกชั้นความเร็ว--</option>
-                              <option value="1">--ด่วน--</option>
-                              <option value="2">--ด่วนมาก--</option>
-                              <option value="3">--ด่วนที่สุด--</option>
-                            </select>
-                          </p>
-                          <p>ชั้นความลับ :
-                            <select name="secret_send" id="secretSend">
-                              <option value="0">--เลือกชั้นความลับ--</option>
-                              <option value="1">--ลับ--</option>
-                              <option value="2">--ลับมาก--</option>
-                              <option value="3">--ลับที่สุด--</option>
-                            </select>
-                          </p>
-                          <p>วัตถุประสงค์ :
-                            <select name="oject_send" id="ojectSend">
-                              <option value="0">--เลือกวัตถุประสงค์--</option>
-                              <option value="1">--#--</option>
-                              <option value="2">--#--</option>
-                              <option value="3">--#--</option>
-                            </select>
-                          </p>
-                          <p>เก็บไว้ถึงปี พ.ศ.&nbsp;:
-                            <label for="documentDate"></label>
-                            <input type="date" name="mydate" id="myDate">
-                          </p>
-                        </div>
-                        <footer><button type="submit" class="btn btn-success"><a href="upload.php?filename=">บันทึก</button></footer>
-                    </td>
-                    </form>
-                    <hr>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                  </tr>
-                  </form>
-                </table>
-
-              </div>
-            </div>
-        </div>
-      </div>
-      <Br><br>
-      </div>
-      </div>
-  </center>
-</body>
-
-</html>
+      if (document_number != "" && document_name != "") {
+        $.ajax({
+          url: "save_document.php",
+          type: "POST",
+          data: {
+            document_number: document_number,
+            document_name: document_name,
+            document_detail: document_detail,
+            divistion_id: divistion_id,
+            documenttype_id: documenttype_id,
+            speed_send: speed_send,
+            secret_send: secret_send,
+            mydate: mydate,
+            download: download
+          },
+          cache: false,
+          success: function(dataResult) {
+            var dataResult = JSON.parse(dataResult);
+            if (dataResult.statusCode == 200) {
+              
+              Swal.fire({
+                icon: 'success',
+                title: 'เพิ่มกองสำเร็จ',
+              })
+              $('#exampleModal5').modal('hide');
+            } else if (dataResult.statusCode == 201) {
+              Swal.fire({
+                icon: 'error',
+                title: 'มีชื่อกองนี้แล้ว',
+              })
+            }
+            $('#exampleModal5').find('input[type=text], input[type=password], input[type=number], input[type=tel], input[type=email], textarea').val('');
+          }
+        });
+      } else {
+        Swal.fire('กรุณากรอกข้อมูลให้ครบ');
+      }
+    });
+  });
+</script>

@@ -48,7 +48,6 @@ date_default_timezone_set("Asia/Bangkok");
   <link href="css/style.css" rel="stylesheet">
 
   <script src="js/jquery-1.8.3.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="media/css/dataTable.css" />
   <script src="media/js/jquery.dataTables.js" type="text/javascript"></script>
 
   <script type="text/javascript" charset="utf-8">
@@ -160,6 +159,52 @@ date_default_timezone_set("Asia/Bangkok");
     </div>
   </nav>
   <br>
+  <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                  <h5 class="modal-title" id="exampleModalLabel">หน้าการส่ง</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                      <?php
+                          $sql = "SELECT * from divistion";
+
+                          $result = mysqli_query($conn,$sql);
+                        ?>
+                        <select name="divistion_id" id="divistion_id" class="form-select"style = "text-align: center; width: 70%; " >
+                          <option value="กอง">กอง</option>
+                        <?php
+                          while($row = mysqli_fetch_assoc($result)){
+                        ?>
+                              <option value="<?php echo $row["divistion_id"]?>"><?php echo $row["divistion_name"]?></option>              
+                            <?php
+                          }
+                        ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                     
+                            <select name="emid" id="emid" class="form-select" style = "text-align: center; width: 70%;" aria-label="Default select example">
+                                <option value="" selected disabled>กรุณาเลือกชื่อกอง</option>
+                            </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear_modal5">ปิด</button>
+                  <button type="button" class="btn btn-success" id="butupdatedoc" >ยืนยัน</button>
+                </div>
+              </div>
+            </div>
+          </div>
   <!--/.Navbar -->
   <br><Br><br>
   <!-- Card -->
@@ -197,7 +242,8 @@ date_default_timezone_set("Asia/Bangkok");
                   <td><?=$row['document_date'];?></a></td>
                   <td><?=$row['documenttype_name'];?></a></td>
                   <td style="width:20%;">
-                  <button type="button" class="btn btn-success" id="select_input">เลือก</button>
+                  <button class="btn btn-success"  type="button" data-bs-toggle="modal"
+                data-bs-target="#exampleModal5">ส่ง</button>
                   <button onclick="OnDelete4(<?=$row['Doc_id'];?>)" type="button" class="btn btn-danger">ลบ</button>
               </td>
 
@@ -222,9 +268,6 @@ date_default_timezone_set("Asia/Bangkok");
 
       </script>
 
-
-
-
             <!-- Card -->
             <!-- /Start your project here-->
 
@@ -243,6 +286,7 @@ date_default_timezone_set("Asia/Bangkok");
             <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/1.0.3/css/dataTables.responsive.css">
             <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/1.0.3/js/dataTables.responsive.js"></script>
             <script>
+             
               function OnDelete4(id) {
                 //  alert(id);
                 const swalWithBootstrapButtons = Swal.mixin({
@@ -291,6 +335,26 @@ date_default_timezone_set("Asia/Bangkok");
                   }
                 });
               }
+            </script>
+            <script>
+              $(document).ready(function () {
+      
+      $('#divistion_id').change(function(){
+        var divistion_id = $(this).val();
+        
+        $.ajax({
+            type:"post",
+            url:"SelectDivistion.php",
+            data:{
+                id:divistion_id,
+                function:'divistion_id'
+            },
+            success: function(data){
+                $('#emid').html(data);
+            }    
+        });
+    });
+  });
             </script>
 </body>
 

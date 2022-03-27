@@ -130,7 +130,6 @@ date_default_timezone_set("Asia/Bangkok");
                             <?php
                           }
                         ?>
-                        
                         </select>
                         <h2 style = "font-size: 20px; color:white;">
                         <label for="emid">รายชื่อบุคลากรภายในกอง</label><br> 

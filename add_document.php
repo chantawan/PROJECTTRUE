@@ -2,28 +2,50 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="img/login2.png" type="image/png">
-  <title>เอกสารนำเข้า</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>เอกสารนำเข้า</title>
-  <!-- Font Awesome -->
+
+  <link rel="icon" href="img/login2.png" type="image/png">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="icon" href="img/logoUser1.png" type="image/png">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="img/login2.png" type="image/png">
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-  <!-- Bootstrap core CSS -->
+
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
+
   <link href="css/mdb.min.css" rel="stylesheet">
-  <!-- Your custom styles (optional) -->
-  <link href="css/style.min.css" rel="stylesheet">
+
+  <link href="css/style.css" rel="stylesheet">
 
   <script src="js/jquery-1.8.3.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="medias/css/dataTable.css" />
-  <script src="medias/js/jquery.dataTables.js" type="text/javascript"></script>
-  <!-- end table-->
+  <link rel="stylesheet" type="text/css" href="media/css/dataTable.css" />
+  <script src="media/js/jquery.dataTables.js" type="text/javascript"></script>
+
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#dtable').dataTable({
@@ -32,10 +54,17 @@
           [5, 10, 15, 25, 50, 100, "All"]
         ],
         "iDisplayLength": 10
+
       });
     })
   </script>
-  <style>
+  <style type="text/css">
+    select[multiple],
+    select[size] {
+      height: auto;
+      width: 20px;
+    }
+
     * {
       font-family: 'supermarket';
     }
@@ -48,184 +77,9 @@
       background-size: 100% 100%, auto;
     }
 
-    #show_employee {
-      display: none;
-    }
-
-    #show_index {
-      display: block;
-    }
-
-    #show_divistion {
-      display: none;
-    }
-
-    #show_manual {
-      display: none;
-    }
-
-    #show_history {
-      display: none;
-    }
-
-    th.thcenter {
-      text-align: center;
-    }
-
-    #modal {
-      background: rgba(0, 0, 0, 0.7);
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 100;
-      display: none;
-    }
-
-    .bgLeft {
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    .glow-on-hover {
-      width: 300px;
-      height: 50px;
-      border: none;
-      outline: none;
-      color: #fff;
-      background: #111;
-      cursor: pointer;
-      position: relative;
-      z-index: 0;
-      border-radius: 50px;
-    }
-
-    .glow-on-hover:before {
-      content: '';
-      background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      background-size: 400%;
-      z-index: -1;
-      filter: blur(5px);
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
-      animation: glowing 20s linear infinite;
-      opacity: 0;
-      transition: opacity .3s ease-in-out;
-      border-radius: 10px;
-    }
-
-    .glow-on-hover:active {
-      color: #000
-    }
-
-    .glow-on-hover:active:after {
-      background: transparent;
-    }
-
-    .glow-on-hover:hover:before {
-      opacity: 1;
-    }
-
-    .glow-on-hover:after {
-      z-index: -1;
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: #111;
-      left: 0;
-      top: 0;
-      border-radius: 10px;
-    }
-
-    @keyframes glowing {
-      0% {
-        background-position: 0 0;
-      }
-
-      50% {
-        background-position: 400% 0;
-      }
-
-      100% {
-        background-position: 0 0;
-      }
-    }
-  </style>
-
-  <?php
-  $conn = new PDO('mysql:host=localhost; dbname=project', 'root', '') or die(mysql_error());
-  if (isset($_POST['submit']) != "") {
-    $name = $_FILES['file']['name'];
-    $size = $_FILES['file']['size'];
-    $type = $_FILES['file']['type'];
-    $temp = $_FILES['file']['tmp_name'];
-    // $caption1=$_POST['caption'];
-    // $link=$_POST['link'];
-    $fname = date("YmdHis") . '_' . $name;
-    $chk = $conn->query("SELECT * FROM  document where name = '$name' ")->rowCount();
-    if ($chk) {
-      $i = 1;
-      $c = 0;
-      while ($c == 0) {
-        $i++;
-        $reversedParts = explode('.', strrev($name), 2);
-        $tname = (strrev($reversedParts[1])) . "_" . ($i) . '.' . (strrev($reversedParts[0]));
-        // var_dump($tname);exit;
-        $chk2 = $conn->query("SELECT * FROM  document where name = '$tname' ")->rowCount();
-        if ($chk2 == 0) {
-          $c = 1;
-          $name = $tname;
-        }
-      }
-    }
-    $move =  move_uploaded_file($temp, "upload/" . $fname);
-    if ($move) {
-      $query = $conn->query("insert into document(name,fname)values('$name','$fname')");
-      if ($query) {
-        header("location:upload.php");
-      } else {
-        die(mysql_error());
-      }
-    }
-  }
-  ?>
-
-  <style>
-    select[multiple],
-    select[size] {
-      height: auto;
-      width: 20px;
-    }
-
     .pull-right {
       float: right;
       margin: 2px !important;
-    }
-
-    .map-container {
-      overflow: hidden;
-      padding-bottom: 56.25%;
-      position: relative;
-      height: 0;
-    }
-
-    .map-container iframe {
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-    }
-
-    input[type=file] {
-      border: 2px dotted #999;
-      border-radius: 10px;
-      margin-left: 9px;
-      width: 231px !important;
     }
 
     #loader {
@@ -239,85 +93,203 @@
       opacity: 1;
     }
 
-    }
+    /*   #dtable{
+ display: block;
+
+  overflow-x: scroll;
+  width: 600px;
+    }*/
   </style>
+
+  <script src="jquery.min.js"></script>
+  <script type="text/javascript">
+    $(window).on('load', function() {
+      //you remove this timeout
+      setTimeout(function() {
+        $('#loader').fadeOut('slow');
+      });
+      //remove the timeout
+      //$('#loader').fadeOut('slow'); 
+    });
+  </script>
+
 </head>
 
-<body>
-  <br />
-  <br />
-  <tr>
-    <td>
-    </td <div class="row-fluid">
-    <div class="span12">
-      <div class="container">
-        <br />
-        <h1>
-          <center>
-            <p>เอกสารนำเข้า</p>
-          </center>
-        </h1>
-        <br />
-        <br />
-        <center>
-          <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
-            <thead>
-              <tr>
-                <th width="70%" align="center">ชื่อไฟล์</th>
-                <th align="center">แผนก</th>
-                <th align="center">ประเภทเอกสาร</th>
-                <th align="center">ลงเมื่อวันที่</th>
-                <th align="center">ดาวน์โหลด</th>
-              </tr>
-            </thead>
-            <?php
-            $query = $conn->query("select * from document order by id desc");
-            while ($row = $query->fetch()) {
-              $name = $row['name'];
-            ?>
-              <?php
-              $query = $conn->query("select * from document order by document_detail desc");
-              while ($row = $query->fetch()) {
-                $document_detail = $row['document_detail'];
-              ?>
-                <?php
-                $query = $conn->query("select * from document order by documenttype_id desc");
-                while ($row = $query->fetch()) {
-                  $documenttype_id = $row['documenttype_id'];
-                ?>
-                  <?php
-                  $query = $conn->query("select * from document order by document_date desc");
-                  while ($row = $query->fetch()) {
-                    $document_date = $row['document_date'];
-                  ?>
-                    <tr>
+<body style="padding:0px; margin:0px; background-color:#fff;font-family:arial,helvetica,sans-serif,verdana,'Open Sans'">
+  <?php
+  include "connect.php";
 
-                      <td>
-                        &nbsp;<?php echo $name; ?>
-                      </td>
-                      <td>
-                        &nbsp;<?php echo $document_detail; ?>
-                      </td>
-                    <?php } ?>
-                    <td>
-                      &nbsp;<?php echo $documenttype_id; ?>
-                    </td>
-                  <?php } ?>
-                  <td>
-                    &nbsp;<?php echo $document_date; ?>
-                  </td>
-                <?php } ?>
-                <td>
-                  <button class="alert-success"><a href="download.php?filename=<?php echo $name; ?>&f=<?php echo $row['fname'] ?>">ดาวน์โหลด</a></button>
-                </td>
-                    </tr>
-                  <?php } ?>
-          </table>
+  if (!isset($_SESSION['emp_id'])) {
+    header('Location: login_admin.php');
+  }
+
+  $emp_id = $_SESSION['emp_id'];
+  $emp_firstname = $_SESSION['emp_firstname'];
+  $Position_name = $_SESSION['Position_name'];
+
+  date_default_timezone_set("Asia/Bangkok");
+
+  ?>
+  <!-- Start your project here-->
+  <!--Navbar -->
+  <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color fixed-top">
+    <a class="navbar-brand" href="#"><img src="js/img/Files_Download.png" width="33px" height="33px">
+      <font color="#F0B56F">F</font>ile <font color="#F0B56F">M</font>anagement <font color="#F0B56F">S</font>ystem
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <?php echo ucwords(htmlentities($emp_firstname)); ?> <i class="fas fa-user-circle"></i> Login </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+            <a class="dropdown-item" href="history_log.php"> <i class="fas fa-chalkboard-teacher"></i> User Logged</a>
+            <a class="dropdown-item" href="login_user.php"><i class="fas fa-sign-in-alt"></i> LogOut</a>
+
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <br>
+  <!--/.Navbar -->
+  <br><Br><br>
+  <!-- Card -->
+  <div class="container contact">
+  <div class="row">
+    <div class="col-md-10">
+        <hr>
+        <table id="dtable" class="table table-striped" style="">
+          <thead>
+
+            <th>ชื่อไฟล์</th>
+            <th>แผนก</th>
+            <th>ประเภทเอกสาร</th>
+            <th>วัน/เวลา</th>
+            <th>ดาวน์โหลด</th>
+            <th>ลบ</th>
+
+          </thead>
+          <tbody>
+
+            <?php
+            $sql_query = "SELECT id
+                    FROM document
+                    ORDER BY `id` ASC";
+
+            $result = mysqli_query($conn, $sql_query);
+            $num_row = mysqli_num_rows($result);
+
+            while ($row = $result->fetch_assoc()) {
+            ?>
+              <tr>
+                <?php
+
+                require_once("connect.php");
+
+                $query = mysqli_query($conn, "SELECT id,download,document_detail,documenttype_id,mydate FROM document group by download DESC") or die(mysqli_error($conn));
+                while ($row = mysqli_fetch_array($query)) {
+                  $id =  $row['id'];
+                  $download =  $row['download'];
+                  $document_detail =  $row['document_detail'];
+                  $documenttype_id =  $row['documenttype_id'];
+                  $document_date =  $row['mydate'];
+                  $downloadd =  $row['download'];
+
+                ?>
+
+                  <td width="19%"><?php echo  $download; ?></td>
+                  <td><?php echo $document_detail; ?></td>
+                  <td><?php echo $documenttype_id; ?></td>
+                  <td><?php echo $document_date; ?></td>
+                  <td <?php echo $downloadd; ?>class="alert-success"><a href='download.php?filename=<?php echo $name; ?>'><?php echo $row['download'] ?><img src="img/698569-icon-57-document-download-128.png" width="30px" height="30px" title="Download File"></a> </td>
+                  <td onclick="OnDelete4(<?= $row['id']; ?>)" type="button" class="alert-success"><img src="img/delete.png" width="30px" height="30px" title="Delete File"></a> </td>
+              </tr>
+              <?php }
+               ?>
+          <?php }
+               ?>
+          </tbody>
+        </table>
       </div>
-    </div>
-    </div>
-    <hr>
-    </center>
+
+
+
+      </script>
+
+
+
+
+            <!-- Card -->
+            <!-- /Start your project here-->
+
+            <!-- SCRIPTS -->
+            <!-- JQuery -->
+            <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
+
+            <script type="text/javascript" src="js/popper.min.js"></script>
+
+            <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+            <script type="text/javascript" src="js/mdb.min.js"></script>
+
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
+            <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/1.0.3/css/dataTables.responsive.css">
+            <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/1.0.3/js/dataTables.responsive.js"></script>
+            <script>
+              function OnDelete4(id) {
+                //  alert(id);
+                const swalWithBootstrapButtons = Swal.mixin({
+                  customClass: {
+                    confirmButton: 'btn btn-success mx-2',
+                    cancelButton: 'btn btn-danger mx-2'
+                  },
+                  buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                  title: 'คุณต้องการลบข้อมูลนี้หรือไม่ ?',
+                  icon: 'question',
+                  // background: 'yellow',
+                  showCancelButton: true,
+                  cancelButtonText: 'ยกเลิก',
+                  confirmButtonText: 'ยืนยัน',
+                  reverseButtons: true
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    $.ajax({
+
+                      url: "delete2.php",
+                      type: 'post',
+                      data: {
+                        ID: id
+                      },
+                      success: function(dataResult) {
+                        var dataResult = JSON.parse(dataResult);
+                        if (dataResult.statusCode == 200) {
+                          swalWithBootstrapButtons.fire(
+                            'ลบข้อมูลสำเร็จ',
+                            '',
+                            'success'
+
+                          )
+                          header("Refresh:0; url=add_document.php");
+                        } else {
+                          Swal.fire({
+                            icon: 'error',
+                            title: 'ไม่สามารถลบได้'
+                          })
+                        }
+                      }
+                    });
+                  }
+                });
+              }
+            </script>
 </body>
 
 </html>

@@ -27,7 +27,7 @@ ss
   <title>อัพโหลดเอกสาร</title>
 </head>
 <?php
-$con = new PDO('mysql:host=localhost; dbname=project', 'root', '') or die(mysql_error());
+$con = new PDO('mysql:host=localhost; dbname=project2', 'root', '') or die(mysql_error());
 if (isset($_POST['submit']) != "") {
   $name = $_FILES['file']['name'];
   $size = $_FILES['file']['size'];
@@ -233,6 +233,7 @@ if (isset($_POST['submit']) != "") {
         <label class="control-label col-sm-2" for="documentNumber">เลขที่หนังสือ:</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" id="document_number" name="document_number" placeholder="Enter Number">
+          <input type="hidden" id="documentstatus_id" value = "3">
         </div>
       </div>
       <div class="form-group">
@@ -248,19 +249,22 @@ if (isset($_POST['submit']) != "") {
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-2" for="divistionId">รหัส:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="divistion_id" name="divistion_id" placeholder="Enter Divistionid">
-        </div>
-      </div>
-      <div class="form-group">
         <p>ประเภทเอกสาร:
           </br>
-          <select name="documenttype_id" id="documenttype_id">
-            <option value="0">--เลือกประเภทเอกสาร--</option>
-            <option value="1">--เอกสารของหน่วยงาน--</option>
-            <option value="2">--หน่วยงานภายใน--</option>
-            <option value="3">--หน่วยงานภายนอก--</option>
+          <?php
+          $sql = "SELECT * from documenttype";
+
+          $result = mysqli_query($conn, $sql);
+          ?>
+          <select name="documenttype_id" id="documenttype_id" class="form-select">
+            <option value="ประเภทเอกสาร">ประเภทเอกสาร</option>
+            <?php
+            while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+              <option value="<?php echo $row["documenttype_id"] ?>"><?php echo $row["documenttype_name"] ?></option>
+            <?php
+            }
+            ?>
           </select>
       </div>
       </p>
@@ -303,7 +307,7 @@ if (isset($_POST['submit']) != "") {
         </p>
         <p>เก็บไว้ถึงปี พ.ศ.&nbsp;:
           <label for="documentDate"></label>
-          <input type="date" name="mydate" id="mydate">
+          <input type="date" name="document_date" id="document_date">
         </p>
       </div>
       <div class="form-group">
@@ -327,13 +331,12 @@ if (isset($_POST['submit']) != "") {
       var document_number = $('#document_number').val();
       var document_name = $('#document_name').val();
       var document_detail = $('#document_detail').val();
-      var divistion_id = $('#divistion_id').val();
       var documenttype_id = $('#documenttype_id').val();
       var speed_send = $('#speed_send').val();
       var secret_send = $('#secret_send').val();
-      var mydate = $('#mydate').val();
+      var document_date = $('#document_date').val();
       var download = $('#download').val();
-
+      var documentstatus_id = $('#documentstatus_id').val();;
 
       if (document_number != "" && document_name != "") {
         $.ajax({
@@ -343,12 +346,12 @@ if (isset($_POST['submit']) != "") {
             document_number: document_number,
             document_name: document_name,
             document_detail: document_detail,
-            divistion_id: divistion_id,
             documenttype_id: documenttype_id,
             speed_send: speed_send,
             secret_send: secret_send,
-            mydate: mydate,
-            download: download
+            document_date: document_date,
+            download: download,
+            documentstatus_id:documentstatus_id
           },
           cache: false,
           success: function(dataResult) {

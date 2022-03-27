@@ -177,14 +177,13 @@ date_default_timezone_set("Asia/Bangkok");
             }    
         });
     });
+    
       $('#save_mes').on('click', function () {
 
         var mes_name = $('#mes_name').val();
         var mes_detial = $('#mes_detial').val();
         var divistion_id = $('#divistion_id').val();
         var emid = $('#emid').val();
-        
-
 
         if (mes_name != "" && mes_detial != "" && divistion_id != "" && emid != "" ) {
           $.ajax({

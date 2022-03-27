@@ -15,7 +15,7 @@
 </head>
 
 <?php
-$conn = new PDO('mysql:host=localhost; dbname=project', 'root', '') or die(mysql_error());
+$conn = new PDO('mysql:host=localhost; dbname=project2', 'root', '') or die(mysql_error());
 if (isset($_POST['submit']) != "") {
   $name = $_FILES['file']['name'];
   $size = $_FILES['file']['size'];
@@ -223,7 +223,7 @@ if (isset($_POST['submit']) != "") {
           <input type="submit" name="submit" id="submit" value="Submit" />
         </form>
         <footer style="font-size: 12px"><b>ชนิดไฟล์:</b>
-          <font color="red"><i>.docx .doc .pptx .xlsx .xls .pdf</i></font>
+          <font color="red"><i>.pdf</i></font>
         </footer>
         <hr>
       </div>

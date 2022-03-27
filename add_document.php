@@ -169,6 +169,12 @@ date_default_timezone_set("Asia/Bangkok");
                 </div>
                 <div class="modal-body">
                   <div class="row">
+                  <div class="col-md-6">
+                      <div class="mb-3">
+                      <label for="document_number">เลขที่เอกสาร</label><br> 
+                        <input type="text" name="document_number" id="document_number">
+                      </div>
+                    </div>
                     <div class="col-md-6">
                       <div class="mb-3">
                       <?php

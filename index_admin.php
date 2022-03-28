@@ -317,7 +317,6 @@ $Position_name = $_SESSION['Position_name'];
                           <?php
                       echo "<td>"."<img src='".$row['board_name']."' width='10%'>"."</td>"?>
                       <td style="width:10%;">
-                      <button onclick="OnEdit3(<?=$row['board_id'];?>)" type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4">แก้ไข</button>
 			                <button onclick="OnDelete3(<?=$row['board_id'];?>)" type="button" class="btn btn-sm btn-danger">ลบ</button>
 		                	</td>
                       </tr>
@@ -1214,23 +1213,6 @@ console.log(document.getElementById("board_name"))
         }
       });
     });
-    function OnEdit3(id) {
-      $.ajax({
-        url: "select_board.php",
-        type: 'post',
-        data: {
-          board_id: id
-        },
-        success: function (dataResult) {
-          var dataResult = JSON.parse(dataResult);
-          if (dataResult.statusCode == 200) {
-
-            $("#board_id").val(dataResult.board_id);
-            $("#board_name").val(dataResult.board_name);
-          }
-        }
-      });
-    }
     function OnDelete3(id) {
       //  alert(id);
       const swalWithBootstrapButtons = Swal.mixin({

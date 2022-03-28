@@ -1,8 +1,8 @@
 <?php
 include "connect.php";
 
-if(!isset($_SESSION['emp_id'])){
-   header('Location: login_user.php');
+if (!isset($_SESSION['emp_id'])) {
+  header('Location: login_user.php');
 }
 
 $emp_id = $_SESSION['emp_id'];
@@ -16,7 +16,7 @@ date_default_timezone_set("Asia/Bangkok");
 <html lang="en">
 
 <head>
-  
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -35,44 +35,48 @@ date_default_timezone_set("Asia/Bangkok");
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-   <link href="assets/css/style.css" rel="stylesheet">
-   <link rel="icon" href="img/logoUser1.png" type="image/png">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery-3.5.1.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="icon" href="img/logoUser1.png" type="image/png">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
     * {
       font-family: 'Agency FB';
     }
+
     table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    
-}
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
 
-td, th {
-    border: 0px solid #dddddd;
-    text-align: center;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-#show_index{
-      background-color: rgba(255,255,255,0.4)
     }
-    </style>
+
+    td,
+    th {
+      border: 0px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+      font-size: 20px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+    #show_index {
+      background-color: rgba(255, 255, 255, 0.4)
+    }
+  </style>
   <!-- =======================================================
   * Template Name: DevFolio - v4.7.1
   * Template URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
@@ -80,111 +84,60 @@ tr:nth-child(even) {
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top">
+  <div class="container d-flex align-items-center justify-content-between">
 
     <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active " style="font-size:25px;" href="#">หน้าแรก</a></li>
-          <!-- Example single danger button -->
-          <div class="dropdown">
-          <button class="btn  btn-sm dropdown-toggle"  style="width:100%; margin-left:5%; color:white; font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-           การจัดการเอกสาร
+      <ul>
+        <li><a class="nav-link scrollto active " style="font-size:25px;" href="#">หน้าแรก</a></li>
+        <!-- Example single danger button -->
+        <div class="dropdown">
+          <button class="btn  btn-sm dropdown-toggle" style="width:100%; margin-left:5%; color:white; font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            การจัดการเอกสาร
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="document_recive_manager.php" >เอกสารถึงตัวท่าน</a></li>
-            <li><a class="dropdown-item" >เอกสารรอดำเนินการ</a></li>
-            <li><a class="dropdown-item" href="sent_message.php" >ส่งข้อความ</a></li>
-            
+            <li><a class="dropdown-item" href="document_recive_manager.php">เอกสารถึงตัวท่าน</a></li>
+            <li><a class="dropdown-item">เอกสารรอดำเนินการ</a></li>
+            <li><a class="dropdown-item" href="sent_message.php">ส่งข้อความ</a></li>
+
           </ul>
         </div>
-          <li><a class="nav-link scrollto"style="font-size:25px;" href="document_storage.php">แฟ้มเอกสาร</a></li>
-          <li><a class="nav-link scrollto"style="font-size:25px;" href="#">คู่มือ</a></li>
-          <li><a class="nav-link scrollto"style="font-size:25px;" href="logout.php?option=2">ออกจากระบบ</a></li>
-        </ul>
-        
-        <i class="bi bi-list mobile-nav-toggle"></i>
-     <!-- .navbar -->
-     
+        <li><a class="nav-link scrollto" style="font-size:25px;" href="document_storage.php">แฟ้มเอกสาร</a></li>
+        <li><a class="nav-link scrollto" style="font-size:25px;" href="#">คู่มือ</a></li>
+        <li><a class="nav-link scrollto" style="font-size:25px;" href="logout.php?option=2">ออกจากระบบ</a></li>
+      </ul>
+
+      <i class="bi bi-list mobile-nav-toggle"></i>
+      <!-- .navbar -->
+
       <div style="text-align:right; float:right; margin-left:150px">
         <label style="color:#FFFFFF83;font-size:20px;">ชื่อผู้ใช้ : <?php echo $emp_firstname ?> &nbsp</label>
         <label style="color:#FFFFFF83;font-size:20px;">บทบาท : <?php echo $Position_name ?> &nbsp</label>
       </div>
-      
+
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-      
 
-    </div>
-    </nav>
-  </header><!-- End Header -->
-  <body>
+
+  </div>
+  </nav>
+</header><!-- End Header -->
+
+<body>
+
   <!-- ======= Hero Section ======= -->
   <div id="hero" class="hero route bg-image" style="background-image: url(assets/img/wall.jpg)">
     <div class="overlay-itro"></div>
     <div class="hero-content display-table">
-        <div class="container" style = "margin-top:10%">
-        <table class="table table-responsive-md mx-auto" style="width:50%">
-        <thead>
-        <tr style="color:white;">
-          
-        <th class="thcenter">
-          <?php
-                          $sql = "SELECT * from document_status";
-
-                          $result = mysqli_query($conn,$sql);
-                        ?>
-                        <select name="documentstatus_id" id="documentstatus_id">
-                          <option value="สถานะ">สถานะเอกสาร</option>
-                        <?php
-                          while($row = mysqli_fetch_assoc($result)){
-                        ?>
-                              <option value="<?php echo $row["documentstatus_id"]?>"><?php echo $row["documentstatus_name"]?></option>              
-                            <?php
-                          }
-                        ?>
-                        </select>
-          </th>
-          <th class="thcenter">
-          <?php
-                          $sql = "SELECT * from documenttype";
-
-                          $result = mysqli_query($conn,$sql);
-                        ?>
-                        <select name="documenttype_id" id="documenttype_id">
-                          <option value="ประเภท">ประเภทเอกสาร</option>
-                        <?php
-                          while($row = mysqli_fetch_assoc($result)){
-                        ?>
-                              <option value="<?php echo $row["documenttype_id"]?>"><?php echo $row["documenttype_name"]?></option>              
-                            <?php
-                          }
-                        ?>
-                        </select>
-          </th>
-        </thead>
-        <table class="table table-responsive-md mx-auto" style="width:100%">
-        <thead>
-          <tr style="background-color:#212529; color:white;">
-          
-          <th class="thcenter"></th>
-            <th class="thcenter">หัวข้อ</th>
-            <th class="thcenter">คำอธิบาย
-              
-            </th>
-            <th class="thcenter">เวลา</th>
-          </tr>
-        </thead>
-        <tbody id="document_now" style=" width:100%; height:100%">
-          <?php                 
-            $search1 = date("Y/m/d");
-            $search2 = date("Y/m/d");
-
-            $sql_query = "SELECT  a.document_name , a.document_detail , a.document_date , b.documenttype_name , c.documentstatus_name
-            FROM document a, documenttype b, document_status c
-            WHERE b.documenttype_id = a.documenttype_id and c.documentstatus_id = a.documentstatus_id and a.emp_id = '$emp_id' ORDER BY `a`.`document_date` DESC";
+      <div class="container" style="margin-top:10%">
+        <table style="border:double 4px #ffcccc;padding:3px; width:10%; height:100px">
+          <tbody>
+              <?php 
+              $sql_query = "SELECT COUNT(Doc_id) as DocRead
+              FROM document
+              Where documentstatus_id = 1 and emp_id = '$emp_id'";
 
             $result = mysqli_query($conn,$sql_query);
             $num_row = mysqli_num_rows($result);
@@ -192,16 +145,8 @@ tr:nth-child(even) {
             while($row = $result->fetch_assoc()) {
           ?>	
               <tr style="background-color:white; color:black;" >
-              <td class="pl-3">
-              <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="docId"/>
-              <label class="custom-control-label" for="docId">&nbsp;</label>
-              </div>
-              </td>
-                  <td><?=$row['document_name'];?></a></td>
-                  <td><?=$row['document_detail'];?></a></td>
-                  <td><?=$row['document_date'];?></a></td>
-                  
+
+                  <td align="center" align="middle" style="border:4px double #ffcccc;padding:10px; font-size:68px;"><?=$row['DocRead'];?><p style = "font-size:18px">อ่านแล้ว</p></td>
               </tr>
             
             <?php	
@@ -211,18 +156,68 @@ tr:nth-child(even) {
               echo "ไม่พบข้อความถึงท่าน";
             }
             ?>
-           
-            
-        </tbody>
-      </table>
-      
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <input type="text" id="eid" value="<?= $emp_id ?>" hidden>
+        <table class="table table-responsive-md mx-auto" style="width:50%">
+          <thead>
+            <tr style="color:white;">
+
+              <th class="thcenter">
+                <select class="form-select-sm" aria-label="select" id="s1">
+                  <option selected value=" ">ทั้งหมด</option>
+                  <option value="1">อ่าน</option>
+                  <option value="2">ยังไม่อ่าน</option>
+                </select>
+
+              </th>
+              <th class="thcenter">
+
+                <?php
+                $sql = "SELECT * from documenttype";
+
+                $result = mysqli_query($conn, $sql);
+                ?>
+                <select name="documenttype_id" id="documenttype_id">
+                  <option value="ประเภท">ประเภทเอกสาร</option>
+                  <?php
+                  while ($row = mysqli_fetch_assoc($result)) {
+                  ?>
+                    <option value="<?php echo $row["documenttype_id"] ?>"><?php echo $row["documenttype_name"] ?></option>
+                  <?php
+
+                  }
+                  ?>
+                </select>
+              </th>
+          </thead>
+          <table class="table table-responsive-md mx-auto" style="width:100%">
+            <thead>
+              <tr style="background-color:#212529; color:white;">
+
+                <th class="thcenter"></th>
+                <th class="thcenter">หัวข้อ</th>
+                <th class="thcenter" style="width:8%"></th>
+                <th class="thcenter">คำอธิบาย</th>
+                <th class="thcenter">เวลา</th>
+              </tr>
+            </thead>
+            <tbody id="document_now" style=" width:100%; height:100%">
+
+            </tbody>
+          </table>
+
+      </div>
+
     </div>
-    
-    </div> </div> </div>
+  </div>
+  </div>
 
   </main><!-- End #main -->
-  
-  
+
+
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter.js"></script>
@@ -233,23 +228,40 @@ tr:nth-child(even) {
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  
-  <script src="assets/js/main.js">
-    show_document_now()
-    function show_document_now() {
 
-        $("#document_now").show();
-        $("#show_history").hide();
-        $("#show_manual").hide();
-        $("#show_divistion").hide();
-        $("#show_employee").hide();
-}
+  <script>
+    $("#s1").change(function() {
 
+      var select = $("#s1").val();
+      var eid = $("#eid").val();
+
+      console.log(select);
+      console.log(eid);
+      $.ajax({
+
+        type: "POST",
+
+        url: "view_docread.php",
+
+        data: {
+
+          read: select,
+          eid: eid
+
+
+        },
+
+        success: function(data) {
+
+          $('#document_now').html(data);
+
+        }
+
+      });
+
+    });
   </script>
 </body>
 
 
 </html>
-
-
-        

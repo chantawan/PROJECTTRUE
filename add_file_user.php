@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design Bootstrap</title>
+  <title>อัพโหลดไฟล์</title>
   
   <link rel="icon" href="img/login2.png" type="image/png">
 
@@ -32,6 +32,18 @@
     height: auto;
     width: 20px;
 }
+* {
+      font-family: 'supermarket';
+    }
+
+    body {
+      background-image: url('img/wall.jpg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      background-size: 100% 100%, auto;
+    }
+
 .pull-right {
     float: right;
     margin: 2px !important;
@@ -97,8 +109,8 @@ date_default_timezone_set("Asia/Bangkok");
 ?>
   <!-- Start your project here-->
 <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color fixed-top">
-    <a class="navbar-brand" href="#"><img src="js/img/Files_Download.png" width="33px" height="33px"> <font color="#F0B56F">F</font>ile <font color="#F0B56F">M</font>anagement <font color="#F0B56F">S</font>ystem</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-auto"style="width:200%">
+    <a class="navbar-brand" href="document_storage.php"><img src="img/icon.png" width="33px" height="33px"> <font color="#F0B56F">F</font>ile <font color="#F0B56F">M</font>anagement <font color="#F0B56F">S</font>ystem</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
     aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -117,8 +129,8 @@ date_default_timezone_set("Asia/Bangkok");
           aria-haspopup="true" aria-expanded="false">
            <font color="black"></font> <?php echo ucwords(htmlentities($emp_firstname)); ?> <i class="fas fa-user-circle"></i> Login </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-           <a class="dropdown-item" href="history_log.php"> <i class="fas fa-chalkboard-teacher"></i> User Logged</a>
-          <a class="dropdown-item" href="Logout.php"><i class="fas fa-sign-in-alt"></i> LogOut</a>
+           <a class="dropdown-item" href="login_user.php"> <i class="fas fa-chalkboard-teacher"></i> User Logged</a>
+          <a class="dropdown-item" href="index.html"><i class="fas fa-sign-in-alt"></i> LogOut</a>
 
         </div>
       </li>

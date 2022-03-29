@@ -60,7 +60,7 @@ date_default_timezone_set("Asia/Bangkok");
 }
 
 td, th {
-    border: 1px solid #dddddd;
+    border: 0px solid #dddddd;
     text-align: left;
     padding: 8px;
 }
@@ -124,58 +124,90 @@ tr:nth-child(even) {
   <div id="hero" class="hero route bg-image" style="background-image: url(assets/img/wall.jpg)">
     <div class="overlay-itro"></div>
     <div class="hero-content display-table">
-        <div class="container" style = "margin-top:20%">
-        <table class="table table-responsive-md mx-auto" style="border:1px; width:100%">
-        <thead>
-          <tr style="background-color:#212529; color:white;">
-          
-          <th class="thcenter"></th>
-            <th class="thcenter" >หัวข้อ</th>
-            <th class="thcenter">คำอธิบาย</th>
-            <th class="thcenter">เวลา</th>
-          </tr>
-        </thead>
-        <tbody id="document_now" style="border:1px; width:100%; height:100%">
-          <?php                 
-            $search_date2 = date("Y/m/d");
-
-            $sql_query = "SELECT  a.document_name , a.document_detail , a.document_date , b.documenttype_name , c.documentstatus_name
-            FROM document a, documenttype b, document_status c
-            WHERE b.documenttype_id = a.documenttype_id and c.documentstatus_id = a.documentstatus_id and a.emp_id = '$emp_id' ORDER BY `a`.`document_date` ASC";
+      <div class="container" style="margin-top:10%">
+        <table style="border:double 4px #ffcccc;padding:3px; width:10%; height:100px">
+          <tbody>
+              <?php 
+              $sql_query = "SELECT COUNT(Doc_id) as DocRead 
+              FROM document
+              Where documentstatus_id = 2 and emp_id = '$emp_id'";
 
             $result = mysqli_query($conn,$sql_query);
             $num_row = mysqli_num_rows($result);
             if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
           ?>	
-              <tr style="background-color:white; color:black;">
-              <td class="pl-3">
-              <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="cst1" />
-              <label class="custom-control-label" for="cst1">&nbsp;</label>
-              </div>
-              </td>
-                  <td class='clickable-row' data-href='#document_now'><?=$row['document_name'];?></td>
-                  <td><?=$row['document_detail'];?></td>
-                  <td><?=$row['document_date'];?></td>
-                  
+              <tr style="background-color:white; color:black;" >
+
+                  <td align="center" align="middle" style="border:4px double #ffcccc;padding:10px; font-size:68px;"><?=$row['DocRead'];?><p style = "font-size:18px">ยังไม่อ่าน</p></td>
+                  <?php 
+            ?>
               </tr>
             
             <?php	
              }  
              
             }else {
-              echo "ไม่พบข้อความถึงท่าน";
+              echo "ERROR";
             }
             ?>
-           
             
-        </tbody>
-      </table>
-      
+          </tbody>
+        </table>
+        <input type="text" id="eid" value="<?= $emp_id ?>" hidden>
+        <table class="table table-responsive-md mx-auto" style="width:50%">
+          <thead>
+            <tr style="color:white;">
+
+              <th class="thcenter">
+                <select class="form-select-sm" aria-label="select" id="s1">
+                  <option selected value=" ">ทั้งหมด</option>
+                  <option value="1">อ่าน</option>
+                  <option value="2">ยังไม่อ่าน</option>
+                </select>
+
+              </th>
+              <th class="thcenter">
+
+                <?php
+                $sql = "SELECT * from documenttype";
+
+                $result = mysqli_query($conn, $sql);
+                ?>
+                <select name="documenttype_id" id="documenttype_id">
+                  <option value="ประเภท">ประเภทเอกสาร</option>
+                  <?php
+                  while ($row = mysqli_fetch_assoc($result)) {
+                  ?>
+                    <option value="<?php echo $row["documenttype_id"] ?>"><?php echo $row["documenttype_name"] ?></option>
+                  <?php
+
+                  }
+                  ?>
+                </select>
+              </th>
+          </thead>
+          <table class="table table-responsive-md mx-auto" style="width:100%">
+            <thead>
+              <tr style="background-color:#212529; color:white;">
+
+                <th class="thcenter"></th>
+                <th class="thcenter">หัวข้อ</th>
+                <th class="thcenter" style="width:8%"></th>
+                <th class="thcenter">คำอธิบาย</th>
+                <th class="thcenter">เวลา</th>
+              </tr>
+            </thead>
+            <tbody id="document_now" style=" width:100%; height:100%">
+
+            </tbody>
+          </table>
+
+      </div>
+
     </div>
-    
-    </div> </div> </div>
+  </div>
+  </div>
 
   </main><!-- End #main -->
   
@@ -190,12 +222,37 @@ tr:nth-child(even) {
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js">
-    jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
+  <script>
+    $("#s1").change(function() {
+
+      var select = $("#s1").val();
+      var eid = $("#eid").val();
+
+      console.log(select);
+      console.log(eid);
+      $.ajax({
+
+        type: "POST",
+
+        url: "view_docread.php",
+
+        data: {
+
+          read: select,
+          eid: eid
+
+
+        },
+
+        success: function(data) {
+
+          $('#document_now').html(data);
+
+        }
+
+      });
+
     });
-});
   </script>
 </body>
 

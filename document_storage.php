@@ -1,12 +1,30 @@
+<?php
+include "connect.php";
+
+if (!isset($_SESSION['emp_id'])) {
+  header('Location: login_user.php');
+}
+
+$emp_id = $_SESSION['emp_id'];
+$emp_firstname = $_SESSION['emp_firstname'];
+$Position_name = $_SESSION['Position_name'];
+
+date_default_timezone_set("Asia/Bangkok");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>แฟ้มเอกสาร</title>
 
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>แฟ้มเอกสารทั่วไป</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
   <link rel="icon" href="img/login2.png" type="image/png">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -31,149 +49,90 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="icon" href="img/login2.png" type="image/png">
-
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-
-  <link href="css/mdb.min.css" rel="stylesheet">
-
-  <link href="css/style.css" rel="stylesheet">
-
-  <script src="js/jquery-1.8.3.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="media/css/dataTable.css" />
-  <script src="media/js/jquery.dataTables.js" type="text/javascript"></script>
-
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-      $('#dtable').dataTable({
-        "aLengthMenu": [
-          [5, 10, 15, 25, 50, 100, -1],
-          [5, 10, 15, 25, 50, 100, "All"]
-        ],
-        "iDisplayLength": 10
-
-      });
-    })
-  </script>
-  <style type="text/css">
-    select[multiple],
-    select[size] {
-      height: auto;
-      width: 20px;
-    }
-
+  <style>
     * {
-      font-family: 'supermarket';
+      font-family: 'Agency FB';
     }
 
-    body {
-      background-image: url('img/wall.jpg');
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-attachment: fixed;
-      background-size: 100% 100%, auto;
-    }
-
-    .pull-right {
-      float: right;
-      margin: 2px !important;
-    }
-
-    #loader {
-      position: fixed;
-      left: 0px;
-      top: 0px;
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
       width: 100%;
-      height: 100%;
-      z-index: 9999;
-      background: url('img/lg.flip-book-loader.gif') 50% 50% no-repeat rgb(249, 249, 249);
-      opacity: 1;
+
     }
 
-    /*   #dtable{
- display: block;
+    td,
+    th {
+      border: 0px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+      font-size: 20px;
+    }
 
-  overflow-x: scroll;
-  width: 600px;
-    }*/
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+    #show_index {
+      background-color: rgba(255, 255, 255, 0.4)
+    }
   </style>
-
-  <script src="jquery.min.js"></script>
-  <script type="text/javascript">
-    $(window).on('load', function() {
-      //you remove this timeout
-      setTimeout(function() {
-        $('#loader').fadeOut('slow');
-      });
-      //remove the timeout
-      //$('#loader').fadeOut('slow'); 
-    });
-  </script>
-
+  <!-- =======================================================
+  * Template Name: DevFolio - v4.7.1
+  * Template URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top">
+  <div class="container d-flex align-items-center justify-content-between">
 
-<body style="padding:0px; margin:0px; background-color:#fff;font-family:arial,helvetica,sans-serif,verdana,'Open Sans'">
-  <?php
-  include "connect.php";
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active " style="font-size:25px;" href= "index_manager.php">หน้าแรก</a></li>
+        <!-- Example single danger button -->
+        <div class="dropdown">
+          <button class="btn  btn-sm dropdown-toggle" style="width:100%; margin-left:5%; color:white; font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            การจัดการเอกสาร
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="document_recive_manager.php">เอกสารถึงตัวท่าน</a></li>
+            <li><a class="dropdown-item">เอกสารรอดำเนินการ</a></li>
+            <li><a class="dropdown-item" href="sent_message.php">ส่งข้อความ</a></li>
 
-  if (!isset($_SESSION['emp_id'])) {
-    header('Location: login_user.php');
-  }
-
-  $emp_id = $_SESSION['emp_id'];
-  $emp_firstname = $_SESSION['emp_firstname'];
-  $Position_name = $_SESSION['Position_name'];
-
-  date_default_timezone_set("Asia/Bangkok");
-
-  ?>
-  <!-- Start your project here-->
-  <!--Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-auto"style="width:200%">
-    <a class="navbar-brand" href="index_manager.php"><img src="img/icon.png" width="33px" height="33px">
-      <font color="#F0B56F">F</font>ile <font color="#F0B56F">M</font>anagement <font color="#F0B56F">S</font>ystem
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-      <ul class="navbar-nav ml-auto">
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <?php echo ucwords(htmlentities($emp_firstname)); ?> <i class="fas fa-user-circle"></i> Login </a>
-          <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-            <a class="dropdown-item" href="history_log.php"> <i class="fas fa-chalkboard-teacher"></i> User Logged</a>
-            <a class="dropdown-item" href="login_user.php"><i class="fas fa-sign-in-alt"></i> LogOut</a>
-
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <br>
-  <!--/.Navbar -->
-  <br><Br><br>
-  <!-- Card -->
-  <div class="container">
-    <div class="row">
-      <div class="col-md-9">
-        <div class="card-body d-sm-flex justify-content-between">
-
-          <h4 class="mb-2 mb-sm-0 pt-1">
-
-
-            <div class="d-flex justify-content-center pull-right">
-
-              <a href="add_file_user.php">
-                <button class="btn btn-warning pull-right"><i class="far fa-file-image"></i> อัพโหลดไฟล์</button></a>
-            </div>
+          </ul>
         </div>
-        <hr>
-        <table id="dtable" class="table table-striped" style="">
+        <li><a class="nav-link scrollto" style="font-size:25px;" href="document_storage.php">แฟ้มเอกสาร</a></li>
+        <li><a class="nav-link scrollto" style="font-size:25px;" href="#">คู่มือ</a></li>
+        <li><a class="nav-link scrollto" style="font-size:25px;" href="logout.php?option=2">ออกจากระบบ</a></li>
+      </ul>
+
+      <i class="bi bi-list mobile-nav-toggle"></i>
+      <!-- .navbar -->
+
+      <div style="text-align:right; float:right; margin-left:150px">
+        <label style="color:#FFFFFF83;font-size:20px;">ชื่อผู้ใช้ : <?php echo $emp_firstname ?> &nbsp</label>
+        <label style="color:#FFFFFF83;font-size:20px;">บทบาท : <?php echo $Position_name ?> &nbsp</label>
+      </div>
+
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+
+
+  </div>
+  </nav>
+</header><!-- End Header -->
+
+<body>
+
+  <!-- ======= Hero Section ======= -->
+  <div id="hero" class="hero route bg-image" style="background-image: url(assets/img/wall.jpg)">
+    <div class="overlay-itro"></div>
+    <div class="hero-content display-table">
+      <div class="container" style="margin-top:10%">
+      <table id="dtable" class="table table-striped">
           <thead>
 
             <th>ชื่อไฟล์</th>
@@ -230,18 +189,25 @@
         </table>
       </div>
 
+    </div>
+  </div>
+  </div>
+
+  </main><!-- End #main -->
 
 
-      </script>
 
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
 
+  <!-- Template Main JS File -->
 
-
-            <!-- Card -->
-            <!-- /Start your project here-->
-
-            <!-- SCRIPTS -->
-            <!-- JQuery -->
+  </script>
             <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
 
             <script type="text/javascript" src="js/popper.min.js"></script>
@@ -306,4 +272,10 @@
             </script>
 </body>
 
+
 </html>
+
+
+
+
+      

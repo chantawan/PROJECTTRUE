@@ -66,7 +66,7 @@ date_default_timezone_set("Asia/Bangkok");
     <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active " href="#">หน้าแรก</a></li>
-          <li><a class="nav-link scrollto " href="document_recive_user.php">เอกสารถึงตัวท่าน</a></li>
+          <li><a class="nav-link scrollto " href="document_recive_Secretary.php">เอกสารถึงตัวท่าน</a></li>
           <li><a class="nav-link scrollto" href="#">แฟ้มเอกสาร</a></li>
           <li><a class="nav-link scrollto" href="#">คู่มือ</a></li>
           <li><a class="nav-link scrollto" href="logout.php?option=2">ออกจากระบบ</a></li>
@@ -99,7 +99,7 @@ date_default_timezone_set("Asia/Bangkok");
     <div class="col-10 mb-10" id="show_his" align="center" >
     <h3 class="text-pacha"><br>ข่าวประชาสัมพันธ์</h3>
     <div class="table-responsive-sm" style = "margin-top:10%;">
-              <table class="table table-bordered table-sm" style="border:1px; width:auto%">
+              <table class="table table-bordered table-sm" style="border:1px; width:100%;">
                 <thead>
                   <tr style="background-color:#212529; color:white;">
                     <th class="thcenter"></th>

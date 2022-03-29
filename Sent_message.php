@@ -105,7 +105,7 @@ date_default_timezone_set("Asia/Bangkok");
     <div class="hero-content display-table">
       <div class="table-cell">
       
-        <div class="container" style = "width = 100%; text-align: left" >
+        <div class="container" style = "width:100%; text-align: left" >
         
            <h2 style = "font-size: 40px; color:white;">เรื่อง     <input type="text" name="mes_name" id="mes_name" style = "text-align: center; margin-left:8%;font-size: 20px;width: 30%" placeholder = "กรุณาป้อนหัวเรื่อง"></h2>
           

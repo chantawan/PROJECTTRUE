@@ -64,7 +64,7 @@ if ($read == " ") {
 <?php
         }
     } else {
-        echo "ไม่พบผลลัพธ์";
+        echo '<span style="color:White;">ไม่พบข้อความ</span>';
     }
     mysqli_close($conn);
 }

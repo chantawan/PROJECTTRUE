@@ -269,7 +269,7 @@ if (isset($_POST['submit']) != "") {
         <label class="control-label col-sm-2" for="documentNumber">เลขที่หนังสือ:</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" id="document_number" name="document_number" placeholder="Enter Number">
-          <input type="hidden" id="documentstatus_id" value="3">
+          <input type="hidden" id="documentstatus_id" value="6">
         </div>
       </div>
       </p>
@@ -409,7 +409,7 @@ if (isset($_POST['submit']) != "") {
                   icon: 'success',
                   title: 'เพิ่มข้อมูลสำเร็จ',
                 })
-                $('#exampleModal5').modal('hide');
+                header('location : add_document.php');
               } else if (dataResult.statusCode == 201) {
                 Swal.fire({
                   icon: 'error',
@@ -424,4 +424,5 @@ if (isset($_POST['submit']) != "") {
         }
       });
     });
+    
   </script>

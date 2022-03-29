@@ -90,14 +90,14 @@ date_default_timezone_set("Asia/Bangkok");
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto active " style="font-size:25px;" href="#">หน้าแรก</a></li>
+        <li><a class="nav-link scrollto active " style="font-size:25px;" href="index_Secretary.php">หน้าแรก</a></li>
         <!-- Example single danger button -->
         <div class="dropdown">
           <button class="btn  btn-sm dropdown-toggle" style="width:100%; margin-left:5%; color:white; font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             การจัดการเอกสาร
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="document_recive_manager.php">เอกสารถึงตัวท่าน</a></li>
+            <li><a class="dropdown-item" href="document_recive_Secretary.php">เอกสารถึงตัวท่าน</a></li>
             <li><a class="dropdown-item">เอกสารรอดำเนินการ</a></li>
             <li><a class="dropdown-item" href="sent_message.php">ส่งข้อความ</a></li>
 
@@ -135,7 +135,7 @@ date_default_timezone_set("Asia/Bangkok");
         <table style="border:double 4px #ffcccc;padding:3px; width:30%; height:100px">
           <tbody>
               <?php 
-              $sql_query = "SELECT COUNT(Doc_id) as DocRead 
+              $sql_query = "SELECT COUNT(Doc_id) as DocRead
               FROM document
               Where documentstatus_id = 2 and emp_id = '$emp_id'";
 

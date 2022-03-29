@@ -220,7 +220,7 @@ $Position_name = $_SESSION['Position_name'];
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <input type="hidden" id="emp_id">
+                
                   <div class="row">
                     <div class="col-md-6">
                       <div class="mb-3">
@@ -249,8 +249,9 @@ $Position_name = $_SESSION['Position_name'];
             aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
+              
                 <div class="modal-header bg-success text-white">
-                  <h5 class="modal-title" id="exampleModalLabel">เพิ่มกอง</h5>
+                <h5 class="modal-title" id="exampleModalLabel">เพิ่มกอง</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -283,7 +284,7 @@ $Position_name = $_SESSION['Position_name'];
             <center>
               <h2>ประชาสัมพันธ์</h2>
               <div class="mb-3">
-              <input type="text" name="board_num" id="board_num" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) onKeyPress="if(this.value.length==1) return false;" placeholder="รูปภาพที่ 1-3" onKeyUp="if(isNaN(this.value)){ Swal.fire({ icon: 'error', title: 'กรุณากรอกตัวเลข', }); this.value='';}"  required />
+              <input type="text" name="board_num" id="board_num" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;" placeholder="รูปภาพที่ 1-3" onKeyUp="if(isNaN(this.value)){ Swal.fire({ icon: 'error', title: 'กรุณากรอกตัวเลข', }); this.value='';}"  required />
               <input id="board_name" type='file'  accept="image/png, image/jpeg">
             <input type="hidden" id="b64">
             <img id="img" height="120">
@@ -379,7 +380,8 @@ $Position_name = $_SESSION['Position_name'];
             <div style="float:right">
             ค้นหา : <input id="myInput2" type="text"><br><br>
             </div>
-
+            <button class="glow-on-hover" style="width:10%; height:35px;" type="button" data-bs-toggle="modal"
+                data-bs-target="#exampleModal5">เพิ่มกอง</button>
             <div class="table-responsive-sm">
               <table class="table table-bordered table-sm" style="border:1px; width:100%">
                 <thead>
@@ -393,8 +395,7 @@ $Position_name = $_SESSION['Position_name'];
 
                 </tbody>
               </table>
-              <button class="glow-on-hover" style="width:10%; height:35px;" type="button" data-bs-toggle="modal"
-                data-bs-target="#exampleModal5">เพิ่มกอง</button>
+              
             </div>
           </div>
   
@@ -687,10 +688,6 @@ $("#show_history").hide();
 $("#show_manual").hide();
 $("#show_divistion").hide();
 $("#show_employee").hide();
-
-$("#myInput5").on('change', function () {
-
-});
 }
     function show_manual() {
 
@@ -882,7 +879,7 @@ $("#myInput5").on('change', function () {
               else{
                 Swal.fire({
                   icon: 'error',
-                  title: 'ไม่สามารถลบกองได้'
+                  title: 'ไม่สามารถลบกองได้เนื่องจากยังมีสมาชิกในกอง'
                 })
               }
             }
@@ -1267,7 +1264,7 @@ console.log(document.getElementById("board_name"))
                   'success'
                   
                 )
-                header("Refresh:0; url=index_admin.php");
+                show_index();
               }
               else{
                 Swal.fire({

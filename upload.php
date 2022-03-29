@@ -360,13 +360,13 @@ if (isset($_POST['submit']) != "") {
               
               Swal.fire({
                 icon: 'success',
-                title: 'เพิ่มกองสำเร็จ',
+                title: 'นำเข้าเอกสารเรียบร้อย',
               })
               $('#exampleModal5').modal('hide');
             } else if (dataResult.statusCode == 201) {
               Swal.fire({
                 icon: 'error',
-                title: 'มีชื่อกองนี้แล้ว',
+                title: 'เกิดข้อผิดพลาด',
               })
             }
             $('#exampleModal5').find('input[type=text], input[type=password], input[type=number], input[type=tel], input[type=email], textarea').val('');

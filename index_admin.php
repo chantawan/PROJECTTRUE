@@ -200,7 +200,6 @@ $Position_name = $_SESSION['Position_name'];
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item"onclick="show_divistion()" >การจัดการกอง</a></li>
             <li><a class="dropdown-item" onclick="show_employee()">การจัดการสมาชิก</a></li>
-            <li><a class="dropdown-item" onclick="show_history()">สถิติการรับ-ส่งเอกสาร</a></li>
           </ul>
         </div>
           <button class="btn btn-secondary btn-sm" style="width:100%; margin-bottom:3%;font-size:25px;"
@@ -284,7 +283,13 @@ $Position_name = $_SESSION['Position_name'];
             <center>
               <h2>ประชาสัมพันธ์</h2>
               <div class="mb-3">
-              <input type="text" name="board_num" id="board_num" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;" placeholder="รูปภาพที่ 1-3" onKeyUp="if(isNaN(this.value)){ Swal.fire({ icon: 'error', title: 'กรุณากรอกตัวเลข', }); this.value='';}"  required />
+              <select class="form-select-sm" aria-label="select" id="board_num" name = "board_num">
+                  <option selected value=" ">ทั้งหมด</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+             
               <input id="board_name" type='file'  accept="image/png, image/jpeg">
             <input type="hidden" id="b64">
             <img id="img" height="120">
@@ -336,31 +341,7 @@ $Position_name = $_SESSION['Position_name'];
             </div>
           </div>
           
-          <div id="show_history"><br>
-            <center>
-              <h2>สถิติการส่งเอกสาร</h2>
-            </center>
-
-            <div style="float:right">
-            วัน/เดือน/ปี : <input id="myInput4" type="date"><br><br>
-            </div>
-            <div class="table-responsive-sm">
-              <table class="table table-bordered table-sm" style="border:1px; width:100%">
-                <thead>
-                  <tr style="background-color:#212529; color:white;">
-                    <th class="thcenter">วันที่ดำเนินการ</th>
-                    <th class="thcenter">ชื่อเอกสาร</th>
-                    <th class="thcenter">ประเภทเอกสาร</th>
-                    <th class="thcenter">ชั้นความเร็วเอกสาร</th>
-                    <th class="thcenter">ชั้นความลับเอกสาร</th>
-                  </tr>
-                </thead>
-                <tbody id="myTable4" style="border:1px; width:100%">
-
-                </tbody>
-              </table>
-            </div>
-          </div>
+          
 
           <div id="show_manual"><br>
             <center>
@@ -684,7 +665,7 @@ $Position_name = $_SESSION['Position_name'];
     function show_index() {
 
 $("#show_index").show();
-$("#show_history").hide();
+
 $("#show_manual").hide();
 $("#show_divistion").hide();
 $("#show_employee").hide();
@@ -692,37 +673,12 @@ $("#show_employee").hide();
     function show_manual() {
 
       $("#show_index").hide();
-      $("#show_history").hide();
+      
       $("#show_manual").show();
       $("#show_divistion").hide();
       $("#show_employee").hide();
 }
 
-    function show_history() {
-
-      $("#show_history").show();
-      $("#show_manual").hide();
-      $("#show_index").hide();
-      $("#show_divistion").hide();
-      $("#show_employee").hide();
-
-      $("#myInput4").on('change', function () {
-
-      var search_date = $("#myInput4").val();
-
-        $.ajax({
-          url: ".php",
-          type: "POST",
-          cache: false,
-          data: {
-            search_date: search_date
-          },
-          success: function (data) {
-            $('#myTable4').html(data);
-          }
-        });
-      });
-    }
 
     
 
@@ -732,7 +688,7 @@ $("#show_employee").hide();
       $("#show_index").hide();
       $("#show_employee").hide();
       $("#show_manual").hide();
-      $("#show_history").hide();
+      
 
       $.ajax({
         url: "view_divistion.php",
@@ -751,7 +707,7 @@ $("#show_employee").hide();
       $("#show_index").hide();
       $("#show_divistion").hide();
       $("#show_manual").hide();
-      $("#show_history").hide();
+      
 
       $.ajax({
         url: "view_employee.php",

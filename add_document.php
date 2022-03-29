@@ -175,7 +175,7 @@ date_default_timezone_set("Asia/Bangkok");
     <div class="row">
       <div class="col-md-10">
         <hr>
-        <table id="dtable" class="table table-striped" style="">
+        <table id="dtable" class="table table-striped">
           <thead>
             <th>เลขที่เอกสาร</th>
             <th>เรื่อง</th>

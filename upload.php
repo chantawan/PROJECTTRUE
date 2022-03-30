@@ -358,7 +358,9 @@ if (isset($_POST['submit']) != "") {
         <div class="form-group">
           <label class="control-label col-sm-2" for="DocumentFI">อัพโหลดไฟล์:</label>
           <div class="col-sm-10">
-            <input type="file" class="form-control" id="download" name="download">
+          <input id="download" type='file'  accept="application/pdf">
+            <input type="hidden" id="b64">
+            <img id="img" height="120">
           </div>
         </div>
         </p>
@@ -384,6 +386,7 @@ if (isset($_POST['submit']) != "") {
         var document_date = $('#document_date').val();
         var download = $('#download').val();
         var documentstatus_id = $('#documentstatus_id').val();;
+        var download = document.getElementById("img").src;
 
         if (document_number != "" && document_name != "") {
           $.ajax({
@@ -424,5 +427,24 @@ if (isset($_POST['submit']) != "") {
         }
       });
     });
-    
+    function readFile() {
+
+var test = ''
+
+if (this.files && this.files[0]) {
+
+    var FR = new FileReader();
+
+    FR.addEventListener("load", function (e) {
+        document.getElementById("img").src = e.target.result;
+        document.getElementById("b64").innerHTML = e.target.result;
+        return e.target.result
+    });
+
+    FR.readAsDataURL(this.files[0]);
+  }
+}
+document.getElementById("download").addEventListener("change", readFile);
+
+console.log(document.getElementById("download"))
   </script>

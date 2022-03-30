@@ -45,7 +45,7 @@ $Position_name = $_SESSION['Position_name'];
     }
 
     #show_index {
-      display: block;
+      display: none;
     }
 
     #show_divistion {
@@ -1083,12 +1083,12 @@ $("#show_employee").hide();
             success: function (dataResult) {
               var dataResult = JSON.parse(dataResult);
               if (dataResult.statusCode == 200) {
-                show_divistion();
+                show_index();
                 Swal.fire({
                   icon: 'success',
                   title: 'เพิ่มไฟล์สำเร็จ',
                 })
-                show_index();
+                
               }
               else if (dataResult.statusCode == 201) {
                 Swal.fire({
@@ -1220,7 +1220,7 @@ console.log(document.getElementById("board_name"))
                   'success'
                   
                 )
-                show_index();
+                
               }
               else{
                 Swal.fire({

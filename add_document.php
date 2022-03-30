@@ -327,7 +327,7 @@ date_default_timezone_set("Asia/Bangkok");
 
               $('#divistion_id').change(function() {
                 var divistion_id = $(this).val();
-
+                
                 $.ajax({
                   type: "post",
                   url: "SelectDivistion.php",

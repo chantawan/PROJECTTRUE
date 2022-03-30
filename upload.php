@@ -10,6 +10,15 @@ $emp_id = $_SESSION['emp_id'];
 $emp_firstname = $_SESSION['emp_firstname'];
 $Position_name = $_SESSION['Position_name'];
 ?>
+<style>
+  body {
+      background-image: url(assets/img/wall.jpg);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      background-size: 100% 100%, auto;
+    }
+</style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-auto"style="width:200%">
     <a class="navbar-brand" href="index_admin.php"><img src="img/icon.png" width="33px" height="33px"> <font color="#F0B56F">F</font>ile <font color="#F0B56F">M</font>anagement <font color="#F0B56F">S</font>ystem</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
@@ -54,43 +63,6 @@ $Position_name = $_SESSION['Position_name'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>อัพโหลดเอกสาร</title>
 </head>
-<?php
-$con = new PDO('mysql:host=localhost; dbname=project2', 'root', '');
-if (isset($_POST['submit']) != "") {
-  $name = $_FILES['file']['name'];
-  $size = $_FILES['file']['size'];
-  $type = $_FILES['file']['type'];
-  $temp = $_FILES['file']['tmp_name'];
-  // $caption1=$_POST['caption'];
-  // $link=$_POST['link'];
-  $fname = date("YmdHis") . '_' . $name;
-  $chk = $con->query("SELECT * FROM  document where name = '$name' ")->rowCount();
-  if ($chk) {
-    $i = 1;
-    $c = 0;
-    while ($c == 0) {
-      $i++;
-      $reversedParts = explode('.', strrev($name), 2);
-      $tname = (strrev($reversedParts[1])) . "_" . ($i) . '.' . (strrev($reversedParts[0]));
-      // var_dump($tname);exit;
-      $chk2 = $con->query("SELECT * FROM  document where name = '$tname' ")->rowCount();
-      if ($chk2 == 0) {
-        $c = 1;
-        $name = $tname;
-      }
-    }
-  }
-  $move =  move_uploaded_file($temp, "upload/" . $fname);
-  if ($move) {
-    $query = $con->query("insert into document(fname,name)values('$fname','$name')");
-    if ($query) {
-      header("location:upload.php");
-    } else {
-     
-    }
-  }
-}
-?>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
 <script src="js/validation.js"></script>
 <link rel="stylesheet" href="css/style.css">
@@ -115,138 +87,8 @@ if (isset($_POST['submit']) != "") {
 <script src="js/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="medias/css/dataTable.css" />
 <script src="medias/js/jquery.dataTables.js" type="text/javascript"></script>
+<body>
 <!-- end table-->
-<script type="text/javascript" charset="utf-8">
-  $(document).ready(function() {
-    $('#dtable').dataTable({
-      "aLengthMenu": [
-        [5, 10, 15, 25, 50, 100, -1],
-        [5, 10, 15, 25, 50, 100, "All"]
-      ],
-      "iDisplayLength": 10
-    });
-  })
-</script>
-<style>
-  * {
-    font-family: 'supermarket';
-  }
-
-  body {
-    background-image: url('img/wall.jpg');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    background-size: 100% 100%, auto;
-  }
-
-  #show_employee {
-    display: none;
-  }
-
-  #show_index {
-    display: block;
-  }
-
-  #show_divistion {
-    display: none;
-  }
-
-  #show_manual {
-    display: none;
-  }
-
-  #show_history {
-    display: none;
-  }
-
-  th.thcenter {
-    text-align: center;
-  }
-
-  #modal {
-    background: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-    display: none;
-  }
-
-  .bgLeft {
-    background: rgba(0, 0, 0, 0.5);
-  }
-
-  .glow-on-hover {
-    width: 300px;
-    height: 50px;
-    border: none;
-    outline: none;
-    color: #fff;
-    background: #111;
-    cursor: pointer;
-    position: relative;
-    z-index: 0;
-    border-radius: 50px;
-  }
-
-  .glow-on-hover:before {
-    content: '';
-    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    background-size: 400%;
-    z-index: -1;
-    filter: blur(5px);
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    animation: glowing 20s linear infinite;
-    opacity: 0;
-    transition: opacity .3s ease-in-out;
-    border-radius: 10px;
-  }
-
-  .glow-on-hover:active {
-    color: #000
-  }
-
-  .glow-on-hover:active:after {
-    background: transparent;
-  }
-
-  .glow-on-hover:hover:before {
-    opacity: 1;
-  }
-
-  .glow-on-hover:after {
-    z-index: -1;
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #111;
-    left: 0;
-    top: 0;
-    border-radius: 10px;
-  }
-
-  @keyframes glowing {
-    0% {
-      background-position: 0 0;
-    }
-
-    50% {
-      background-position: 400% 0;
-    }
-
-    100% {
-      background-position: 0 0;
-    }
-  }
-</style>
 <div class="form-group">
   <div class="col-sm-offset-2 col-sm-10">
     <a href="index_admin.php">
@@ -361,15 +203,11 @@ if (isset($_POST['submit']) != "") {
           <input id="download" type='file'  accept="application/pdf">
             <input type="hidden" id="b64">
             <img id="img" height="120">
+            <button type="submit" class="btn btn-info" id="save_document">บันทึก</button>
           </div>
         </div>
         </p>
         </p>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <footer><button type="submit" class="btn btn-default" id="save_document">บันทึก</button></footer>
-          </div>
-        </div>
       </div>
     </div>
   </div>

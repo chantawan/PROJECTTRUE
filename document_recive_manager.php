@@ -233,6 +233,7 @@ date_default_timezone_set("Asia/Bangkok");
                 <th class="thcenter" style="width:8%"></th>
                 <th class="thcenter" style="width:20%">คำอธิบาย</th>
                 <th class="thcenter">เวลา</th>
+                
               </tr>
             </thead>
             <tbody id="document_now" style=" width:100%; height:100%">
@@ -267,22 +268,30 @@ date_default_timezone_set("Asia/Bangkok");
 
       </div>
       <div class="container" style="margin-top:10%; background-color:gray; " id="show_read">
+      <div class="modal-body">
         <div class="row">
           <div class="col-md-6">
             <div class="mb-3">
-              <input type="text" class="form-control" name="Doc_id" id="Doc_id" hidden>
-              <input type="text" class="form-control" name="document_number" id="document_number" readonly>
+              <input type="text" class="form-control"  name="Doc_id" id="Doc_id" hidden>
+                <input type="text" class="form-control" style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_number" id="document_number" readonly>
+                </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                <input type="text" class="form-control"style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_name" id="document_name" readonly>
+                 </div>
+                 </div>
+                 <div class="col-md-6">
+                      <div class="mb-3">
+            <input type="text" class="form-control"style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_detail" id="document_detail" readonly>
+          </div>
+          </div>
+          <div class="col-md-6">
+                      <div class="mb-3">
+            <input type="text" class="form-control"style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="documenttype_name" id="documenttype_name" readonly>
             </div>
           </div>
-          <div class="mb-3">
-            <input type="text" class="form-control" name="document_name" id="document_name" readonly>
-          </div>
-          <div class="mb-3">
-            <input type="text" class="form-control" name="document_detail" id="document_detail" readonly>
-          </div>
-          <div class="mb-3">
-            <input type="text" class="form-control" name="documenttype_name" id="documenttype_name" readonly>
-          </div>
+          
           <?php                 
                     $sql_query = "SELECT download , Doc_id
                     FROM document
@@ -296,7 +305,8 @@ date_default_timezone_set("Asia/Bangkok");
                       <tr >
                           
                           <?php
-                      echo "<td>"."<embed src='".$row['download']."' width='10%'>"."</td>"?>
+                      echo "<td>"."<embed src='".$row['download'].'pdf'."' mce_src='file.pdf' width='10%'>"."</td>"?>
+
                       </tr>
                       
                           </tr>
@@ -304,9 +314,13 @@ date_default_timezone_set("Asia/Bangkok");
                     <?php	
                     }                            
                     ?>
-        </div>
-      </div>
-    </div>
+                   
+              <button onclick="OnEdit3(<?=$row['board_id'];?>)" style = "width:10%; margin-left:10%" type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4">อนุมัติ</button>
+			        <button onclick="OnDelete3(<?=$row['board_id'];?>)" style = "width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger">ดำเนินการต่อ</button>
+              
+              </div>
+            </div>
+          </div>
 
 
 

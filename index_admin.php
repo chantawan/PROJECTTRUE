@@ -33,7 +33,7 @@ $Position_name = $_SESSION['Position_name'];
     }
 
     body {
-      background-image: url('img/background.jpg');
+      background-image: url(assets/img/wall.jpg);
       background-repeat: no-repeat;
       background-position: center center;
       background-attachment: fixed;
@@ -148,10 +148,7 @@ $Position_name = $_SESSION['Position_name'];
     }
   </style>
   <title>Admin</title>
-</head>
-
-<body>
-<div id="hero" class="hero route bg-image" style="background-image: url(assets/img/wall.jpg)">
+  <div id="hero" class="hero route bg-image">
     <div class="overlay-itro"></div>
     <div class="hero-content display-table">
       <div class="table-cell">
@@ -159,7 +156,7 @@ $Position_name = $_SESSION['Position_name'];
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-auto" style="width:200%">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-auto" style="width:104%">
           <div class="container-fluid">
             <div class="col-md-6">
               <a class="navbar-brand" href="index_admin.php"><img src="img/icon.png" width="5%">
@@ -206,6 +203,10 @@ $Position_name = $_SESSION['Position_name'];
           show_document_now()>คู่มือ</button>
            <button class="btn btn-danger btn-sm" style="width:100%; margin-bottom:3%;font-size:25px;">
             <a class="nav-link" href="logout.php?option=1" style = "color:black">ออกจากระบบ</a></button> 
+</head>
+
+<body>
+
             
           <!-- Button trigger modal -->
 
@@ -248,7 +249,6 @@ $Position_name = $_SESSION['Position_name'];
             aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
-              
                 <div class="modal-header bg-success text-white">
                 <h5 class="modal-title" id="exampleModalLabel">เพิ่มกอง</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -284,7 +284,6 @@ $Position_name = $_SESSION['Position_name'];
               <h2>ประชาสัมพันธ์</h2>
               <div class="mb-3">
               <select class="form-select-sm" aria-label="select" id="board_num" name = "board_num">
-                  <option selected value=" ">ทั้งหมด</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -1071,7 +1070,7 @@ $("#show_employee").hide();
         var board_name = $('#board_name').val();
         var board_name = document.getElementById("img").src;
 
-        if (board_name != "") {
+        if (board_name != "" && board_num != "") {
           $.ajax({
             url: "save_file.php",
             type: "POST",
@@ -1088,7 +1087,7 @@ $("#show_employee").hide();
                   icon: 'success',
                   title: 'เพิ่มไฟล์สำเร็จ',
                 })
-                
+                header("Location: index_admin.php");
               }
               else if (dataResult.statusCode == 201) {
                 Swal.fire({

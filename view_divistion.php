@@ -10,7 +10,6 @@
     if ($num_row > 0) {
         while($row = $result->fetch_assoc()) {
     ?>	
-
         <tr>
             <td><?=$row['divistion_name'];?></td>
             <td><?=$row['divistion_number'];?></td>

@@ -291,10 +291,9 @@ date_default_timezone_set("Asia/Bangkok");
             <input type="text" class="form-control"style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="documenttype_name" id="documenttype_name" readonly>
             </div>
           </div>
-          
           <?php                 
                     $sql_query = "SELECT download , Doc_id
-                    FROM document
+                    FROM document 
                     ORDER BY `Doc_id` ASC";
 
                     $result = mysqli_query($conn,$sql_query);
@@ -302,10 +301,10 @@ date_default_timezone_set("Asia/Bangkok");
 
                     while($row = $result->fetch_assoc()) {
                   ?>	
-                      <tr >
+                      <tr>
                           
                           <?php
-                      echo "<td>"."<embed src='".$row['download'].'pdf'."' mce_src='file.pdf' width='10%'>"."</td>"?>
+                      echo "<td>"."<embed src='".$row['download']."' type='text/html' width='600px' height='800px'>"."</td>"?>
 
                       </tr>
                       

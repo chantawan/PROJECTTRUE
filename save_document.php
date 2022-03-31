@@ -10,6 +10,7 @@
     $document_date=$_POST['document_date'];
     $download=$_POST['download'];
 	$documentstatus_id=$_POST['documentstatus_id'];
+	$document_dnow=$_POST['document_dnow'];
 
 
 	$sql_query = "SELECT document_number from document where document_number = '$document_number'";
@@ -17,8 +18,8 @@
     $num_row = mysqli_num_rows($result);
 
     if($num_row == 0){
-		$sql = "INSERT INTO `document`( `document_number`,`document_name`,`document_detail`,`documenttype_id`,`speed_send`,`secret_send`,`document_date`,`download`,documentstatus_id) 
-		VALUES ('$document_number','$document_name','$document_detail','$documenttype_id','$speed_send','$secret_send','$document_date','$download','$documentstatus_id')";
+		$sql = "INSERT INTO `document`( `document_number`,`document_name`,`document_detail`,`documenttype_id`,`speed_send`,`secret_send`,`document_date`,`download`,`documentstatus_id`,`document_dnow`) 
+		VALUES ('$document_number','$document_name','$document_detail','$documenttype_id','$speed_send','$secret_send','$document_date','$download','$documentstatus_id','$document_dnow')";
 
 		$result = mysqli_query($conn,$sql);
 		echo json_encode(array("statusCode"=>200));

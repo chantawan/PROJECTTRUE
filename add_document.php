@@ -53,6 +53,7 @@ date_default_timezone_set("Asia/Bangkok");
       float: right;
       margin: 2px !important;
     }
+    
 
     #loader {
       position: fixed;
@@ -104,8 +105,8 @@ date_default_timezone_set("Asia/Bangkok");
   <!-- Start your project here-->
   <!--Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-auto" style="width:200%">
-    <a class="navbar-brand" href="index_admin.php"><img src="js/img/Files_Download.png" width="33px" height="33px">
-      <font color="#F0B56F">F</font>ile <font color="#F0B56F">M</font>anagement <font color="#F0B56F">S</font>ystem
+    <a class="navbar-brand" href="index_admin.php">
+      <font color="#F0B56F">D</font>ocument <font color="#F0B56F"></font>Management <font color="#F0B56F">S</font>ystem
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -115,7 +116,8 @@ date_default_timezone_set("Asia/Bangkok");
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <?php echo ucwords(htmlentities($emp_firstname)); ?> <i class="fas fa-user-circle"></i> Login </a>
+          <label style="color:#FFFFFF83">ชื่อผู้ใช้ : <?php echo $emp_firstname ?> &nbsp</label>
+            <label style="color:#FFFFFF83">สถานะ : <?php echo $Position_name ?> &nbsp</label>
           <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
             <a class="dropdown-item" href="history_log.php"> <i class="fas fa-chalkboard-teacher"></i> User Logged</a>
             <a class="dropdown-item" href="login_user.php"><i class="fas fa-sign-in-alt"></i> LogOut</a>
@@ -142,21 +144,21 @@ date_default_timezone_set("Asia/Bangkok");
           <div class="row">
             <div class="col-md-10">
               <hr>
-              <table id="dtable" class="table table-striped">
+              <table id="dtable" class="table table-striped" style = "width:150%">
                 <thead>
-                  <th>เลขที่เอกสาร</th>
-                  <th>เรื่อง</th>
-                  <th>วันที่นำเข้าเอกสาร</th>
-                  <th>วันหมดอายุเอกสาร</th>
-                  <th>ประเภทเอกสาร</th>
-                  <th>การจัดการ</th>
-                  <th>ดาวน์โหลด</th>
+                  <th style = "color:#fff; font-size:23px">เลขที่เอกสาร</th>
+                  <th style = "color:#fff;font-size:23px">เรื่อง</th>
+                  <th style = "color:#fff;font-size:23px">วันที่นำเข้าเอกสาร</th>
+                  <th style = "color:#fff;font-size:23px">วันหมดอายุเอกสาร</th>
+                  <th style = "color:#fff;font-size:23px">ประเภทเอกสาร</th>
+                  <th style = "color:#fff;font-size:23px">การจัดการ</th>
+                  <th style = "color:#fff;font-size:23px">ดาวน์โหลด</th>
                 </thead>
                 <tbody id="Input_doc" style=" width:100%; height:100%">
                   <?php
                   $search1 = date("Y/m/d");
 
-                  $sql_query = "SELECT a.Doc_id,a.document_number,a.document_name,a.document_date,b.documenttype_name,a.download,a.documentstatus_id
+                  $sql_query = "SELECT a.Doc_id,a.document_number,a.document_name,a.document_date,b.documenttype_name,a.download,a.documentstatus_id,a.document_dnow
             FROM document a , documenttype b
             Where a.documenttype_id = b.documenttype_id and a.documentstatus_id = '6'
             ORDER BY `document_date` DESC";
@@ -167,11 +169,11 @@ date_default_timezone_set("Asia/Bangkok");
                     while ($row = $result->fetch_assoc()) {
                   ?>
                       <tr style="background-color:white; color:black;">
-                        <td><?= $row['document_number']; ?></a></td>
-                        <td><?= $row['document_name']; ?></a></td>
-                        <td><?= $row['document_date']; ?></a></td>
-                        <td><?= $row['document_date']; ?></a></td>
-                        <td><?= $row['documenttype_name']; ?></a></td>
+                        <td style = "color:black; font-size:23px"><?= $row['document_number']; ?></a></td>
+                        <td style = "color:black; font-size:23px"><?= $row['document_name']; ?></a></td>
+                        <td style = "color:black; font-size:23px"><?= $row['document_dnow']; ?></a></td>
+                        <td style = "color:black; font-size:23px"><?= $row['document_date']; ?></a></td>
+                        <td style = "color:black; font-size:23px"><?= $row['documenttype_name']; ?></a></td>
                         <td style="width:20%;">
                           <button class="btn btn-success" onclick="Onsent(<?= $row['Doc_id']; ?>)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal5">ส่ง</button>
                           <button onclick="OnDelete4(<?= $row['Doc_id']; ?>)" type="button" class="btn btn-danger">ลบ</button>
@@ -184,8 +186,6 @@ date_default_timezone_set("Asia/Bangkok");
                   } else {
                   }
                   ?>
-
-
                 </tbody>
               </table>
 

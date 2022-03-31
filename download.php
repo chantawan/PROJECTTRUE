@@ -87,5 +87,5 @@ die();
 }
 set_time_limit(0);
 $file_path='upload/'.$_REQUEST['f'];
-output_file($file_path, ''.$_REQUEST['filename'].'', 'text/plain');
+output_file($file_path, ''.$_REQUEST['download'].'', 'text/plain');
 ?>

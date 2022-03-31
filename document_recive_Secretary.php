@@ -1,6 +1,7 @@
 <?php
 include "connect.php";
 
+
 if (!isset($_SESSION['emp_id'])) {
   header('Location: login_user.php');
 }
@@ -50,6 +51,14 @@ date_default_timezone_set("Asia/Bangkok");
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    #show_index {
+      display: block;
+    }
+
+    #show_read {
+      display: none;
+    }
+
     * {
       font-family: 'Agency FB';
     }
@@ -61,12 +70,17 @@ date_default_timezone_set("Asia/Bangkok");
 
     }
 
+    a:hover {
+      color: #ffcccc;
+    }
+
     td,
     th {
       border: 0px solid #dddddd;
       text-align: center;
       padding: 8px;
       font-size: 20px;
+
     }
 
     tr:nth-child(even) {
@@ -90,7 +104,7 @@ date_default_timezone_set("Asia/Bangkok");
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto active " style="font-size:25px;" href="index_Secretary.php">หน้าแรก</a></li>
+        <li><a class="nav-link scrollto  " style="font-size:25px;" href="index_Secretary.php">หน้าแรก</a></li>
         <!-- Example single danger button -->
         <div class="dropdown">
           <button class="btn  btn-sm dropdown-toggle" style="width:100%; margin-left:5%; color:white; font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -131,51 +145,51 @@ date_default_timezone_set("Asia/Bangkok");
   <div id="hero" class="hero route bg-image" style="background-image: url(assets/img/wall.jpg)">
     <div class="overlay-itro"></div>
     <div class="hero-content display-table">
-      <div class="container" style="margin-top:10%">
+      <div class="container" style="margin-top:10%; background-color:gray; " id="show_index">
         <table style="border:double 4px #ffcccc;padding:3px; width:30%; height:100px">
           <tbody>
-              <?php 
-              $sql_query = "SELECT COUNT(Doc_id) as DocRead
+            <?php
+            $sql_query = "SELECT COUNT(Doc_id) as DocRead 
               FROM document
               Where documentstatus_id = 2 and emp_id = '$emp_id'";
 
-            $result = mysqli_query($conn,$sql_query);
+            $result = mysqli_query($conn, $sql_query);
             $num_row = mysqli_num_rows($result);
             if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-          ?>	
-              <tr style="background-color:white; color:black;" >
+              while ($row = $result->fetch_assoc()) {
+            ?>
+                <tr style="background-color:white; color:black;">
 
-                  <td align="center" align="middle" style="border:4px double #ffcccc;padding:10px; font-size:68px;"><?=$row['DocRead'];?><p style = "font-size:18px">ยังไม่อ่าน</p></td>
-                  <?php 
-              $sql_query = "SELECT COUNT(Doc_id) as Docpending 
+                  <td align="center" align="middle" style="border:4px double #ffcccc;padding:10px; font-size:68px;"><?= $row['DocRead']; ?><p style="font-size:18px">ยังไม่อ่าน</p>
+                  </td>
+                  <?php
+                  $sql_query = "SELECT COUNT(Doc_id) as Docpending 
               FROM document
               Where documentstatus_id = 3 and emp_id = '$emp_id'";
 
-            $result = mysqli_query($conn,$sql_query);
-            $num_row = mysqli_num_rows($result);
-            if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-          ?>	
-          
-                  <td align="center" align="middle" style="border:4px double #ffcccc;padding:10px; font-size:68px; "><?=$row['Docpending'];?><p style = "font-size:18px">รอดำเนินการ</p></td>
-            <?php	
-             }  
-             
-            }else {
+                  $result = mysqli_query($conn, $sql_query);
+                  $num_row = mysqli_num_rows($result);
+                  if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                  ?>
+
+                      <td align="center" align="middle" style="border:4px double #ffcccc;padding:10px; font-size:68px; "><?= $row['Docpending']; ?><p style="font-size:18px">รอดำเนินการ</p>
+                      </td>
+                  <?php
+                    }
+                  } else {
+                    echo "ERROR";
+                  }
+                  ?>
+                </tr>
+
+            <?php
+              }
+            } else {
               echo "ERROR";
             }
             ?>
-              </tr>
-            
-            <?php	
-             }  
-             
-            }else {
-              echo "ERROR";
-            }
-            ?>
-            
+
           </tbody>
         </table>
         <input type="text" id="eid" value="<?= $emp_id ?>" hidden>
@@ -214,71 +228,181 @@ date_default_timezone_set("Asia/Bangkok");
           <table class="table table-responsive-md mx-auto" style="width:100%">
             <thead>
               <tr style="background-color:#212529; color:white;">
-
-                <th class="thcenter"></th>
+                <th class="thcenter" style="width:8%">เลขที่เอกสาร</th>
                 <th class="thcenter">หัวข้อ</th>
                 <th class="thcenter" style="width:8%"></th>
-                <th class="thcenter">คำอธิบาย</th>
+                <th class="thcenter" style="width:20%">คำอธิบาย</th>
                 <th class="thcenter">เวลา</th>
+                
               </tr>
             </thead>
             <tbody id="document_now" style=" width:100%; height:100%">
+              <?php
+              $sql_query1 = "SELECT  a.Doc_id , a.document_number , a.document_name , a.document_detail , a.document_date , b.documenttype_name , c.documentstatus_name
+            FROM document a, documenttype b, document_status c
+            WHERE b.documenttype_id = a.documenttype_id and c.documentstatus_id = a.documentstatus_id and a.emp_id = '$emp_id' ORDER BY `a`.`document_date` DESC";
+              $result = mysqli_query($conn, $sql_query1);
+              $num_row = mysqli_num_rows($result);
+              if ($num_row > 0) {
+                while ($row = $result->fetch_assoc()) {
+              ?>
+                  <tr style="background-color:white; color:black;">
+                    <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['document_number']; ?></td>
+                    <td onclick="show_read()"><?= $row['document_name']; ?></td>
+                    <td onclick="show_read()"><?= $row['documentstatus_name']; ?></span></td>
+                    <td onclick="show_read()"><?= $row['document_detail']; ?></td>
+                    <td><?= $row['document_date']; ?></td>
+
+                  </tr>
+              <?php
+
+                }
+              } else {
+                echo '<span style="color:White;">ไม่พบข้อความ</span>';
+              }
+              ?>
+
 
             </tbody>
           </table>
 
       </div>
+      <div class="container" style="margin-top:10%; background-color:gray; " id="show_read">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <input type="text" class="form-control"  name="Doc_id" id="Doc_id" hidden>
+                <input type="text" class="form-control" style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_number" id="document_number" readonly>
+                </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                <input type="text" class="form-control"style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_name" id="document_name" readonly>
+                 </div>
+                 </div>
+                 <div class="col-md-6">
+                      <div class="mb-3">
+            <input type="text" class="form-control"style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_detail" id="document_detail" readonly>
+          </div>
+          </div>
+          <div class="col-md-6">
+                      <div class="mb-3">
+            <input type="text" class="form-control"style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="documenttype_name" id="documenttype_name" readonly>
+            </div>
+          </div>
+          
+          <?php                 
+                    $sql_query = "SELECT download , Doc_id
+                    FROM document
+                    ORDER BY `Doc_id` ASC";
 
-    </div>
-  </div>
-  </div>
+                    $result = mysqli_query($conn,$sql_query);
+                    $num_row = mysqli_num_rows($result);
 
-  </main><!-- End #main -->
+                    while($row = $result->fetch_assoc()) {
+                  ?>	
+                      <tr >
+                          
+                          <?php
+                      echo "<td>"."<embed src='".$row['download'].'pdf'."' mce_src='file.pdf' width='10%'>"."</td>"?>
 
-
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-
-  <script>
-    $("#s1").change(function() {
-
-      var select = $("#s1").val();
-      var eid = $("#eid").val();
-
-      console.log(select);
-      console.log(eid);
-      $.ajax({
-
-        type: "POST",
-
-        url: "view_docread.php",
-
-        data: {
-
-          read: select,
-          eid: eid
+                      </tr>
+                      
+                          </tr>
+                      
+                    <?php	
+                    }                            
+                    ?>
+                   
+              <button onclick="OnEdit3(<?=$row['board_id'];?>)" style = "width:10%; margin-left:10%" type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4">สั่งการเอกสาร</button>
+			        <button onclick="OnDelete3(<?=$row['board_id'];?>)" style = "width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger">ส่งเอกสาร</button>
+              
+              </div>
+            </div>
+          </div>
 
 
-        },
 
-        success: function(data) {
 
-          $('#document_now').html(data);
+    </main><!-- End #main -->
 
-        }
+
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/typed.js/typed.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+
+    <script>
+      show_index();
+
+      function show_index() {
+        $("#show_index").show();
+        $("#show_read").hide();
+      }
+
+      function show_read(id) {
+
+        $("#show_index").hide();
+        $("#show_read").show();
+        
+        $.ajax({
+          url: "Select_docforread.php",
+          type: 'post',
+          data: {
+            Doc_id: id
+          },
+          success: function(dataResult) {
+            var dataResult = JSON.parse(dataResult);
+            if (dataResult.statusCode == 200) {
+
+              $("#Doc_id").val(dataResult.Doc_id);
+              $("#document_number").val(dataResult.document_number);
+              $("#document_name").val(dataResult.document_name);
+              $("#document_detail").val(dataResult.document_detail);
+              $("#documenttype_name").val(dataResult.documenttype_name);
+              $("#download").val(dataResult.download);
+
+            }
+          }
+        });
+      }
+      $("#s1").change(function() {
+
+        var select = $("#s1").val();
+        var eid = $("#eid").val();
+
+        
+        $.ajax({
+
+          type: "POST",
+
+          url: "view_docread.php",
+
+          data: {
+
+            read: select,
+            eid: eid
+
+
+          },
+
+          success: function(data) {
+
+            $('#document_now').html(data);
+
+          }
+
+        });
 
       });
-
-    });
-  </script>
+    </script>
 </body>
 
 

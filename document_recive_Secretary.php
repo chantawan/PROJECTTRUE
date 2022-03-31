@@ -248,9 +248,9 @@ date_default_timezone_set("Asia/Bangkok");
               ?>
                   <tr style="background-color:white; color:black;">
                     <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['document_number']; ?></td>
-                    <td onclick="show_read()"><?= $row['document_name']; ?></td>
-                    <td onclick="show_read()"><?= $row['documentstatus_name']; ?></span></td>
-                    <td onclick="show_read()"><?= $row['document_detail']; ?></td>
+                    <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['document_name']; ?></td>
+                    <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['documentstatus_name']; ?></span></td>
+                    <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['document_detail']; ?></td>
                     <td><?= $row['document_date']; ?></td>
 
                   </tr>

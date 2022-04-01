@@ -16,6 +16,7 @@ date_default_timezone_set("Asia/Bangkok");
 <html lang="en">
 
 <head>
+  
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -34,8 +35,8 @@ date_default_timezone_set("Asia/Bangkok");
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-  <link rel="icon" href="img/logoUser1.png" type="image/png">
+   <link href="assets/css/style.css" rel="stylesheet">
+   <link rel="icon" href="img/logoUser1.png" type="image/png">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -64,19 +65,20 @@ date_default_timezone_set("Asia/Bangkok");
     <div class="container d-flex align-items-center justify-content-between">
 
     <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active " href="#">หน้าแรก</a></li>
-          <li><a class="nav-link scrollto " href="document_recive_user.php">เอกสารถึงตัวท่าน</a></li>
-          <li><a class="nav-link scrollto" href="#">แฟ้มเอกสาร</a></li>
-          <li><a class="nav-link scrollto" href="#">คู่มือ</a></li>
-          <li><a class="nav-link scrollto" href="logout.php?option=2">ออกจากระบบ</a></li>
-        </ul>
+      <ul>
+        <li><a class="nav-link scrollto  " style="font-size:25px;" href="index_user.php">หน้าแรก</a></li>
+        <!-- Example single danger button -->
+        <li><a class="nav-link scrollto" style="font-size:25px;" href="document_recive_user.php">เอกสารถึงตัวท่าน</a></li>
+        <li><a class="nav-link scrollto" style="font-size:25px;" href="document_storage.php">แฟ้มเอกสาร</a></li>
+        <li><a class="nav-link scrollto" style="font-size:25px;" href="#">คู่มือ</a></li>
+        <li><a class="nav-link scrollto" style="font-size:25px;" href="logout.php?option=2">ออกจากระบบ</a></li>
+      </ul>
         
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
       <div style="text-align:right; float:right;">
-        <label style="color:#FFFFFF83">ชื่อผู้ใช้ : <?php echo $emp_firstname ?> &nbsp</label>
-        <label style="color:#FFFFFF83">บทบาท : <?php echo $Position_name ?> &nbsp</label>
+        <label style="color:#FFFFFF83;font-size:20px;">ชื่อผู้ใช้ : <?php echo $emp_firstname ?> &nbsp</label>
+        <label style="color:#FFFFFF83;font-size:20px;">บทบาท : <?php echo $Position_name ?> &nbsp</label>
       </div>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -96,19 +98,13 @@ date_default_timezone_set("Asia/Bangkok");
                 
                    
         <div>
-    <div class="col-10 mb-10" id="show_his" align="center" >
-    <h3 class="text-pacha"><br>ข่าวประชาสัมพันธ์</h3>
-    <div class="table-responsive-sm" style = "margin-top:10%;">
-              <table class="table table-bordered table-sm" style="border:1px; width:auto%">
-                <thead>
-                  <tr style="background-color:#212529; color:white;">
-                    <th class="thcenter"></th>
-                  </tr>
-                </thead>
-                <tbody id="pacha" style="border:1px; width:20%">
-                  <?php                 
-                    $sql_query = "SELECT board_name
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <?php                 
+                    $sql_query = "SELECT board_name,board_num
                     FROM board
+                    Where board_num = 1
                     ORDER BY `board_id` ASC";
 
                     $result = mysqli_query($conn,$sql_query);
@@ -118,17 +114,61 @@ date_default_timezone_set("Asia/Bangkok");
                   ?>	
                       <th>
                           <?php
-                      echo "<td>"."<img src='".$row['board_name']."' width='50%' hight>"."</td>"?>
+                      echo "<td>"."<img src='".$row['board_name']."' width='600px' height='400px'>"."</td>"?>
                       </th>
                     <?php	
                     }                            
                     ?>
-                </tbody>
-                <tbody id="myTable5" style="border:1px; width:100%">
+    </div>
+    <div class="carousel-item">
+    <?php                 
+                    $sql_query = "SELECT board_name,board_num
+                    FROM board
+                    Where board_num = 2";
 
-                </tbody>
-              </table>
-            </div>
+                    $result = mysqli_query($conn,$sql_query);
+                    $num_row = mysqli_num_rows($result);
+
+                    while($row = $result->fetch_assoc()) {
+                  ?>	
+                      <th>
+                          <?php
+                      echo "<td>"."<img src='".$row['board_name']."' width='600px' height='400px'>"."</td>"?>
+                      </th>
+                    <?php	
+                    }                            
+                    ?>
+    </div>
+    <div class="carousel-item">
+    <?php                 
+                    $sql_query = "SELECT board_name,board_num
+                    FROM board
+                    Where board_num = 3";
+
+                    $result = mysqli_query($conn,$sql_query);
+                    $num_row = mysqli_num_rows($result);
+
+                    while($row = $result->fetch_assoc()) {
+                  ?>	
+                      <th>
+                          <?php
+                      echo "<td>"."<img src='".$row['board_name']."' width='600px' height='400px'>"."</td>"?>
+                      </th>
+                    <?php	
+                    }                            
+                    ?>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+            
 <div class="row mx-auto" id="show_about">
 <h2 class="text-white" style="padding-left:150px"><br><img src="img/logoUser.png" width="10%" alt=""> เทศบาลเมืองปัตตานี
 ถนนเดชา ตำบลสะบารัง อำเภอเมือง จังหวัดปัตตานี 94000</h2>

@@ -113,11 +113,9 @@ date_default_timezone_set("Asia/Bangkok");
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item" href="document_recive_Secretary.php">เอกสารถึงตัวท่าน</a></li>
             <li><a class="dropdown-item">เอกสารรอดำเนินการ</a></li>
-            <li><a class="dropdown-item" href="sent_message.php">ส่งข้อความ</a></li>
 
           </ul>
         </div>
-        <li><a class="nav-link scrollto" style="font-size:25px;" href="document_storage.php">แฟ้มเอกสาร</a></li>
         <li><a class="nav-link scrollto" style="font-size:25px;" href="#">คู่มือ</a></li>
         <li><a class="nav-link scrollto" style="font-size:25px;" href="logout.php?option=2">ออกจากระบบ</a></li>
       </ul>
@@ -292,7 +290,7 @@ date_default_timezone_set("Asia/Bangkok");
           </div>
           <?php                 
                     $sql_query = "SELECT download , Doc_id
-                    FROM document Where Doc_id = 75
+                    FROM document 
                     ORDER BY `Doc_id` ASC";
 
                     $result = mysqli_query($conn,$sql_query);

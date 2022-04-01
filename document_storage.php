@@ -88,21 +88,11 @@ date_default_timezone_set("Asia/Bangkok");
 <header id="header" class="fixed-top">
   <div class="container d-flex align-items-center justify-content-between">
 
-    <nav id="navbar" class="navbar">
+  <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto active " style="font-size:25px;" href= "index_manager.php">หน้าแรก</a></li>
+        <li><a class="nav-link scrollto  " style="font-size:25px;" href="index_user.php">หน้าแรก</a></li>
         <!-- Example single danger button -->
-        <div class="dropdown">
-          <button class="btn  btn-sm dropdown-toggle" style="width:100%; margin-left:5%; color:white; font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            การจัดการเอกสาร
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="document_recive_manager.php">เอกสารถึงตัวท่าน</a></li>
-            <li><a class="dropdown-item">เอกสารรอดำเนินการ</a></li>
-            <li><a class="dropdown-item" href="sent_message.php">ส่งข้อความ</a></li>
-
-          </ul>
-        </div>
+        <li><a class="nav-link scrollto" style="font-size:25px;" href="document_recive_user.php">เอกสารถึงตัวท่าน</a></li>
         <li><a class="nav-link scrollto" style="font-size:25px;" href="document_storage.php">แฟ้มเอกสาร</a></li>
         <li><a class="nav-link scrollto" style="font-size:25px;" href="#">คู่มือ</a></li>
         <li><a class="nav-link scrollto" style="font-size:25px;" href="logout.php?option=2">ออกจากระบบ</a></li>

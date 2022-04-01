@@ -12,10 +12,9 @@ $doc_id = $_POST["doc_id"];
     if ($num_row > 0) {
         while ($row = $result->fetch_assoc()) {
 ?>
-
             <tr style="background-color:white; color:black;">
             <?php
-                echo "<td>" . "<embed src='" .$row['download'] . "' type='text/html' width='400px' height='500px'>" . "</td>" ?>
+                echo "<td>" . "<embed src='" .$row['download'] . "' type='text/html' width='600px' height='500px'>" . "</td>" ?>
             </tr>
 
         <?php

@@ -112,7 +112,7 @@ date_default_timezone_set("Asia/Bangkok");
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item" href="document_recive_Secretary.php">เอกสารถึงตัวท่าน</a></li>
-            <li><a class="dropdown-item" href="Documents_pending_Secretary.php">เอกสารรอดำเนินการ</a></li>
+            <li><a class="dropdown-item">เอกสารรอดำเนินการ</a></li>
 
           </ul>
         </div>
@@ -239,7 +239,7 @@ date_default_timezone_set("Asia/Bangkok");
               <?php
               $sql_query1 = "SELECT  a.Doc_id , a.document_number , a.document_name , a.document_detail , a.document_date , b.documenttype_name , c.documentstatus_name
             FROM document a, documenttype b, document_status c
-            WHERE b.documenttype_id = a.documenttype_id and c.documentstatus_id = a.documentstatus_id and a.emp_id = '$emp_id' and a.documentstatus_id != 3 ORDER BY `a`.`document_date`  DESC";
+            WHERE b.documenttype_id = a.documenttype_id and c.documentstatus_id = a.documentstatus_id and a.emp_id = '$emp_id' and a.documentstatus_id = 3 ORDER BY `a`.`document_date` DESC";
               $result = mysqli_query($conn, $sql_query1);
               $num_row = mysqli_num_rows($result);
               if ($num_row > 0) {
@@ -337,7 +337,7 @@ date_default_timezone_set("Asia/Bangkok");
           $("#show_index").hide();
           $("#show_read").show();
           $.ajax({
-            url: "Select_docforread.php",
+            url: "Select_docforPending.php",
             type: 'post',
             data: {
               Doc_id: id
@@ -366,7 +366,7 @@ date_default_timezone_set("Asia/Bangkok");
 
             type: "POST",
 
-            url: "view_docread.php",
+            url: "view_docreadPending.php.php",
 
             data: {
 

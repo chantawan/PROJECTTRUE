@@ -74,7 +74,7 @@ date_default_timezone_set("Asia/Bangkok");
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li><a class="dropdown-item" href="document_recive_Secretary.php" >เอกสารถึงตัวท่าน</a></li>
-            <li><a class="dropdown-item" >เอกสารรอดำเนินการ</a></li>
+            <li><a class="dropdown-item"href="Documents_pending_Secretary.php" >เอกสารรอดำเนินการ</a></li>
             <li><a class="dropdown-item" href="sent_message.php" >ส่งข้อความ</a></li>
           </ul>
         </div>

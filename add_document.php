@@ -53,7 +53,7 @@ date_default_timezone_set("Asia/Bangkok");
       float: right;
       margin: 2px !important;
     }
-    
+
 
     #loader {
       position: fixed;
@@ -116,13 +116,13 @@ date_default_timezone_set("Asia/Bangkok");
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <label style="color:#FFFFFF83">ชื่อผู้ใช้ : <?php echo $emp_firstname ?> &nbsp</label>
+            <label style="color:#FFFFFF83">ชื่อผู้ใช้ : <?php echo $emp_firstname ?> &nbsp</label>
             <label style="color:#FFFFFF83">สถานะ : <?php echo $Position_name ?> &nbsp</label>
-          <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-            <a class="dropdown-item" href="history_log.php"> <i class="fas fa-chalkboard-teacher"></i> User Logged</a>
-            <a class="dropdown-item" href="login_user.php"><i class="fas fa-sign-in-alt"></i> LogOut</a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+              <a class="dropdown-item" href="history_log.php"> <i class="fas fa-chalkboard-teacher"></i> User Logged</a>
+              <a class="dropdown-item" href="login_user.php"><i class="fas fa-sign-in-alt"></i> LogOut</a>
 
-          </div>
+            </div>
         </li>
       </ul>
     </div>
@@ -144,15 +144,15 @@ date_default_timezone_set("Asia/Bangkok");
           <div class="row">
             <div class="col-md-10">
               <hr>
-              <table id="dtable" class="table table-striped" style = "width:150%">
+              <table id="dtable" class="table table-striped" style="width:150%">
                 <thead>
-                  <th style = "color:#fff; font-size:23px">เลขที่เอกสาร</th>
-                  <th style = "color:#fff;font-size:23px">เรื่อง</th>
-                  <th style = "color:#fff;font-size:23px">วันที่นำเข้าเอกสาร</th>
-                  <th style = "color:#fff;font-size:23px">วันหมดอายุเอกสาร</th>
-                  <th style = "color:#fff;font-size:23px">ประเภทเอกสาร</th>
-                  <th style = "color:#fff;font-size:23px">การจัดการ</th>
-                  <th style = "color:#fff;font-size:23px">ดาวน์โหลด</th>
+                  <th style="color:#fff; font-size:23px">เลขที่เอกสาร</th>
+                  <th style="color:#fff;font-size:23px">เรื่อง</th>
+                  <th style="color:#fff;font-size:23px">วันที่นำเข้าเอกสาร</th>
+                  <th style="color:#fff;font-size:23px">วันหมดอายุเอกสาร</th>
+                  <th style="color:#fff;font-size:23px">ประเภทเอกสาร</th>
+                  <th style="color:#fff;font-size:23px">การจัดการ</th>
+                  <th style="color:#fff;font-size:23px">ดาวน์โหลด</th>
                 </thead>
                 <tbody id="Input_doc" style=" width:100%; height:100%">
                   <?php
@@ -169,11 +169,11 @@ date_default_timezone_set("Asia/Bangkok");
                     while ($row = $result->fetch_assoc()) {
                   ?>
                       <tr style="background-color:white; color:black;">
-                        <td style = "color:black; font-size:23px"><?= $row['document_number']; ?></a></td>
-                        <td style = "color:black; font-size:23px"><?= $row['document_name']; ?></a></td>
-                        <td style = "color:black; font-size:23px"><?= $row['document_dnow']; ?></a></td>
-                        <td style = "color:black; font-size:23px"><?= $row['document_date']; ?></a></td>
-                        <td style = "color:black; font-size:23px"><?= $row['documenttype_name']; ?></a></td>
+                        <td style="color:black; font-size:23px"><?= $row['document_number']; ?></a></td>
+                        <td style="color:black; font-size:23px"><?= $row['document_name']; ?></a></td>
+                        <td style="color:black; font-size:23px"><?= $row['document_dnow']; ?></a></td>
+                        <td style="color:black; font-size:23px"><?= $row['document_date']; ?></a></td>
+                        <td style="color:black; font-size:23px"><?= $row['documenttype_name']; ?></a></td>
                         <td style="width:20%;">
                           <button class="btn btn-success" onclick="Onsent(<?= $row['Doc_id']; ?>)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal5">ส่ง</button>
                           <button onclick="OnDelete4(<?= $row['Doc_id']; ?>)" type="button" class="btn btn-danger">ลบ</button>
@@ -204,7 +204,7 @@ date_default_timezone_set("Asia/Bangkok");
                   <div class="row">
                     <div class="col-md-6">
                       <div class="mb-3">
-                      <input type="text" class="form-control" name="Doc_id" id="Doc_id" hidden>
+                        <input type="text" class="form-control" name="Doc_id" id="Doc_id" hidden>
                         <input type="text" class="form-control" name="document_number" id="document_number" readonly>
                       </div>
                     </div>
@@ -249,7 +249,7 @@ date_default_timezone_set("Asia/Bangkok");
 
 
 
-          
+
           <script>
             function OnDelete4(id) {
               //  alert(id);
@@ -324,7 +324,7 @@ date_default_timezone_set("Asia/Bangkok");
 
               $('#divistion_id').change(function() {
                 var divistion_id = $(this).val();
-                
+
                 $.ajax({
                   type: "post",
                   url: "SelectDivistion.php",
@@ -374,7 +374,7 @@ date_default_timezone_set("Asia/Bangkok");
 
                         })
                         $('#exampleModal5').modal('hide');
-
+                        AutoRefresh();
                       } else if (dataResult.statusCode == 201) {
                         Swal.fire({
                           icon: 'error',
@@ -390,6 +390,11 @@ date_default_timezone_set("Asia/Bangkok");
 
               });
             });
+
+            function AutoRefresh() {
+              setTimeout("location.reload(true);", 1000);
+
+            }
           </script>
 </body>
 

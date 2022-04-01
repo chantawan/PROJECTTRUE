@@ -2,8 +2,8 @@
 include "connect.php";
 
 // Check user login or not
-if(!isset($_SESSION['emp_id'])){
-   header('Location: login_admin.php');
+if (!isset($_SESSION['emp_id'])) {
+  header('Location: login_admin.php');
 }
 
 $emp_id = $_SESSION['emp_id'];
@@ -59,7 +59,7 @@ $Position_name = $_SESSION['Position_name'];
     #show_history {
       display: none;
     }
-    
+
     th.thcenter {
       text-align: center;
     }
@@ -153,533 +153,492 @@ $Position_name = $_SESSION['Position_name'];
     <div class="hero-content display-table">
       <div class="table-cell">
         <div class="container">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-auto" style="width:104%">
-          <div class="container-fluid">
-            <div class="col-md-6">
-              <a class="navbar-brand" href="index_admin.php"><img src="img/icon.png" width="5%">
-              สำนักงานเทศบาลเมืองปัตตานี
-              </a>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-auto" style="width:104%">
+                  <div class="container-fluid">
+                    <div class="col-md-6">
+                      <a class="navbar-brand" href="index_admin.php"><img src="img/icon.png" width="5%">
+                        สำนักงานเทศบาลเมืองปัตตานี
+                      </a>
+                    </div>
+
+
+
+
+                    <div class="col-md-6" style="text-align:right;">
+                      <label style="color:#FFFFFF83">ชื่อผู้ใช้ : <?php echo $emp_firstname ?> &nbsp</label>
+                      <label style="color:#FFFFFF83">สถานะ : <?php echo $Position_name ?> &nbsp</label>
+                    </div>
+                  </div>
+                </nav>
+              </div>
             </div>
-           
-                      
-                        
-                  
-            <div class="col-md-6" style="text-align:right;">
-            <label style="color:#FFFFFF83">ชื่อผู้ใช้ : <?php echo $emp_firstname ?> &nbsp</label>
-            <label style="color:#FFFFFF83">สถานะ : <?php echo $Position_name ?> &nbsp</label>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </div>
-    <div class="container mx-auto" style="width:500%">
-      <div class="row">
-        <div class="col-2 bgLeft" style="height:120vh"><br>
-        <button class="btn btn-secondary btn-sm" style="width:100%; margin-bottom:3%;font-size:25px;"
-        onclick="show_index()">หน้าแรก</button>
-        <div class="dropdown">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" style="width:100%; margin-bottom:3%;font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-           การจัดการเอกสาร
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="upload.php">นำเข้าเอกสาร</a></li>
-            <li><a class="dropdown-item" href="#">ส่งออกเอกสาร</a></li>
-            <li><a class="dropdown-item" href="add_document.php">เอกสารนำเข้า</a></li>
-          </ul>
-        </div>
-        <div class="dropdown">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" style="width:100%; margin-bottom:3%;font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-           การจัดการข้อมูล
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item"onclick="show_divistion()" >การจัดการกอง</a></li>
-            <li><a class="dropdown-item" onclick="show_employee()">การจัดการสมาชิก</a></li>
-          </ul>
-        </div>
-          <button class="btn btn-secondary btn-sm" style="width:100%; margin-bottom:3%;font-size:25px;"
-          show_document_now()>คู่มือ</button>
-           <button class="btn btn-danger btn-sm" style="width:100%; margin-bottom:3%;font-size:25px;">
-            <a class="nav-link" href="logout.php?option=1" style = "color:black">ออกจากระบบ</a></button> 
+            <div class="container mx-auto" style="width:500%">
+              <div class="row">
+                <div class="col-2 bgLeft" style="height:120vh"><br>
+                  <button class="btn btn-secondary btn-sm" style="width:100%; margin-bottom:3%;font-size:25px;" onclick="show_index()">หน้าแรก</button>
+                  <div class="dropdown">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" style="width:100%; margin-bottom:3%;font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      การจัดการเอกสาร
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="upload.php">นำเข้าเอกสาร</a></li>
+                      <li><a class="dropdown-item" href="#">ส่งออกเอกสาร</a></li>
+                      <li><a class="dropdown-item" href="add_document.php">เอกสารนำเข้า</a></li>
+                    </ul>
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" style="width:100%; margin-bottom:3%;font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      การจัดการข้อมูล
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" onclick="show_divistion()">การจัดการกอง</a></li>
+                      <li><a class="dropdown-item" onclick="show_employee()">การจัดการสมาชิก</a></li>
+                    </ul>
+                  </div>
+                  <button class="btn btn-secondary btn-sm" style="width:100%; margin-bottom:3%;font-size:25px;" show_document_now()>คู่มือ</button>
+                  <button class="btn btn-danger btn-sm" style="width:100%; margin-bottom:3%;font-size:25px;">
+                    <a class="nav-link" href="logout.php?option=1" style="color:black">ออกจากระบบ</a></button>
 </head>
 
 <body>
 
-            
-          <!-- Button trigger modal -->
 
-          <!-- modal edit Divistion -->
-          <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                  <h5 class="modal-title" id="exampleModalLabel">แก้ไขข้อมูลกอง</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <input type="text" class="form-control" name="divistion_name" id="divistion_name"
-                          placeholder="ชื่อสนาม">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                      <input type="number" class="form-control" name="divistion_number" id="divistion_number"
-                          placeholder="เบอร์โทรศัพท์มือถือกอง">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear_modal4">ปิด</button>
-                  <button type="button" class="btn btn-success" id="save_edit_divistion" >ยืนยัน</button>
-                </div>
+  <!-- Button trigger modal -->
+
+  <!-- modal edit Divistion -->
+  <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="exampleModalLabel">แก้ไขข้อมูลกอง</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <input type="text" class="form-control" name="divistion_name" id="divistion_name" placeholder="ชื่อสนาม">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <input type="number" class="form-control" name="divistion_number" id="divistion_number" placeholder="เบอร์โทรศัพท์มือถือกอง">
               </div>
             </div>
           </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear_modal4">ปิด</button>
+          <button type="button" class="btn btn-success" id="save_edit_divistion">ยืนยัน</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-          <!-- Add Divistion -->
-          <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                <h5 class="modal-title" id="exampleModalLabel">เพิ่มกอง</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <input type="text" class="form-control" name="divistion_name" id="divistion_name2"
-                          placeholder="ชื่อกอง">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                      <input type="number" class="form-control" name="divistion_number" id="divistion_number2"
-                          placeholder="เบอร์โทรศัพท์มือถือกอง">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear_modal5">ปิด</button>
-                  <button type="button" class="btn btn-success" id="butsave_divistion" >ยืนยัน</button>
-                </div>
+  <!-- Add Divistion -->
+  <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="exampleModalLabel">เพิ่มกอง</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <input type="text" class="form-control" name="divistion_name" id="divistion_name2" placeholder="ชื่อกอง">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <input type="number" class="form-control" name="divistion_number" id="divistion_number2" placeholder="เบอร์โทรศัพท์มือถือกอง">
               </div>
             </div>
           </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear_modal5">ปิด</button>
+          <button type="button" class="btn btn-success" id="butsave_divistion">ยืนยัน</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <div class="col-10" style="background-color:white" id = "exampleModal6">
+    <div id="show_index"><br>
+      <center>
+        <h2>ประชาสัมพันธ์</h2>
+        <div class="mb-3">
+          <select class="form-select-sm" aria-label="select" id="board_num" name="board_num">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+
+          <input id="board_name" type='file' accept="image/png, image/jpeg">
+          <input type="hidden" id="b64">
+          <img id="img" height="120">
 
         </div>
-        <div class="col-10" style="background-color:white">
-          <div id="show_index"><br>
-            <center>
-              <h2>ประชาสัมพันธ์</h2>
-              <div class="mb-3">
-              <select class="form-select-sm" aria-label="select" id="board_num" name = "board_num">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-             
-              <input id="board_name" type='file'  accept="image/png, image/jpeg">
-            <input type="hidden" id="b64">
-            <img id="img" height="120">
-                        
-                      </div>
-              <button type="button" class="btn btn-success" id="botsave_file" style = "font-size:28px; width: 10%">อัพโหลด</button>
-            </center>
-           
-            <div class="table-responsive-sm">
-              <table class="table table-bordered table-sm" style="border:1px; width:100%">
-                <thead>
-                  <tr style="background-color:#212529; color:white;">
-                    <th class="thcenter">รูป</th>
-                    <th class="thcenter">การจัดการ</th>
-                  </tr>
-                </thead>
-                <tbody id="pacha" style="border:1px; width:100%">
-                  
-                  <?php                 
-                    $sql_query = "SELECT board_name , board_id
-                    FROM board
-                    ORDER BY `board_id` ASC";
+        <button type="button" class="btn btn-success" id="botsave_file" style="font-size:28px; width: 10%">อัพโหลด</button>
+      </center>
 
-                    $result = mysqli_query($conn,$sql_query);
-                    $num_row = mysqli_num_rows($result);
+      <div class="table-responsive-sm">
+        <table class="table table-bordered table-sm" style="border:1px; width:100%">
+          <thead>
+            <tr style="background-color:#212529; color:white;">
+              <th class="thcenter">รูป</th>
+              <th class="thcenter">การจัดการ</th>
+            </tr>
+          </thead>
+          <tbody id="myTable3" style="border:1px; width:100%">
 
-                    while($row = $result->fetch_assoc()) {
-                  ?>	
-                      <tr >
-                          
-                          <?php
-                      echo "<td>"."<img src='".$row['board_name']."' width='10%'>"."</td>"?>
-                      <td style="width:10%;">
-                      <button onclick="OnEdit3(<?=$row['board_id'];?>)" type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4">แก้ไข</button>
-			                <button onclick="OnDelete3(<?=$row['board_id'];?>)" type="button" class="btn btn-sm btn-danger">ลบ</button>
-		                	</td>
-                      </tr>
-                      
-                          </tr>
-                      
-                    <?php	
-                    }                            
-                    ?>
-                </tbody>
-                <tbody id="myTable5" style="border:1px; width:100%">
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-                </tbody>
-              </table>
+
+
+    <div id="show_manual"><br>
+      <center>
+        <h2>คู่มือ</h2>
+      </center>
+
+      <div class="table-responsive-sm">
+        <img src="img/11.jpg" alt="">
+      </div>
+    </div>
+
+    <div id="show_divistion"><br>
+      <center>
+        <h2>ข้อมูลกอง</h2>
+      </center>
+
+      <div style="float:right">
+        ค้นหา : <input id="myInput2" type="text"><br><br>
+      </div>
+      <button class="glow-on-hover" style="width:10%; height:35px;" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal5">เพิ่มกอง</button>
+      <div class="table-responsive-sm">
+        <table class="table table-bordered table-sm" style="border:1px; width:100%">
+          <thead>
+            <tr style="background-color:#212529; color:white;">
+              <th class="thcenter">ชื่อกอง</th>
+              <th class="thcenter">เบอร์โทรศัพท์กอง</th>
+              <th class="thcenter">แก้ไข/ลบ</th>
+            </tr>
+          </thead>
+          <tbody id="myTable2" style="border:1px; width:100%">
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+    <div id="show_employee"><br>
+      <center>
+        <h2>ข้อมูลสมาชิก</h2>
+      </center>
+
+      <div style="float:right">
+        ค้นหา : <input id="myInput" type="text"><br><br>
+      </div>
+
+      <div class="table-responsive-sm">
+        <table class="table table-bordered table-sm" style="border:1px; width:100%">
+          <thead>
+            <tr style="background-color:#212529; color:white;">
+
+              <th class="thcenter">ชื่อจริง</th>
+              <th class="thcenter">นามสกุล</th>
+              <th class="thcenter">เลขบัตรประชาชน</th>
+              <th class="thcenter">เพศ</th>
+              <th class="thcenter">สถานะ</th>
+              <th class="thcenter">กอง</th>
+              <th class="thcenter">อีเมลล์</th>
+              <th class="thcenter">เบอร์โทรศัพท์</th>
+              <th class="thcenter">แก้ไข/ลบ</th>
+            </tr>
+          </thead>
+          <tbody id="myTable" style="border:1px; width:100%">
+          </tbody>
+        </table>
+        <button class="glow-on-hover" style="width:10%; height:35px;" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2">เพิ่มสมาชิก</button>
+        <div class="mb-3">
+        </div>
+      </div>
+      <!-- Modal Edit Member-->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+              <h5 class="modal-title" id="exampleModalLabel">แก้ไขข้อมูลสมาชิกของ</h5>
+              <input type="text" class="form-control" id="show_username" style="width:50%; margin-left:10px" readonly></input>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-          </div>
-          
-          
-
-          <div id="show_manual"><br>
-            <center>
-              <h2>คู่มือ</h2> 
-            </center>
-
-            <div class="table-responsive-sm">
-              <img src="img/11.jpg" alt="">
-            </div>
-          </div>
-
-          <div id="show_divistion"><br>
-            <center>
-              <h2>ข้อมูลกอง</h2>
-            </center>
-
-            <div style="float:right">
-            ค้นหา : <input id="myInput2" type="text"><br><br>
-            </div>
-            <button class="glow-on-hover" style="width:10%; height:35px;" type="button" data-bs-toggle="modal"
-                data-bs-target="#exampleModal5">เพิ่มกอง</button>
-            <div class="table-responsive-sm">
-              <table class="table table-bordered table-sm" style="border:1px; width:100%">
-                <thead>
-                  <tr style="background-color:#212529; color:white;">
-                    <th class="thcenter">ชื่อกอง</th>
-                    <th class="thcenter">เบอร์โทรศัพท์กอง</th>
-                    <th class="thcenter">แก้ไข/ลบ</th>
-                  </tr>
-                </thead>
-                <tbody id="myTable2" style="border:1px; width:100%">
-
-                </tbody>
-              </table>
-              
-            </div>
-          </div>
-  
-          <div id="show_employee"><br>
-            <center>
-              <h2>ข้อมูลสมาชิก</h2>
-            </center>
-
-            <div style="float:right">
-            ค้นหา : <input id="myInput" type="text"><br><br>
-            </div>
-
-            <div class="table-responsive-sm">
-              <table class="table table-bordered table-sm" style="border:1px; width:100%">
-                <thead>
-                  <tr style="background-color:#212529; color:white;">
-                  
-                    <th class="thcenter">ชื่อจริง</th>
-                    <th class="thcenter">นามสกุล</th>
-                    <th class="thcenter">เลขบัตรประชาชน</th>
-                    <th class="thcenter">เพศ</th>
-                    <th class="thcenter">สถานะ</th>
-                    <th class="thcenter">กอง</th>
-                    <th class="thcenter">อีเมลล์</th>
-                    <th class="thcenter">เบอร์โทรศัพท์</th>
-                    <th class="thcenter">แก้ไข/ลบ</th>                
-                  </tr>
-                </thead>
-                <tbody id="myTable" style="border:1px; width:100%">
-                </tbody>
-              </table>
-                <button class="glow-on-hover" style="width:10%; height:35px;" type="button" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal2">เพิ่มสมาชิก</button>
+            <div class="modal-body">
+              <input type="hidden" id="emp_id">
+              <div class="row">
+                <div class="col-md-6">
                   <div class="mb-3">
-            </div>
-          </div>                 
-            <!-- Modal Edit Member-->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                  <h5 class="modal-title" id="exampleModalLabel">แก้ไขข้อมูลสมาชิกของ</h5>
-                  <input type="text"class="form-control" id="show_username" style="width:50%; margin-left:10px" readonly></input>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <input type="text" class="form-control" name="emp_firstname" id="emp_firstname" placeholder="ชื่อจริง">
+                  </div>
                 </div>
-                <div class="modal-body">
-                  <input type="hidden" id="emp_id">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <input type="text" class="form-control" name="emp_firstname" id="emp_firstname"
-                          placeholder="ชื่อจริง">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <input type="text" class="form-control" name="emp_lastname" id="emp_lastname"
-                          placeholder="นามสกุล">
-                      </div>
-                    </div>
-                  <div class="col-md-6">
-                      <div class="mb-3">
-                        <input type="password" class="form-control" name="emp_password" id="emp_password"
-                          placeholder="รหัสผ่าน">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <input type="number" class="form-control" name="emp_cardid" id="emp_cardid"
-                          placeholder="เลขบัตรประชาชน 13 หลัก">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                      <?php
-                          $sql = "SELECT * from gender";
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <input type="text" class="form-control" name="emp_lastname" id="emp_lastname" placeholder="นามสกุล">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <input type="password" class="form-control" name="emp_password" id="emp_password" placeholder="รหัสผ่าน">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <input type="number" class="form-control" name="emp_cardid" id="emp_cardid" placeholder="เลขบัตรประชาชน 13 หลัก">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <?php
+                    $sql = "SELECT * from gender";
 
-                          $result = mysqli_query($conn,$sql);
-                        ?>
-                        <select name="gender_id" id="gender_id" class="form-select">
-                          <option value="เพศ">เพศ</option>
-                        <?php
-                          while($row = mysqli_fetch_assoc($result)){
-                        ?>
-                              <option value="<?php echo $row["gender_id"]?>"><?php echo $row["gender_name"]?></option>              
-                            <?php
-                          }
-                        ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
+                    $result = mysqli_query($conn, $sql);
+                    ?>
+                    <select name="gender_id" id="gender_id" class="form-select">
+                      <option value="เพศ">เพศ</option>
                       <?php
-                          $sql = "SELECT * from position";
-
-                          $result = mysqli_query($conn,$sql);
-                        ?>
-                        <select name="Position_id" id="Position_id" class="form-select">
-                          <option value="ตำแหน่ง">ตำแหน่งงาน</option>
-                        <?php
-                          while($row = mysqli_fetch_assoc($result)){
-                        ?>
-                              <option value="<?php echo $row["Position_id"]?>"><?php echo $row["Position_name"]?></option>              
-                            <?php
-                          }
-                        ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
+                      while ($row = mysqli_fetch_assoc($result)) {
+                      ?>
+                        <option value="<?php echo $row["gender_id"] ?>"><?php echo $row["gender_name"] ?></option>
                       <?php
-                          $sql = "SELECT * from divistion";
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <?php
+                    $sql = "SELECT * from position";
 
-                          $result = mysqli_query($conn,$sql);
-                        ?>
-                        <select name="divistion_id" id="divistion_id" class="form-select">
-                          <option value="กอง">กอง</option>
-                        <?php
-                          while($row = mysqli_fetch_assoc($result)){
-                        ?>
-                              <option value="<?php echo $row["divistion_id"]?>"><?php echo $row["divistion_name"]?></option>              
-                            <?php
-                          }
-                        ?>
-                        </select>
-                      </div>
+                    $result = mysqli_query($conn, $sql);
+                    ?>
+                    <select name="Position_id" id="Position_id" class="form-select">
+                      <option value="ตำแหน่ง">ตำแหน่งงาน</option>
+                      <?php
+                      while ($row = mysqli_fetch_assoc($result)) {
+                      ?>
+                        <option value="<?php echo $row["Position_id"] ?>"><?php echo $row["Position_name"] ?></option>
+                      <?php
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <?php
+                    $sql = "SELECT * from divistion";
+
+                    $result = mysqli_query($conn, $sql);
+                    ?>
+                    <select name="divistion_id" id="divistion_id" class="form-select">
+                      <option value="กอง">กอง</option>
+                      <?php
+                      while ($row = mysqli_fetch_assoc($result)) {
+                      ?>
+                        <option value="<?php echo $row["divistion_id"] ?>"><?php echo $row["divistion_name"] ?></option>
+                      <?php
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-7">
+                    <div class="mb-3">
+                      <input type="email" class="form-control" name="emp_email" id="emp_email" placeholder="ที่อยู่อีเมล">
                     </div>
-                  <div class="row">
-                    <div class="col-md-7">
-                      <div class="mb-3">
-                        <input type="email" class="form-control" name="emp_email" id="emp_email"
-                          placeholder="ที่อยู่อีเมล">
-                      </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="mb-3">
+                      <input type="text" class="form-control" name="emp_tel" id="emp_tel" placeholder="เบอร์โทรศัพท์" onKeyUp="if(isNaN(this.value)){ Swal.fire({ icon: 'error', title: 'กรุณากรอกตัวเลข', }); this.value='';}" required />
                     </div>
-                    <div class="col-md-5">
-                      <div class="mb-3">
-                      <input type="text" class="form-control" name="emp_tel" id="emp_tel" placeholder="เบอร์โทรศัพท์" onKeyUp="if(isNaN(this.value)){ Swal.fire({ icon: 'error', title: 'กรุณากรอกตัวเลข', }); this.value='';}"  required />
-                      </div>
-                    </div>
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear_modal">ปิด</button>
                   <button type="button" class="btn btn-success" id="save_edit">บันทึก</button>
-                  </div>
+                </div>
               </div>
             </div>
-          </div>     
+          </div>
         </div>
       </div>
     </div>
   </div>
-          <!-- modal register -->
-          <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
-                  <h5 class="modal-title" id="exampleModalLabel">เพิ่มสมาชิก</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <!-- modal register -->
+  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="exampleModalLabel">เพิ่มสมาชิก</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <input type="text" class="form-control" name="emp_firstname" id="emp_firstname2" placeholder="ชื่อจริง">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <input type="text" class="form-control" name="emp_lastname" id="emp_lastname2" placeholder="นามสกุล">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <input type="password" class="form-control" name="emp_password" id="emp_password2" placeholder="รหัสผ่าน">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <input type="number" class="form-control" name="emp_cardid" id="emp_cardid2" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==13) return false;" placeholder="เลขบัตรประชาชน 13 หลัก">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="mb-3">
+                <?php
+                $sql = "SELECT * from gender";
+
+                $result = mysqli_query($conn, $sql);
+                ?>
+                <select name="gender_id" id="gender_id2" class="form-select">
+                  <option value="เพศ">เพศ</option>
+                  <?php
+                  while ($row = mysqli_fetch_assoc($result)) {
+                  ?>
+                    <option value="<?php echo $row["gender_id"] ?>"><?php echo $row["gender_name"] ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="mb-3">
+                <?php
+                $sql = "SELECT * from position";
+
+                $result = mysqli_query($conn, $sql);
+                ?>
+                <select name="Position_id" id="Position_id2" class="form-select">
+                  <option value="ตำแหน่ง">ตำแหน่งงาน</option>
+                  <?php
+                  while ($row = mysqli_fetch_assoc($result)) {
+                  ?>
+                    <option value="<?php echo $row["Position_id"] ?>"><?php echo $row["Position_name"] ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <?php
+                $sql = "SELECT * from divistion";
+
+                $result = mysqli_query($conn, $sql);
+                ?>
+                <select name="divistion_id" id="divistion_id2" class="form-select">
+                  <option value="กอง">กอง</option>
+                  <?php
+                  while ($row = mysqli_fetch_assoc($result)) {
+                  ?>
+                    <option value="<?php echo $row["divistion_id"] ?>"><?php echo $row["divistion_name"] ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <input type="email" class="form-control" name="emp_email" id="emp_email2" placeholder="ที่อยู่อีเมล">
                 </div>
-                <div class="modal-body">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <input type="text" class="form-control" name="emp_firstname" id="emp_firstname2"
-                          placeholder="ชื่อจริง">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <input type="text" class="form-control" name="emp_lastname" id="emp_lastname2"
-                          placeholder="นามสกุล">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <input type="password" class="form-control" name="emp_password" id="emp_password2"
-                          placeholder="รหัสผ่าน">
-                      </div>
-                    </div>
-                  <div class="col-md-6">
-                      <div class="mb-3">
-                        <input type="number" class="form-control" name="emp_cardid" id="emp_cardid2" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==13) return false;"
-                         placeholder="เลขบัตรประชาชน 13 หลัก">
-                      </div>
-                    </div>
-                  
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                      <?php
-                          $sql = "SELECT * from gender";
-
-                          $result = mysqli_query($conn,$sql);
-                        ?>
-                        <select name="gender_id" id="gender_id2" class="form-select">
-                          <option value="เพศ">เพศ</option>
-                        <?php
-                          while($row = mysqli_fetch_assoc($result)){
-                        ?>
-                              <option value="<?php echo $row["gender_id"]?>"><?php echo $row["gender_name"]?></option>              
-                            <?php
-                          }
-                        ?>
-                        </select>
-                      </div>
-                    </div>
-                  
-                  <div class="col-md-6">
-                      <div class="mb-3">
-                      <?php
-                          $sql = "SELECT * from position";
-
-                          $result = mysqli_query($conn,$sql);
-                        ?>
-                        <select name="Position_id" id="Position_id2" class="form-select">
-                          <option value="ตำแหน่ง">ตำแหน่งงาน</option>
-                        <?php
-                          while($row = mysqli_fetch_assoc($result)){
-                        ?>
-                              <option value="<?php echo $row["Position_id"]?>"><?php echo $row["Position_name"]?></option>              
-                            <?php
-                          }
-                        ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                      <?php
-                          $sql = "SELECT * from divistion";
-
-                          $result = mysqli_query($conn,$sql);
-                        ?>
-                        <select name="divistion_id" id="divistion_id2" class="form-select">
-                          <option value="กอง">กอง</option>
-                        <?php
-                          while($row = mysqli_fetch_assoc($result)){
-                        ?>
-                              <option value="<?php echo $row["divistion_id"]?>"><?php echo $row["divistion_name"]?></option>              
-                            <?php
-                          }
-                        ?>
-                        </select>
-                      </div>
-                    </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <input type="email" class="form-control" name="emp_email" id="emp_email2"
-                          placeholder="ที่อยู่อีเมล">
-                      </div>
-                    </div>
-                    <div class="col-md-5">
-                      <div class="mb-3">
-                      <input type="text" class="form-control" name="emp_tel" id="emp_tel2" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" placeholder="เบอร์โทรศัพท์" onKeyUp="if(isNaN(this.value)){ Swal.fire({ icon: 'error', title: 'กรุณากรอกตัวเลข', }); this.value='';}"  required />
-                      </div>
-                    </div>
-                  </div>
-                  
-                  
-                  
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear_modal2">ปิด</button>
-                  <button type="button" class="btn btn-success" id="butsave">ยืนยัน</button>
+              </div>
+              <div class="col-md-5">
+                <div class="mb-3">
+                  <input type="text" class="form-control" name="emp_tel" id="emp_tel2" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" placeholder="เบอร์โทรศัพท์" onKeyUp="if(isNaN(this.value)){ Swal.fire({ icon: 'error', title: 'กรุณากรอกตัวเลข', }); this.value='';}" required />
                 </div>
               </div>
             </div>
-          </div>     
+
+
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear_modal2">ปิด</button>
+              <button type="button" class="btn btn-success" id="butsave">ยืนยัน</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-    <input type="hidden" id="emp_id" value="<?php echo $emp_id ?>">
+  </div>
+  </div>
+  <input type="hidden" id="emp_id" value="<?php echo $emp_id ?>">
   <script>
-
     function validateEmail(m_email) {
       const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(m_email);
     }
 
-    
-    
+
+
     show_index();
+
     function show_index() {
+      $("#show_index").show();
+      $("#show_manual").hide();
+      $("#show_divistion").hide();
+      $("#show_employee").hide();
+      $.ajax({
+        url: "view_board.php",
+        type: "POST",
+        cache: false,
+        success: function(data) {
+          // alert(data);
+          $('#myTable3').html(data);
+        }
+      });
+    }
 
-$("#show_index").show();
-
-$("#show_manual").hide();
-$("#show_divistion").hide();
-$("#show_employee").hide();
-}
     function show_manual() {
 
       $("#show_index").hide();
-      
+
       $("#show_manual").show();
       $("#show_divistion").hide();
       $("#show_employee").hide();
-}
+    }
 
 
-    
+
 
     function show_divistion() {
 
@@ -687,13 +646,13 @@ $("#show_employee").hide();
       $("#show_index").hide();
       $("#show_employee").hide();
       $("#show_manual").hide();
-      
+
 
       $.ajax({
         url: "view_divistion.php",
         type: "POST",
         cache: false,
-        success: function (data) {
+        success: function(data) {
           // alert(data);
           $('#myTable2').html(data);
         }
@@ -706,13 +665,13 @@ $("#show_employee").hide();
       $("#show_index").hide();
       $("#show_divistion").hide();
       $("#show_manual").hide();
-      
+
 
       $.ajax({
         url: "view_employee.php",
         type: "POST",
         cache: false,
-        success: function (data) {
+        success: function(data) {
           // alert(data);
           $('#myTable').html(data);
         }
@@ -745,7 +704,7 @@ $("#show_employee").hide();
             data: {
               emp_id: id
             },
-            success: function (dataResult) {
+            success: function(dataResult) {
               var dataResult = JSON.parse(dataResult);
               if (dataResult.statusCode == 200) {
                 swalWithBootstrapButtons.fire(
@@ -754,8 +713,7 @@ $("#show_employee").hide();
                   'success'
                 )
                 show_employee();
-              }
-              else{
+              } else {
                 Swal.fire({
                   icon: 'error',
                   title: 'ไม่สามารถลบสมาชิกได้'
@@ -774,7 +732,7 @@ $("#show_employee").hide();
         data: {
           emp_id: id
         },
-        success: function (dataResult) {
+        success: function(dataResult) {
           var dataResult = JSON.parse(dataResult);
           if (dataResult.statusCode == 200) {
 
@@ -821,7 +779,7 @@ $("#show_employee").hide();
             data: {
               divistion_id: id
             },
-            success: function (dataResult) {
+            success: function(dataResult) {
               var dataResult = JSON.parse(dataResult);
               if (dataResult.statusCode == 200) {
                 swalWithBootstrapButtons.fire(
@@ -830,8 +788,7 @@ $("#show_employee").hide();
                   'success'
                 )
                 show_divistion();
-              }
-              else{
+              } else {
                 Swal.fire({
                   icon: 'error',
                   title: 'ไม่สามารถลบกองได้เนื่องจากยังมีสมาชิกในกอง'
@@ -843,7 +800,7 @@ $("#show_employee").hide();
       });
     }
 
-    
+
 
     function OnEdit2(id) {
       $.ajax({
@@ -852,7 +809,7 @@ $("#show_employee").hide();
         data: {
           divistion_id: id
         },
-        success: function (dataResult) {
+        success: function(dataResult) {
           var dataResult = JSON.parse(dataResult);
           if (dataResult.statusCode == 200) {
 
@@ -864,8 +821,8 @@ $("#show_employee").hide();
       });
     }
 
-    $(document).ready(function () {
-      $("#save_edit").on('click', function () {
+    $(document).ready(function() {
+      $("#save_edit").on('click', function() {
 
         var emp_id = $("#emp_id").val();
         var emp_firstname = $("#emp_firstname").val();
@@ -878,77 +835,73 @@ $("#show_employee").hide();
         var emp_email = $("#emp_email").val();
         var emp_tel = $("#emp_tel").val();
         var show_username = $("#show_username").val();
-        if ( emp_firstname != "" && emp_lastname != "" && emp_password != "" && emp_cardid != "" && gender_id != "" && Position_id != ""&& divistion_id != "" && emp_email != "" && emp_tel != "") {
-          
+        if (emp_firstname != "" && emp_lastname != "" && emp_password != "" && emp_cardid != "" && gender_id != "" && Position_id != "" && divistion_id != "" && emp_email != "" && emp_tel != "") {
+
           if (!validateEmail(emp_email)) {
             Swal.fire({
               icon: 'error',
               title: 'กรุณากรอกอีเมลให้ถูกต้อง',
             })
-          }
-          else{
-        $.ajax({
-          url: 'update_employee.php',
-          method: 'post',
-          datatype: 'JSON',
-          data: {
+          } else {
+            $.ajax({
+              url: 'update_employee.php',
+              method: 'post',
+              datatype: 'JSON',
+              data: {
                 emp_id: emp_id,
                 emp_firstname: emp_firstname,
                 emp_lastname: emp_lastname,
                 emp_password: emp_password,
-                emp_cardid:emp_cardid,
-                gender_id,gender_id,
-                Position_id:Position_id,
-                divistion_id:divistion_id,
+                emp_cardid: emp_cardid,
+                gender_id,
+                gender_id,
+                Position_id: Position_id,
+                divistion_id: divistion_id,
                 emp_email: emp_email,
                 emp_tel: emp_tel
-          },
-          success: function (dataResult) {
-            var dataResult = JSON.parse(dataResult);
-            if (dataResult.statusCode == 200) {
-              show_employee();
-              Swal.fire({
-                icon: 'success',
-                title: 'แก้ไขข้อมูลสำเร็จ'
-              })
-              $('#exampleModal').modal('hide');
-              $('#exampleModal').find('input[type=text], input[type=password], input[type=number], input[type=tel], input[type=email], textarea').val('');
-            } 
-            else if (dataResult.statusCode == 201) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'มีชื่อผู้ใช้นี้แล้ว',
-                    })
-                }
-                else if (dataResult.statusCode == 202) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'มีอีเมลนี้แล้ว',
-                    })
-                }
-                else if (dataResult.statusCode == 203) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'มีเบอร์โทรนี้แล้ว',
-                    })
-                }else if (dataResult.statusCode == 204) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'มีเลขบัตรประชาชนนี้อยู่แล้ว',
-                    })
+              },
+              success: function(dataResult) {
+                var dataResult = JSON.parse(dataResult);
+                if (dataResult.statusCode == 200) {
+                  show_employee();
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'แก้ไขข้อมูลสำเร็จ'
+                  })
+                  $('#exampleModal').modal('hide');
+                  $('#exampleModal').find('input[type=text], input[type=password], input[type=number], input[type=tel], input[type=email], textarea').val('');
+                } else if (dataResult.statusCode == 201) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'มีชื่อผู้ใช้นี้แล้ว',
+                  })
+                } else if (dataResult.statusCode == 202) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'มีอีเมลนี้แล้ว',
+                  })
+                } else if (dataResult.statusCode == 203) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'มีเบอร์โทรนี้แล้ว',
+                  })
+                } else if (dataResult.statusCode == 204) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'มีเลขบัตรประชาชนนี้อยู่แล้ว',
+                  })
                 }
               }
             });
           }
-        }
-        else {
+        } else {
           Swal.fire('กรุณากรอกข้อมูลให้ครบ');
         }
       });
     });
 
-    $(document).ready(function () {
-      $("#save_edit_divistion").on('click', function () {
+    $(document).ready(function() {
+      $("#save_edit_divistion").on('click', function() {
 
         var divistion_id = $("#divistion_id").val();
         var divistion_name = $("#divistion_name").val();
@@ -963,7 +916,7 @@ $("#show_employee").hide();
             divistion_name: divistion_name,
             divistion_number: divistion_number
           },
-          success: function (dataResult) {
+          success: function(dataResult) {
             var dataResult = JSON.parse(dataResult);
             if (dataResult.statusCode == 200) {
               show_divistion();
@@ -983,9 +936,9 @@ $("#show_employee").hide();
 
       });
     });
-   
-    $(document).ready(function () {
-      $('#butsave').on('click', function () {
+
+    $(document).ready(function() {
+      $('#butsave').on('click', function() {
         var emp_firstname = $('#emp_firstname2').val();
         var emp_lastname = $('#emp_lastname2').val();
         var emp_password = $('#emp_password2').val();
@@ -996,15 +949,14 @@ $("#show_employee").hide();
         var emp_email = $('#emp_email2').val();
         var emp_tel = $('#emp_tel2').val();
 
-        if ( emp_firstname != "" && emp_lastname != "" && emp_password != "" && emp_cardid != "" && gender_id != "" && Position_id != ""&& divistion_id != "" && emp_email != "" && emp_tel != "") {
-          
+        if (emp_firstname != "" && emp_lastname != "" && emp_password != "" && emp_cardid != "" && gender_id != "" && Position_id != "" && divistion_id != "" && emp_email != "" && emp_tel != "") {
+
           if (!validateEmail(emp_email)) {
             Swal.fire({
               icon: 'error',
               title: 'กรุณากรอกอีเมลให้ถูกต้อง',
             })
-          }
-          else{
+          } else {
             $.ajax({
               url: "save_register.php",
               type: "POST",
@@ -1012,15 +964,16 @@ $("#show_employee").hide();
                 emp_firstname: emp_firstname,
                 emp_lastname: emp_lastname,
                 emp_password: emp_password,
-                emp_cardid:emp_cardid,
-                gender_id,gender_id,
-                Position_id:Position_id,
-                divistion_id:divistion_id,
+                emp_cardid: emp_cardid,
+                gender_id,
+                gender_id,
+                Position_id: Position_id,
+                divistion_id: divistion_id,
                 emp_email: emp_email,
                 emp_tel: emp_tel
               },
               cache: false,
-              success: function (dataResult) {
+              success: function(dataResult) {
                 var dataResult = JSON.parse(dataResult);
                 if (dataResult.statusCode == 200) {
                   show_employee();
@@ -1030,42 +983,38 @@ $("#show_employee").hide();
                   })
                   $('#exampleModal2').modal('hide');
                   $('#exampleModal2').find('input[type=text], input[type=password], input[type=number], input[type=tel], input[type=email], textarea').val('');
-                }
-                else if (dataResult.statusCode == 201) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'มีชื่อผู้ใช้นี้แล้ว',
-                    })
-                }
-                else if (dataResult.statusCode == 202) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'มีอีเมลนี้แล้ว',
-                    })
-                }
-                else if (dataResult.statusCode == 203) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'มีเบอร์โทรนี้แล้ว',
-                    })
-                }else if (dataResult.statusCode == 204) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'มีเลขบัตรประชาชนนี้อยู่แล้ว',
-                    })
+                } else if (dataResult.statusCode == 201) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'มีชื่อผู้ใช้นี้แล้ว',
+                  })
+                } else if (dataResult.statusCode == 202) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'มีอีเมลนี้แล้ว',
+                  })
+                } else if (dataResult.statusCode == 203) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'มีเบอร์โทรนี้แล้ว',
+                  })
+                } else if (dataResult.statusCode == 204) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'มีเลขบัตรประชาชนนี้อยู่แล้ว',
+                  })
                 }
               }
             });
           }
-        }
-        else {
+        } else {
           Swal.fire('กรุณากรอกข้อมูลให้ครบ');
         }
       });
     });
 
-    $(document).ready(function () {
-      $('#botsave_file').on('click', function () {
+    $(document).ready(function() {
+      $('#botsave_file').on('click', function() {
         var board_num = $('#board_num').val();
         var board_name = $('#board_name').val();
         var board_name = document.getElementById("img").src;
@@ -1075,11 +1024,11 @@ $("#show_employee").hide();
             url: "save_file.php",
             type: "POST",
             data: {
-              board_num:board_num,
+              board_num: board_num,
               board_name: board_name
             },
             cache: false,
-            success: function (dataResult) {
+            success: function(dataResult) {
               var dataResult = JSON.parse(dataResult);
               if (dataResult.statusCode == 200) {
                 show_index();
@@ -1087,47 +1036,46 @@ $("#show_employee").hide();
                   icon: 'success',
                   title: 'เพิ่มไฟล์สำเร็จ',
                 })
-                header("Location: index_admin.php");
-              }
-              else if (dataResult.statusCode == 201) {
+                
+              } else if (dataResult.statusCode == 201) {
                 Swal.fire({
                   icon: 'error',
                   title: 'ผิดพลาดลองใหม่',
                 })
               }
-              
+
             }
           });
-        }
-        else {
+        } else {
           Swal.fire('กรุณากรอกข้อมูลให้ครบ');
         }
       });
     });
+
     function readFile() {
 
-var test = ''
+      var test = ''
 
-if (this.files && this.files[0]) {
+      if (this.files && this.files[0]) {
 
-    var FR = new FileReader();
+        var FR = new FileReader();
 
-    FR.addEventListener("load", function (e) {
-        document.getElementById("img").src = e.target.result;
-        document.getElementById("b64").innerHTML = e.target.result;
-        return e.target.result
-    });
+        FR.addEventListener("load", function(e) {
+          document.getElementById("img").src = e.target.result;
+          document.getElementById("b64").innerHTML = e.target.result;
+          return e.target.result
+        });
 
-    FR.readAsDataURL(this.files[0]);
-  }
-}
-document.getElementById("board_name").addEventListener("change", readFile);
+        FR.readAsDataURL(this.files[0]);
+      }
+    }
+    document.getElementById("board_name").addEventListener("change", readFile);
 
-console.log(document.getElementById("board_name"))
+    console.log(document.getElementById("board_name"))
 
 
-    $(document).ready(function () {
-      $('#butsave_divistion').on('click', function () {
+    $(document).ready(function() {
+      $('#butsave_divistion').on('click', function() {
 
         var divistion_name = $('#divistion_name2').val();
         var divistion_number = $('#divistion_number2').val();
@@ -1141,7 +1089,7 @@ console.log(document.getElementById("board_name"))
               divistion_number: divistion_number
             },
             cache: false,
-            success: function (dataResult) {
+            success: function(dataResult) {
               var dataResult = JSON.parse(dataResult);
               if (dataResult.statusCode == 200) {
                 show_divistion();
@@ -1150,8 +1098,8 @@ console.log(document.getElementById("board_name"))
                   title: 'เพิ่มกองสำเร็จ',
                 })
                 $('#exampleModal5').modal('hide');
-              }
-              else if (dataResult.statusCode == 201) {
+
+              } else if (dataResult.statusCode == 201) {
                 Swal.fire({
                   icon: 'error',
                   title: 'มีชื่อกองนี้แล้ว',
@@ -1160,12 +1108,12 @@ console.log(document.getElementById("board_name"))
               $('#exampleModal5').find('input[type=text], input[type=password], input[type=number], input[type=tel], input[type=email], textarea').val('');
             }
           });
-        }
-        else {
+        } else {
           Swal.fire('กรุณากรอกข้อมูลให้ครบ');
         }
       });
     });
+
     function OnEdit3(id) {
       $.ajax({
         url: "select_board.php",
@@ -1173,7 +1121,7 @@ console.log(document.getElementById("board_name"))
         data: {
           board_id: id
         },
-        success: function (dataResult) {
+        success: function(dataResult) {
           var dataResult = JSON.parse(dataResult);
           if (dataResult.statusCode == 200) {
 
@@ -1183,6 +1131,7 @@ console.log(document.getElementById("board_name"))
         }
       });
     }
+
     function OnDelete3(id) {
       //  alert(id);
       const swalWithBootstrapButtons = Swal.mixin({
@@ -1210,18 +1159,17 @@ console.log(document.getElementById("board_name"))
             data: {
               board_id: id
             },
-            success: function (dataResult) {
+            success: function(dataResult) {
               var dataResult = JSON.parse(dataResult);
               if (dataResult.statusCode == 200) {
                 swalWithBootstrapButtons.fire(
                   'ลบข้อมูลสำเร็จ',
                   '',
                   'success'
-                  
+
                 )
-                
-              }
-              else{
+
+              } else {
                 Swal.fire({
                   icon: 'error',
                   title: 'ไม่สามารถลบได้'
@@ -1232,26 +1180,30 @@ console.log(document.getElementById("board_name"))
         }
       });
     }
-    
-    $(document).ready(function (){
-      $('#clear_modal3').on('click', function () {
+
+    $(document).ready(function() {
+      $('#clear_modal3').on('click', function() {
         $('#exampleModal3').find('input[type=text], input[type=password], input[type=number], input[type=tel], input[type=email], textarea').val('');
       });
-      $('#clear_modal2').on('click', function () {
+      $('#clear_modal2').on('click', function() {
         $('#exampleModal2').find('input[type=text], input[type=password], input[type=number], input[type=tel], input[type=email], textarea').val('');
       });
-      $('#clear_modal1').on('click', function () {
+      $('#clear_modal1').on('click', function() {
         $('#exampleModal1').find('input[type=text], input[type=password], input[type=number], input[type=tel], input[type=email], textarea').val('');
       });
-      $('#clear_modal4').on('click', function () {
+      $('#clear_modal4').on('click', function() {
         $('#exampleModal4').find('input[type=text], input[type=password], input[type=number], input[type=tel], input[type=email], textarea').val('');
       });
-      $('#clear_modal5').on('click', function () {
+      $('#clear_modal5').on('click', function() {
         $('#exampleModal5').find('input[type=text], input[type=password], input[type=number], input[type=tel], input[type=email], textarea').val('');
       });
+      $('#clear_modal6').on('click', function() {
+        $('#exampleModal6').find('input[type=text], input[type=password], input[type=number], input[type=tel], input[type=email], textarea').val('');
+      });
     });
+    
 
-    $(document).ready(function(){
+    $(document).ready(function() {
       $("#myInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("#myTable tr").filter(function() {
@@ -1260,7 +1212,7 @@ console.log(document.getElementById("board_name"))
       });
     });
 
-    $(document).ready(function(){
+    $(document).ready(function() {
       $("#myInput2").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("#myTable2 tr").filter(function() {
@@ -1269,7 +1221,7 @@ console.log(document.getElementById("board_name"))
       });
     });
 
-    $(document).ready(function(){
+    $(document).ready(function() {
       $("#myInput3").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("#myTable3 tr").filter(function() {

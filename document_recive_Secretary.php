@@ -270,12 +270,11 @@ date_default_timezone_set("Asia/Bangkok");
       <div class="container" style="margin-top:10%; background-color:gray; " id="show_read">
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-6">
-            <div class="mb-3">
+        <div class="col-md-6 mb-3">
               <input type="text" class="form-control"  name="Doc_id" id="Doc_id" hidden>
+                <label for="document_number">เลขเอกสาร</label>
                 <input type="text" class="form-control" style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_number" id="document_number" readonly>
                 </div>
-                    </div>
                     <div class="col-md-6">
                       <div class="mb-3">
                 <input type="text" class="form-control"style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_name" id="document_name" readonly>
@@ -293,7 +292,7 @@ date_default_timezone_set("Asia/Bangkok");
           </div>
           <?php                 
                     $sql_query = "SELECT download , Doc_id
-                    FROM document 
+                    FROM document Where Doc_id = 75
                     ORDER BY `Doc_id` ASC";
 
                     $result = mysqli_query($conn,$sql_query);
@@ -304,7 +303,7 @@ date_default_timezone_set("Asia/Bangkok");
                       <tr>
                           
                           <?php
-                      echo "<td>"."<embed src='".$row['download']."' type='text/html' width='600px' height='800px'>"."</td>"?>
+                      echo "<td>"."<embed src='".$row['download']."' type='text/html' width='400px' height='500px'>"."</td>"?>
 
                       </tr>
                       
@@ -313,9 +312,10 @@ date_default_timezone_set("Asia/Bangkok");
                     <?php	
                     }                            
                     ?>
+          
+                <tbody id="myTable2" style="border:1px; width:100%">
                    
-              <button onclick="OnEdit3(<?=$row['board_id'];?>)" style = "width:10%; margin-left:10%" type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4">สั่งการเอกสาร</button>
-			        <button onclick="OnDelete3(<?=$row['board_id'];?>)" style = "width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger">ส่งเอกสาร</button>
+			        <button style = "width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger">ส่งเอกสาร</button>
               
               </div>
             </div>
@@ -350,7 +350,8 @@ date_default_timezone_set("Asia/Bangkok");
 
         $("#show_index").hide();
         $("#show_read").show();
-        
+        let name = $(id).val;
+       console.log(name);
         $.ajax({
           url: "Select_docforread.php",
           type: 'post',
@@ -367,7 +368,7 @@ date_default_timezone_set("Asia/Bangkok");
               $("#document_detail").val(dataResult.document_detail);
               $("#documenttype_name").val(dataResult.documenttype_name);
               $("#download").val(dataResult.download);
-
+              
             }
           }
         });
@@ -401,6 +402,7 @@ date_default_timezone_set("Asia/Bangkok");
         });
 
       });
+      
     </script>
 </body>
 

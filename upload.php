@@ -224,7 +224,7 @@ $Position_name = $_SESSION['Position_name'];
           var download = document.getElementById("pdf").src;
 
 
-          if (document_number != "" && document_name != "") {
+          if (document_number != "" && document_name != "" && document_name != "" && speed_send != "" && secret_send != "" && document_date != "" && download != "" && documenttype_id != "") {
             $.ajax({
               url: "save_document.php",
               type: "POST",
@@ -254,9 +254,14 @@ $Position_name = $_SESSION['Position_name'];
                 } else if (dataResult.statusCode == 201) {
                   Swal.fire({
                     icon: 'error',
-                    title: 'มีชื่อนี้แล้ว',
+                    title: 'เลขเอกสารซ้ำ',
                   })
-                }
+                } else if (dataResult.statusCode == 202) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'โปลดเลือกวันที่หมดอายุเอกสารให้ถูกต้อง',
+                })
+              }
                 $('#exampleModal5').find('input[type=text], input[type=password], input[type=number], input[type=tel], input[type=email], textarea').val('');
               }
             });

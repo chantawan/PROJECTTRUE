@@ -23,6 +23,7 @@
 
     if(mysqli_query($conn,$sql_query)){
 		echo json_encode($data);
+        
 	}
 	else {
 		echo json_encode(array("statusCode"=>201));
@@ -31,3 +32,4 @@
     
 
 	mysqli_close($conn);
+    ?>

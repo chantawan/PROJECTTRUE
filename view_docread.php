@@ -20,7 +20,9 @@ if ($read == " ") {
                 <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['document_name']; ?></td>
                 <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['documentstatus_name']; ?></span></td>
                 <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['document_detail']; ?></td>
+                
                 <td><?= $row['document_date']; ?></a></td>
+                <td> <button onclick="OnDelete(<?=$row['Doc_id'];?>)" type="button" class="btn btn-sm btn-danger">ลบ</button></td>
 
             </tr>
 
@@ -47,7 +49,7 @@ if ($read == " ") {
                 <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['documentstatus_name']; ?></span></td>
                 <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['document_detail']; ?></td>
                 <td><?= $row['document_date']; ?></a></td>
-
+                <td> <button onclick="OnDelete(<?=$row['Doc_id'];?>)" type="button" class="btn btn-sm btn-danger">ลบ</button></td>
             </tr>
 
 <?php

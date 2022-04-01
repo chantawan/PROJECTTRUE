@@ -2,13 +2,12 @@
 	include 'connect.php';
 	
 	$sql = "SELECT COUNT(document_id) FROM document
-    WHERE emp_id = 1;;
+    WHERE emp_id = 1";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
 ?>	
 		<tr>
-		
 			<td><?=$row['emp_firstname'];?></td>
 			<td><?=$row['emp_lastname'];?></td>
 			<td><?=$row['emp_cardid'];?></td>

@@ -231,6 +231,7 @@ date_default_timezone_set("Asia/Bangkok");
                 <th class="thcenter" style="width:8%"></th>
                 <th class="thcenter" style="width:20%">คำอธิบาย</th>
                 <th class="thcenter">เวลา</th>
+                <th class="thcenter">จัดการข้อความ</th>
 
               </tr>
             </thead>
@@ -250,6 +251,7 @@ date_default_timezone_set("Asia/Bangkok");
                     <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['documentstatus_name']; ?></span></td>
                     <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['document_detail']; ?></td>
                     <td><?= $row['document_date']; ?></td>
+                    <td> <button onclick="OnDelete(<?=$row['Doc_id'];?>)" type="button" class="btn btn-sm btn-danger">ลบ</button></td>
 
                   </tr>
               <?php
@@ -430,6 +432,52 @@ date_default_timezone_set("Asia/Bangkok");
           });
 
         });
+        function OnDelete(id) {
+      //  alert(id);
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success mx-2',
+          cancelButton: 'btn btn-danger mx-2'
+        },
+        buttonsStyling: false
+      })
+
+      swalWithBootstrapButtons.fire({
+        title: 'คุณต้องการลบเอกสารนี้หรือไม่ ?',
+        icon: 'question',
+        // background: 'yellow',
+        showCancelButton: true,
+        confirmButtonText: 'ยืนยัน',
+        cancelButtonText: 'ยกเลิก',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: "delete_Doc.php",
+            type: 'post',
+            data: {
+              Doc_id: id
+            },
+            success: function(dataResult) {
+              var dataResult = JSON.parse(dataResult);
+              if (dataResult.statusCode == 200) {
+                swalWithBootstrapButtons.fire(
+                  'ลบเอกสารสำเร็จ',
+                  '',
+                  'success'
+                )
+                
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'ข้อความกำลังอยู่ระหว่างดำเนินการ'
+                })
+              }
+            }
+          });
+        }
+      });
+    }
       </script>
 </body>
 

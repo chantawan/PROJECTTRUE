@@ -6,7 +6,8 @@ $eid = $_POST["eid"];
 if ($read == " ") {
     $sql_query1 = "SELECT  a.Doc_id , a.document_number , a.document_name , a.document_detail , a.document_date , b.documenttype_name , c.documentstatus_name
             FROM document a, documenttype b, document_status c
-            WHERE b.documenttype_id = a.documenttype_id and c.documentstatus_id = a.documentstatus_id and a.emp_id = '$eid' and a.documentstatus_id = 3 ORDER BY `a`.`document_date` DESC";
+            WHERE b.documenttype_id = a.documenttype_id and c.documentstatus_id = a.documentstatus_id and a.emp_id = '$eid' and a.documentstatus_id > 2 and a.documentstatus_id < 6
+             ORDER BY `a`.`documentstatus_id` DESC";
 
     $result = mysqli_query($conn, $sql_query1);
     $num_row = mysqli_num_rows($result);
@@ -34,7 +35,8 @@ if ($read == " ") {
 } else {
     $sql_query = "SELECT  a.Doc_id , a.document_number , a.document_name , a.document_detail , a.document_date , b.documenttype_name , c.documentstatus_name
             FROM document a, documenttype b, document_status c
-            WHERE b.documenttype_id = a.documenttype_id and c.documentstatus_id = a.documentstatus_id and a.emp_id = '$eid' and a.documentstatus_id = '$read' and a.documentstatus_id = 3  ORDER BY `a`.`document_date` DESC";
+            WHERE b.documenttype_id = a.documenttype_id and c.documentstatus_id = a.documentstatus_id and a.emp_id = '$eid' and a.documentstatus_id = '$read' and 
+            a.documentstatus_id > 2 and a.documentstatus_id < 6  ORDER BY `a`.`documentstatus_id` DESC";
 
     $result = mysqli_query($conn, $sql_query);
     $num_row = mysqli_num_rows($result);

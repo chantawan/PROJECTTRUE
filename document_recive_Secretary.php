@@ -239,7 +239,7 @@ date_default_timezone_set("Asia/Bangkok");
               <?php
               $sql_query1 = "SELECT  a.Doc_id , a.document_number , a.document_name , a.document_detail , a.document_date , b.documenttype_name , c.documentstatus_name
             FROM document a, documenttype b, document_status c
-            WHERE b.documenttype_id = a.documenttype_id and c.documentstatus_id = a.documentstatus_id and a.emp_id = '$emp_id' and a.documentstatus_id != 3 ORDER BY `a`.`document_date`  DESC";
+            WHERE b.documenttype_id = a.documenttype_id and c.documentstatus_id = a.documentstatus_id and a.emp_id = '$emp_id' and a.documentstatus_id < 3 ORDER BY `a`.`document_date`  DESC";
               $result = mysqli_query($conn, $sql_query1);
               $num_row = mysqli_num_rows($result);
               if ($num_row > 0) {
@@ -301,12 +301,63 @@ date_default_timezone_set("Asia/Bangkok");
               </tbody>
             </table>
             <button style="width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger" id="test">เปิดดูเอกสาร</button>
-            <button style="width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger">ส่งเอกสาร</button>
+            <button style="width:10%; margin-left:10%" type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal5">ส่งเอกสาร</button>
 
           </div>
         </div>
       </div>
+      <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                  <h5 class="modal-title" id="exampleModalLabel">หน้าการส่ง</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
 
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <input type="text" class="form-control" name="Doc_id" id="Doc_id" hidden>
+                        <input type="text" class="form-control" name="document_number" id="document_number" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <?php
+                        $sql = "SELECT * from divistion";
+
+                        $result = mysqli_query($conn, $sql);
+                        ?>
+                        <select name="divistion_id" id="divistion_id" class="form-select" style="text-align: center; width: 70%; ">
+                          <option value="กอง">กอง</option>
+                          <?php
+                          while ($row = mysqli_fetch_assoc($result)) {
+                          ?>
+                            <option value="<?php echo $row["divistion_id"] ?>"><?php echo $row["divistion_name"] ?></option>
+                          <?php
+                          }
+                          ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+
+                        <select name="emid" id="emid" class="form-select" style="text-align: center; width: 70%;" aria-label="Default select example">
+                          <option value="" selected disabled>กรุณาเลือกชื่อกอง</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear_modal5">ปิด</button>
+                  <button type="button" class="btn btn-success" id="butupdatedoc">ยืนยัน</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
 

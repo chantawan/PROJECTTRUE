@@ -21,7 +21,7 @@
 
      WHERE Doc_id = $Doc_id";
 
-    if(mysqli_query($conn,$sql_query)){
+    if(isset($data)){
 		echo json_encode($data);
         
 	}

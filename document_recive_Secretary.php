@@ -231,7 +231,7 @@ date_default_timezone_set("Asia/Bangkok");
                 <th class="thcenter" style="width:8%"></th>
                 <th class="thcenter" style="width:20%">คำอธิบาย</th>
                 <th class="thcenter">เวลา</th>
-                
+
               </tr>
             </thead>
             <tbody id="document_now" style=" width:100%; height:100%">
@@ -266,142 +266,171 @@ date_default_timezone_set("Asia/Bangkok");
 
       </div>
       <div class="container" style="margin-top:10%; background-color:gray; " id="show_read">
-      <div class="modal-body">
-        <div class="row">
-        <div class="col-md-6 mb-3">
-              <input type="text" class="form-control"  name="Doc_id" id="Doc_id" hidden>
-                <label for="document_number">เลขเอกสาร</label>
-                <input type="text" class="form-control" style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_number" id="document_number" readonly>
-                </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                <input type="text" class="form-control"style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_name" id="document_name" readonly>
-                 </div>
-                 </div>
-                 <div class="col-md-6">
-                      <div class="mb-3">
-            <input type="text" class="form-control"style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_detail" id="document_detail" readonly>
-          </div>
-          </div>
-          <div class="col-md-6">
-                      <div class="mb-3">
-            <input type="text" class="form-control"style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="documenttype_name" id="documenttype_name" readonly>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <input type="text" class="form-control" name="Doc_id" id="Doc_id" hidden>
+              <label for="document_number">เลขเอกสาร</label>
+              <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_number" id="document_number" readonly>
             </div>
-          </div>
-          <?php                 
-                    $sql_query = "SELECT download , Doc_id
-                    FROM document 
-                    ORDER BY `Doc_id` ASC";
-
-                    $result = mysqli_query($conn,$sql_query);
-                    $num_row = mysqli_num_rows($result);
-
-                    while($row = $result->fetch_assoc()) {
-                  ?>	
-                      <tr>
-                          
-                          <?php
-                      echo "<td>"."<embed src='".$row['download']."' type='text/html' width='400px' height='500px'>"."</td>"?>
-
-                      </tr>
-                      
-                          </tr>
-                      
-                    <?php	
-                    }                            
-                    ?>
-          
-                <tbody id="myTable2" style="border:1px; width:100%">
-                   
-			        <button style = "width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger">ส่งเอกสาร</button>
-              
+            <div class="col-md-6">
+              <div class="mb-3">
+                <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_name" id="document_name" readonly>
               </div>
             </div>
-          </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_detail" id="document_detail" readonly>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="documenttype_name" id="documenttype_name" readonly>
+              </div>
+            </div>
+            <!-- <?php
+            $sql_query = "SELECT download , Doc_id
+                    FROM document
+                    ORDER BY `Doc_id` ASC";
 
+            $result = mysqli_query($conn, $sql_query);
+            $num_row = mysqli_num_rows($result);
 
+            while ($row = $result->fetch_assoc()) {
+            ?>
+              <tr>
 
+                <?php
+                echo "<td>" . "<embed src='" . $row['download'] . "' type='text/html' width='400px' height='500px'>" . "</td>" ?>
 
-    </main><!-- End #main -->
+              </tr>
 
+              </tr>
 
-
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/purecounter/purecounter.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/typed.js/typed.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-
-    <!-- Template Main JS File -->
-
-    <script>
-      show_index();
-
-      function show_index() {
-        $("#show_index").show();
-        $("#show_read").hide();
-      }
-
-      function show_read(id) {
-
-        $("#show_index").hide();
-        $("#show_read").show();
-        let name = $(id).val;
-       console.log(name);
-        $.ajax({
-          url: "Select_docforread.php",
-          type: 'post',
-          data: {
-            Doc_id: id
-          },
-          success: function(dataResult) {
-            var dataResult = JSON.parse(dataResult);
-            if (dataResult.statusCode == 200) {
-
-              $("#Doc_id").val(dataResult.Doc_id);
-              $("#document_number").val(dataResult.document_number);
-              $("#document_name").val(dataResult.document_name);
-              $("#document_detail").val(dataResult.document_detail);
-              $("#documenttype_name").val(dataResult.documenttype_name);
-              $("#download").val(dataResult.download);
-              
+            <?php
             }
-          }
+            ?> -->
+          <table class="table table-responsive-md mx-auto" style="width:100%">
+            <thead>
+              <tr style="background-color:#212529; color:white;">
+                <th class="thcenter" style="width:8%"></th>
+              </tr>
+            </thead>
+            <tbody id="document" style=" width:100%; height:100%">
+
+            </tbody>
+          </table>
+            <button style="width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger" id = "test">เปิดดูเอกสาร</button>
+              <button style="width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger" >ส่งเอกสาร</button>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+      </main><!-- End #main -->
+
+
+
+      <!-- Vendor JS Files -->
+      <script src="assets/vendor/purecounter/purecounter.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+      <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+      <script src="assets/vendor/typed.js/typed.min.js"></script>
+      <script src="assets/vendor/php-email-form/validate.js"></script>
+
+      <!-- Template Main JS File -->
+
+      <script>
+        show_index();
+
+        function show_index() {
+          $("#show_index").show();
+          $("#show_read").hide();
+        }
+
+        function show_read(id) {
+
+          $("#show_index").hide();
+          $("#show_read").show();
+          $.ajax({
+            url: "Select_docforread.php",
+            type: 'post',
+            data: {
+              Doc_id: id
+            },
+            success: function(dataResult) {
+              var dataResult = JSON.parse(dataResult);
+              if (dataResult.statusCode == 200) {
+
+                $("#Doc_id").val(dataResult.Doc_id);
+                $("#document_number").val(dataResult.document_number);
+                $("#document_name").val(dataResult.document_name);
+                $("#document_detail").val(dataResult.document_detail);
+                $("#documenttype_name").val(dataResult.documenttype_name);
+                $("#download").val(dataResult.download);
+
+              }
+            }
+          });
+        }
+        $("#s1").change(function() {
+
+          var select = $("#s1").val();
+          var eid = $("#eid").val();
+
+          $.ajax({
+
+            type: "POST",
+
+            url: "view_docread.php",
+
+            data: {
+
+              read: select,
+              eid: eid
+
+
+            },
+
+            success: function(data) {
+
+              $('#document_now').html(data);
+
+            }
+
+          });
+
         });
-      }
-      $("#s1").change(function() {
+        $("#test").click(function() {
 
-        var select = $("#s1").val();
-        var eid = $("#eid").val();
+          var doc_id = $("#Doc_id").val();
+          $.ajax({
 
-        
-        $.ajax({
+            type: "POST",
 
-          type: "POST",
+            url: "View_docblank.php",
 
-          url: "view_docread.php",
+            data: {
 
-          data: {
-
-            read: select,
-            eid: eid
+              doc_id: doc_id
 
 
-          },
+            },
 
-          success: function(data) {
+            success: function(data) {
 
-            $('#document_now').html(data);
+              $('#document').html(data);
 
-          }
+            }
+
+          });
 
         });
-
-      });
-      
-    </script>
+      </script>
 </body>
 
 

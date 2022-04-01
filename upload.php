@@ -95,7 +95,6 @@ $Position_name = $_SESSION['Position_name'];
         <center>
           <h2>คำชี้แจง : โปรดกรอกรายละเอียดให้ครบถ้วน</h2>
         </center>
-
         <div class="form-group">
           <label class="control-label col-sm-2" for="documentNumber">เลขที่หนังสือ:</label>
           <div class="col-sm-10">
@@ -188,7 +187,7 @@ $Position_name = $_SESSION['Position_name'];
             $date = date("Y-m-d");
 
             ?>
-             <input type="date" id="document_dnow" name="document_dnow" value="<?= $date ?>" hidden>
+            <input type="date" id="document_dnow" name="document_dnow" value="<?= $date ?>" hidden>
             <label for="documentDate"></label>
             <input type="date" name="document_date" id="document_date">
           </p>
@@ -239,18 +238,17 @@ $Position_name = $_SESSION['Position_name'];
                 document_dnow: document_dnow,
                 download: download,
                 documentstatus_id: documentstatus_id
-                
+
               },
               cache: false,
               success: function(dataResult) {
                 var dataResult = JSON.parse(dataResult);
                 if (dataResult.statusCode == 200) {
-
                   Swal.fire({
                     icon: 'success',
                     title: 'เพิ่มข้อมูลสำเร็จ',
                   })
-                  header('location : add_document.php');
+                  AutoRefresh();
                 } else if (dataResult.statusCode == 201) {
                   Swal.fire({
                     icon: 'error',
@@ -260,15 +258,17 @@ $Position_name = $_SESSION['Position_name'];
                   Swal.fire({
                     icon: 'error',
                     title: 'โปลดเลือกวันที่หมดอายุเอกสารให้ถูกต้อง',
-                })
+                  })
+                }
+
               }
-                $('#exampleModal5').find('input[type=text], input[type=password], input[type=number], input[type=tel], input[type=email], textarea').val('');
-              }
+
             });
           } else {
             Swal.fire('กรุณากรอกข้อมูลให้ครบ');
           }
         });
+
       });
 
       function readFile() {
@@ -291,4 +291,9 @@ $Position_name = $_SESSION['Position_name'];
       document.getElementById("download").addEventListener("change", readFile);
 
       console.log(document.getElementById("download"))
+
+      function AutoRefresh() {
+        setTimeout("location.reload(true);", 1000);
+        
+      }
     </script>

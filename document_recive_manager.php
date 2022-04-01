@@ -232,7 +232,8 @@ date_default_timezone_set("Asia/Bangkok");
                 <th class="thcenter" style="width:8%"></th>
                 <th class="thcenter" style="width:20%">คำอธิบาย</th>
                 <th class="thcenter">เวลา</th>
-                
+                <th class="thcenter">จัดการข้อความ</th>
+
               </tr>
             </thead>
             <tbody id="document_now" style=" width:100%; height:100%">
@@ -247,10 +248,11 @@ date_default_timezone_set("Asia/Bangkok");
               ?>
                   <tr style="background-color:white; color:black;">
                     <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['document_number']; ?></td>
-                    <td onclick="show_read()"><?= $row['document_name']; ?></td>
-                    <td onclick="show_read()"><?= $row['documentstatus_name']; ?></span></td>
-                    <td onclick="show_read()"><?= $row['document_detail']; ?></td>
+                    <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['document_name']; ?></td>
+                    <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['documentstatus_name']; ?></span></td>
+                    <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['document_detail']; ?></td>
                     <td><?= $row['document_date']; ?></td>
+                    <td> <button onclick="OnDelete(<?= $row['Doc_id']; ?>)" type="button" class="btn btn-sm btn-danger">ลบ</button></td>
 
                   </tr>
               <?php
@@ -267,141 +269,201 @@ date_default_timezone_set("Asia/Bangkok");
 
       </div>
       <div class="container" style="margin-top:10%; background-color:gray; " id="show_read">
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="mb-3">
-              <input type="text" class="form-control"  name="Doc_id" id="Doc_id" hidden>
-                <input type="text" class="form-control" style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_number" id="document_number" readonly>
-                </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                <input type="text" class="form-control"style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_name" id="document_name" readonly>
-                 </div>
-                 </div>
-                 <div class="col-md-6">
-                      <div class="mb-3">
-            <input type="text" class="form-control"style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_detail" id="document_detail" readonly>
-          </div>
-          </div>
-          <div class="col-md-6">
-                      <div class="mb-3">
-            <input type="text" class="form-control"style = "background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="documenttype_name" id="documenttype_name" readonly>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <input type="text" class="form-control" name="Doc_id" id="Doc_id" hidden>
+              <label for="document_number">เลขเอกสาร</label>
+              <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_number" id="document_number" readonly>
             </div>
-          </div>
-          
-          <?php                 
-                    $sql_query = "SELECT download , Doc_id
-                    FROM document
-                    ORDER BY `Doc_id` ASC";
-
-                    $result = mysqli_query($conn,$sql_query);
-                    $num_row = mysqli_num_rows($result);
-
-                    while($row = $result->fetch_assoc()) {
-                  ?>	
-                      <tr >
-                          
-                          <?php
-                      echo "<td>"."<embed src='".$row['download'].'pdf'."' mce_src='file.pdf' width='10%'>"."</td>"?>
-
-                      </tr>
-                      
-                          </tr>
-                      
-                    <?php	
-                    }                            
-                    ?>
-                   
-              <button onclick="OnEdit3(<?=$row['board_id'];?>)" style = "width:10%; margin-left:10%" type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4">อนุมัติ</button>
-			        <button onclick="OnDelete3(<?=$row['board_id'];?>)" style = "width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger">ดำเนินการต่อ</button>
-              
+            <div class="col-md-6">
+              <div class="mb-3">
+                <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_name" id="document_name" readonly>
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_detail" id="document_detail" readonly>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="documenttype_name" id="documenttype_name" readonly>
+              </div>
+            </div>
+            <table class="table table-responsive-md mx-auto" style="width:100%">
+              <thead>
+                <tr style="background-color:#212529; color:white;">
+                  <th class="thcenter" style="width:8%"></th>
+                </tr>
+              </thead>
+              <tbody id="document" style=" width:100%; height:100%">
+
+              </tbody>
+            </table>
+            <button style="width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger" id="test">เปิดดูเอกสาร</button>
+            <button style="width:10%; margin-left:10%" type="button" class="btn btn-sm btn-success">สั่งการเอกสาร</button>
+            
           </div>
+        </div>
+      </div>
 
 
 
 
-    </main><!-- End #main -->
+      </main><!-- End #main -->
 
 
 
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/purecounter/purecounter.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/typed.js/typed.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+      <!-- Vendor JS Files -->
+      <script src="assets/vendor/purecounter/purecounter.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+      <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+      <script src="assets/vendor/typed.js/typed.min.js"></script>
+      <script src="assets/vendor/php-email-form/validate.js"></script>
 
-    <!-- Template Main JS File -->
+      <!-- Template Main JS File -->
 
-    <script>
-      show_index();
+      <script>
+        show_index();
 
-      function show_index() {
-        $("#show_index").show();
-        $("#show_read").hide();
-      }
+        function show_index() {
+          $("#show_index").show();
+          $("#show_read").hide();
+        }
 
-      function show_read(id) {
+        function show_read(id) {
 
-        $("#show_index").hide();
-        $("#show_read").show();
-        
-        $.ajax({
-          url: "Select_docforread.php",
-          type: 'post',
-          data: {
-            Doc_id: id
-          },
-          success: function(dataResult) {
-            var dataResult = JSON.parse(dataResult);
-            if (dataResult.statusCode == 200) {
+          $("#show_index").hide();
+          $("#show_read").show();
+          $.ajax({
+            url: "Select_docforread.php",
+            type: 'post',
+            data: {
+              Doc_id: id
+            },
+            success: function(dataResult) {
+              var dataResult = JSON.parse(dataResult);
+              if (dataResult.statusCode == 200) {
 
-              $("#Doc_id").val(dataResult.Doc_id);
-              $("#document_number").val(dataResult.document_number);
-              $("#document_name").val(dataResult.document_name);
-              $("#document_detail").val(dataResult.document_detail);
-              $("#documenttype_name").val(dataResult.documenttype_name);
-              $("#download").val(dataResult.download);
+                $("#Doc_id").val(dataResult.Doc_id);
+                $("#document_number").val(dataResult.document_number);
+                $("#document_name").val(dataResult.document_name);
+                $("#document_detail").val(dataResult.document_detail);
+                $("#documenttype_name").val(dataResult.documenttype_name);
+                $("#download").val(dataResult.download);
+
+              }
+            }
+          });
+        }
+        $("#s1").change(function() {
+
+          var select = $("#s1").val();
+          var eid = $("#eid").val();
+
+          $.ajax({
+
+            type: "POST",
+
+            url: "view_docread.php",
+
+            data: {
+
+              read: select,
+              eid: eid
+
+
+            },
+
+            success: function(data) {
+
+              $('#document_now').html(data);
 
             }
-          }
-        });
-      }
-      $("#s1").change(function() {
 
-        var select = $("#s1").val();
-        var eid = $("#eid").val();
-
-        
-        $.ajax({
-
-          type: "POST",
-
-          url: "view_docread.php",
-
-          data: {
-
-            read: select,
-            eid: eid
-
-
-          },
-
-          success: function(data) {
-
-            $('#document_now').html(data);
-
-          }
+          });
 
         });
+        $("#test").click(function() {
 
-      });
-    </script>
+          var doc_id = $("#Doc_id").val();
+          $.ajax({
+
+            type: "POST",
+
+            url: "View_docblank.php",
+
+            data: {
+
+              doc_id: doc_id
+
+
+            },
+
+            success: function(data) {
+
+              $('#document').html(data);
+
+            }
+
+          });
+
+        });
+
+        function OnDelete(id) {
+          //  alert(id);
+          const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-success mx-2',
+              cancelButton: 'btn btn-danger mx-2'
+            },
+            buttonsStyling: false
+          })
+
+          swalWithBootstrapButtons.fire({
+            title: 'คุณต้องการลบเอกสารนี้หรือไม่ ?',
+            icon: 'question',
+            // background: 'yellow',
+            showCancelButton: true,
+            confirmButtonText: 'ยืนยัน',
+            cancelButtonText: 'ยกเลิก',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $.ajax({
+                url: "delete_Doc.php",
+                type: 'post',
+                data: {
+                  Doc_id: id
+                },
+                success: function(dataResult) {
+                  var dataResult = JSON.parse(dataResult);
+                  if (dataResult.statusCode == 200) {
+                    swalWithBootstrapButtons.fire(
+                      'ลบเอกสารสำเร็จ',
+                      '',
+                      'success'
+                    )
+                    AutoRefresh();
+                  } else {
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'ข้อความกำลังอยู่ระหว่างดำเนินการ'
+                    })
+                  }
+                }
+              });
+            }
+          });
+        }
+
+        function AutoRefresh() {
+          setTimeout("location.reload(true);", 1000);
+
+        }
+      </script>
 </body>
 
 

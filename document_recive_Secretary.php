@@ -251,7 +251,7 @@ date_default_timezone_set("Asia/Bangkok");
                     <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['documentstatus_name']; ?></span></td>
                     <td onclick="show_read(<?= $row['Doc_id']; ?>)"><?= $row['document_detail']; ?></td>
                     <td><?= $row['document_date']; ?></td>
-                    <td> <button onclick="OnDelete(<?=$row['Doc_id'];?>)" type="button" class="btn btn-sm btn-danger">ลบ</button></td>
+                    <td> <button onclick="OnDelete(<?= $row['Doc_id']; ?>)" type="button" class="btn btn-sm btn-danger">ลบ</button></td>
 
                   </tr>
               <?php
@@ -290,40 +290,18 @@ date_default_timezone_set("Asia/Bangkok");
                 <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="documenttype_name" id="documenttype_name" readonly>
               </div>
             </div>
-            <!-- <?php
-            $sql_query = "SELECT download , Doc_id
-                    FROM document
-                    ORDER BY `Doc_id` ASC";
+            <table class="table table-responsive-md mx-auto" style="width:100%">
+              <thead>
+                <tr style="background-color:#212529; color:white;">
+                  <th class="thcenter" style="width:8%"></th>
+                </tr>
+              </thead>
+              <tbody id="document" style=" width:100%; height:100%">
 
-            $result = mysqli_query($conn, $sql_query);
-            $num_row = mysqli_num_rows($result);
-
-            while ($row = $result->fetch_assoc()) {
-            ?>
-              <tr>
-
-                <?php
-                echo "<td>" . "<embed src='" . $row['download'] . "' type='text/html' width='400px' height='500px'>" . "</td>" ?>
-
-              </tr>
-
-              </tr>
-
-            <?php
-            }
-            ?> -->
-          <table class="table table-responsive-md mx-auto" style="width:100%">
-            <thead>
-              <tr style="background-color:#212529; color:white;">
-                <th class="thcenter" style="width:8%"></th>
-              </tr>
-            </thead>
-            <tbody id="document" style=" width:100%; height:100%">
-
-            </tbody>
-          </table>
-            <button style="width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger" id = "test">เปิดดูเอกสาร</button>
-              <button style="width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger" >ส่งเอกสาร</button>
+              </tbody>
+            </table>
+            <button style="width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger" id="test">เปิดดูเอกสาร</button>
+            <button style="width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger">ส่งเอกสาร</button>
 
           </div>
         </div>
@@ -432,52 +410,58 @@ date_default_timezone_set("Asia/Bangkok");
           });
 
         });
-        function OnDelete(id) {
-      //  alert(id);
-      const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-          confirmButton: 'btn btn-success mx-2',
-          cancelButton: 'btn btn-danger mx-2'
-        },
-        buttonsStyling: false
-      })
 
-      swalWithBootstrapButtons.fire({
-        title: 'คุณต้องการลบเอกสารนี้หรือไม่ ?',
-        icon: 'question',
-        // background: 'yellow',
-        showCancelButton: true,
-        confirmButtonText: 'ยืนยัน',
-        cancelButtonText: 'ยกเลิก',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          $.ajax({
-            url: "delete_Doc.php",
-            type: 'post',
-            data: {
-              Doc_id: id
+        function OnDelete(id) {
+          //  alert(id);
+          const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-success mx-2',
+              cancelButton: 'btn btn-danger mx-2'
             },
-            success: function(dataResult) {
-              var dataResult = JSON.parse(dataResult);
-              if (dataResult.statusCode == 200) {
-                swalWithBootstrapButtons.fire(
-                  'ลบเอกสารสำเร็จ',
-                  '',
-                  'success'
-                )
-                
-              } else {
-                Swal.fire({
-                  icon: 'error',
-                  title: 'ข้อความกำลังอยู่ระหว่างดำเนินการ'
-                })
-              }
+            buttonsStyling: false
+          })
+
+          swalWithBootstrapButtons.fire({
+            title: 'คุณต้องการลบเอกสารนี้หรือไม่ ?',
+            icon: 'question',
+            // background: 'yellow',
+            showCancelButton: true,
+            confirmButtonText: 'ยืนยัน',
+            cancelButtonText: 'ยกเลิก',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $.ajax({
+                url: "delete_Doc.php",
+                type: 'post',
+                data: {
+                  Doc_id: id
+                },
+                success: function(dataResult) {
+                  var dataResult = JSON.parse(dataResult);
+                  if (dataResult.statusCode == 200) {
+                    swalWithBootstrapButtons.fire(
+                      'ลบเอกสารสำเร็จ',
+                      '',
+                      'success'
+                    )
+                    AutoRefresh();
+                  } else {
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'ข้อความกำลังอยู่ระหว่างดำเนินการ'
+                    })
+                  }
+                }
+              });
             }
           });
         }
-      });
-    }
+
+        function AutoRefresh() {
+          setTimeout("location.reload(true);", 1000);
+
+        }
       </script>
 </body>
 

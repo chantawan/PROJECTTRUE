@@ -2,9 +2,9 @@
 	include 'connect.php';
 	
 	$sql = "SELECT a.emp_id,a.emp_cardid,a.emp_firstname,a.divistion_id,d.divistion_name,a.emp_lastname,a.emp_email,a.emp_tel,a.emp_password,a.emp_id,a.Position_id,a.gender_id,a.divistion_id,b.Position_name,g.gender_name FROM employee a
-	JOIN position b ON a.Position_id = b.Position_id
-    JOIN gender g ON a.gender_id = g.gender_id
-    JOIN divistion d ON a.divistion_id = d.divistion_id;";
+	LEFT JOIN position b ON a.Position_id = b.Position_id
+    LEFT JOIN gender g ON a.gender_id = g.gender_id
+    LEFT JOIN divistion d ON a.divistion_id = d.divistion_id;";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {

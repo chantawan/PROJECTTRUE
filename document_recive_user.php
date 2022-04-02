@@ -243,28 +243,36 @@ date_default_timezone_set("Asia/Bangkok");
 
       </div>
       <div class="container" style="margin-top:10%; background-color:gray; " id="show_read">
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <input type="text" class="form-control" name="Doc_id" id="Doc_id" hidden>
-              <label for="document_number">เลขเอกสาร</label>
-              <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_number" id="document_number" readonly>
-            </div>
-            <div class="col-md-6">
-              <div class="mb-3">
-                <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_name" id="document_name" readonly>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="mb-3">
-                <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_detail" id="document_detail" readonly>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="mb-3">
-                <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="documenttype_name" id="documenttype_name" readonly>
-              </div>
-            </div>
+                <div class="modal-body" style="width:100%">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="document_number">เลขที่เอกสาร :</label>
+                                <input type="text" class="form-control" name="Doc_id" id="Doc_id" hidden>
+                                <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_number" id="document_number" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="document_name">ชื่อเอกสาร :</label>
+                                <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_name" id="document_name" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="document_detail">รายละเอียด :</label>
+                                <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_detail" id="document_detail" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="documenttype_name">ประเภทเอกสาร :</label>
+                                <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="documenttype_name" id="documenttype_name" readonly>
+                            </div>
+                        </div>
             <!-- <?php
                   $sql_query = "SELECT download , Doc_id
                     FROM document
@@ -388,7 +396,7 @@ date_default_timezone_set("Asia/Bangkok");
 
             type: "POST",
 
-            url: "View_docblank.php",
+            url: "View_docblankuser.php",
 
             data: {
 

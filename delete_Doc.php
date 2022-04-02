@@ -3,7 +3,7 @@
 
 	$Doc_id=$_POST['Doc_id'];
 
-	$sql1 = "SELECT * from document where Doc_id = $Doc_id And documentstatus_id != 5";
+	$sql1 = "SELECT * from document where Doc_id = $Doc_id";
 	$result = mysqli_query($conn, $sql1);
 
 	if(mysqli_num_rows($result) == 0){

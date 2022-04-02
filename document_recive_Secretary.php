@@ -268,25 +268,33 @@ date_default_timezone_set("Asia/Bangkok");
 
       </div>
       <div class="container" style="margin-top:10%; background-color:gray; " id="show_read">
-        <div class="modal-body">
+        <div class="modal-body" style="width:100%">
           <div class="row">
-            <div class="col-md-6 mb-3">
-              <input type="text" class="form-control" name="Doc_id" id="Doc_id" hidden>
-              <label for="document_number">เลขเอกสาร</label>
-              <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_number" id="document_number" readonly>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="document_number">เลขที่เอกสาร :</label>
+                <input type="text" class="form-control" name="Doc_id" id="Doc_id" hidden>
+                <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_number" id="document_number" readonly>
+              </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">
+                <label for="document_name">ชื่อเอกสาร :</label>
                 <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_name" id="document_name" readonly>
               </div>
             </div>
+
             <div class="col-md-6">
               <div class="mb-3">
+                <label for="document_detail">รายละเอียด :</label>
                 <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="document_detail" id="document_detail" readonly>
               </div>
             </div>
+          </div>
+          <div class="row">
             <div class="col-md-6">
               <div class="mb-3">
+                <label for="documenttype_name">ประเภทเอกสาร :</label>
                 <input type="text" class="form-control" style="background-color:gray; border: 0px solid #dddddd; font-size:20px;" name="documenttype_name" id="documenttype_name" readonly>
               </div>
             </div>
@@ -301,219 +309,267 @@ date_default_timezone_set("Asia/Bangkok");
               </tbody>
             </table>
             <button style="width:10%; margin-left:10%" type="button" class="btn btn-sm btn-danger" id="test">เปิดดูเอกสาร</button>
-            <button style="width:10%; margin-left:10%" type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal5">ส่งเอกสาร</button>
-
           </div>
         </div>
       </div>
-      <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                  <h5 class="modal-title" id="exampleModalLabel">หน้าการส่ง</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+    </div>
+    <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title" id="exampleModalLabel">หน้าลงรับเอกสาร</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <input type="text" class="form-control" name="Doc_id" id="Doc_id" hidden>
-                        <input type="text" class="form-control" name="document_number" id="document_number" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <?php
-                        $sql = "SELECT * from divistion";
+          </div>
+          <div class="modal-body">
+            <center>
+              <h2>แจ้งเตือน</h2>
+            </center>
+            </br>
+            <center>
+              <h2>คุณต้องการลงรับเอกสารนี้ใช่หรือไม่</h2>
+            </center>
 
-                        $result = mysqli_query($conn, $sql);
-                        ?>
-                        <select name="divistion_id" id="divistion_id" class="form-select" style="text-align: center; width: 70%; ">
-                          <option value="กอง">กอง</option>
-                          <?php
-                          while ($row = mysqli_fetch_assoc($result)) {
-                          ?>
-                            <option value="<?php echo $row["divistion_id"] ?>"><?php echo $row["divistion_name"] ?></option>
-                          <?php
-                          }
-                          ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
-
-                        <select name="emid" id="emid" class="form-select" style="text-align: center; width: 70%;" aria-label="Default select example">
-                          <option value="" selected disabled>กรุณาเลือกชื่อกอง</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
+            <div class="row">
+              <div class="col-md-10"style = "color:#212529">
+                <div class="mb-3">
+                <label for="document_detail">เลขเอกสาร</label>
+                  <input type="text" class="form-control" name="Doc_id2" id="Doc_id2" hidden>
+                  <input type="text" class="form-control" name="document_number2" id="document_number2" readonly>
+                  
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear_modal5">ปิด</button>
-                  <button type="button" class="btn btn-success" id="butupdatedoc">ยืนยัน</button>
-                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear_modal5">ปิด</button>
+                <button type="button" class="btn btn-success" id="butupdatedoc">ยืนยัน</button>
               </div>
             </div>
           </div>
+        </div>
 
 
 
-      </main><!-- End #main -->
+        </main><!-- End #main -->
 
 
 
-      <!-- Vendor JS Files -->
-      <script src="assets/vendor/purecounter/purecounter.js"></script>
-      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-      <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-      <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-      <script src="assets/vendor/typed.js/typed.min.js"></script>
-      <script src="assets/vendor/php-email-form/validate.js"></script>
+        <!-- Vendor JS Files -->
+        <script src="assets/vendor/purecounter/purecounter.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="assets/vendor/typed.js/typed.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
 
-      <!-- Template Main JS File -->
+        <!-- Template Main JS File -->
 
-      <script>
-        show_index();
+        <script>
+          show_index();
 
-        function show_index() {
-          $("#show_index").show();
-          $("#show_read").hide();
-        }
+          function show_index() {
+            $("#show_index").show();
+            $("#show_read").hide();
+          }
 
-        function show_read(id) {
+          function show_read(id) {
 
-          $("#show_index").hide();
-          $("#show_read").show();
-          $.ajax({
-            url: "Select_docforread.php",
-            type: 'post',
-            data: {
-              Doc_id: id
-            },
-            success: function(dataResult) {
-              var dataResult = JSON.parse(dataResult);
-              if (dataResult.statusCode == 200) {
+            $("#show_index").hide();
+            $("#show_read").show();
+            $.ajax({
+              url: "Select_docforread.php",
+              type: 'post',
+              data: {
+                Doc_id: id
+              },
+              success: function(dataResult) {
+                var dataResult = JSON.parse(dataResult);
+                if (dataResult.statusCode == 200) {
 
-                $("#Doc_id").val(dataResult.Doc_id);
-                $("#document_number").val(dataResult.document_number);
-                $("#document_name").val(dataResult.document_name);
-                $("#document_detail").val(dataResult.document_detail);
-                $("#documenttype_name").val(dataResult.documenttype_name);
-                $("#download").val(dataResult.download);
+                  $("#Doc_id").val(dataResult.Doc_id);
+                  $("#document_number").val(dataResult.document_number);
+                  $("#document_name").val(dataResult.document_name);
+                  $("#document_detail").val(dataResult.document_detail);
+                  $("#documenttype_name").val(dataResult.documenttype_name);
+                  $("#download").val(dataResult.download);
+
+                }
+              }
+            });
+          }
+          $("#s1").change(function() {
+
+            var select = $("#s1").val();
+            var eid = $("#eid").val();
+
+            $.ajax({
+
+              type: "POST",
+
+              url: "view_docread.php",
+
+              data: {
+
+                read: select,
+                eid: eid
+
+
+              },
+
+              success: function(data) {
+
+                $('#document_now').html(data);
 
               }
-            }
-          });
-        }
-        $("#s1").change(function() {
 
-          var select = $("#s1").val();
-          var eid = $("#eid").val();
-
-          $.ajax({
-
-            type: "POST",
-
-            url: "view_docread.php",
-
-            data: {
-
-              read: select,
-              eid: eid
-
-
-            },
-
-            success: function(data) {
-
-              $('#document_now').html(data);
-
-            }
+            });
 
           });
+          $("#test").click(function() {
 
-        });
-        $("#test").click(function() {
+            var doc_id = $("#Doc_id").val();
+            var document_number = $("#document_number").val();
 
-          var doc_id = $("#Doc_id").val();
-          $.ajax({
+            $.ajax({
 
-            type: "POST",
+              type: "POST",
 
-            url: "View_docblank.php",
+              url: "View_docblank2.php",
 
-            data: {
+              data: {
+                document_number: document_number,
+                doc_id: doc_id
 
-              doc_id: doc_id
 
+              },
 
-            },
+              success: function(data) {
 
-            success: function(data) {
+                $('#document').html(data);
 
-              $('#document').html(data);
+              }
 
-            }
+            });
 
           });
 
-        });
+          function OnDelete(id) {
+            //  alert(id);
+            const swalWithBootstrapButtons = Swal.mixin({
+              customClass: {
+                confirmButton: 'btn btn-success mx-2',
+                cancelButton: 'btn btn-danger mx-2'
+              },
+              buttonsStyling: false
+            })
 
-        function OnDelete(id) {
-          //  alert(id);
-          const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-              confirmButton: 'btn btn-success mx-2',
-              cancelButton: 'btn btn-danger mx-2'
-            },
-            buttonsStyling: false
-          })
+            swalWithBootstrapButtons.fire({
+              title: 'คุณต้องการลบเอกสารนี้หรือไม่ ?',
+              icon: 'question',
+              // background: 'yellow',
+              showCancelButton: true,
+              confirmButtonText: 'ยืนยัน',
+              cancelButtonText: 'ยกเลิก',
+              reverseButtons: true
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $.ajax({
+                  url: "delete_Doc.php",
+                  type: 'post',
+                  data: {
+                    Doc_id: id
+                  },
+                  success: function(dataResult) {
+                    var dataResult = JSON.parse(dataResult);
+                    if (dataResult.statusCode == 200) {
+                      swalWithBootstrapButtons.fire(
+                        'ลบเอกสารสำเร็จ',
+                        '',
+                        'success'
+                      )
+                      AutoRefresh();
+                    } else {
+                      Swal.fire({
+                        icon: 'error',
+                        title: 'ข้อความกำลังอยู่ระหว่างดำเนินการ'
+                      })
+                    }
+                  }
+                });
+              }
+            });
+          }
 
-          swalWithBootstrapButtons.fire({
-            title: 'คุณต้องการลบเอกสารนี้หรือไม่ ?',
-            icon: 'question',
-            // background: 'yellow',
-            showCancelButton: true,
-            confirmButtonText: 'ยืนยัน',
-            cancelButtonText: 'ยกเลิก',
-            reverseButtons: true
-          }).then((result) => {
-            if (result.isConfirmed) {
+          function Onsent(id) {
+            $.ajax({
+              url: "Select_Doc.php",
+              type: 'post',
+              data: {
+                Doc_id: id
+              },
+              success: function(dataResult) {
+                var dataResult = JSON.parse(dataResult);
+                if (dataResult.statusCode == 200) {
+
+                  $("#Doc_id2").val(dataResult.Doc_id);
+                  $("#document_number2").val(dataResult.document_number);
+
+                }
+              }
+            });
+          }
+
+          function AutoRefresh() {
+            setTimeout("location.reload(true);", 1000);
+
+          }
+          $(document).ready(function() {
+            $("#butupdatedoc").on('click', function() {
+
+              var Doc_id2 = $("#Doc_id2").val();
               $.ajax({
-                url: "delete_Doc.php",
-                type: 'post',
+                url: 'Signupdocuments.php',
+                method: 'post',
+                datatype: 'JSON',
                 data: {
-                  Doc_id: id
+                  Doc_id2: Doc_id2
                 },
                 success: function(dataResult) {
                   var dataResult = JSON.parse(dataResult);
                   if (dataResult.statusCode == 200) {
-                    swalWithBootstrapButtons.fire(
-                      'ลบเอกสารสำเร็จ',
-                      '',
-                      'success'
-                    )
-                    AutoRefresh();
-                  } else {
+                    
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'ลงรับเอกสารสำเร็จ'
+                    })
+                    AutoRefresh()
+                  } else if (dataResult.statusCode == 201) {
                     Swal.fire({
                       icon: 'error',
-                      title: 'ข้อความกำลังอยู่ระหว่างดำเนินการ'
+                      title: 'ลงรับเอกสารไม่สำเร็จ'
                     })
                   }
                 }
               });
-            }
+
+            });
+
+            $('#divistion_id').change(function() {
+              var divistion_id = $(this).val();
+
+              $.ajax({
+                type: "post",
+                url: "SelectDivistionSecretary.php",
+                data: {
+                  id: divistion_id,
+                  function: 'divistion_id'
+                },
+                success: function(data) {
+                  $('#emid').html(data);
+                }
+              });
+            });
           });
-        }
-
-        function AutoRefresh() {
-          setTimeout("location.reload(true);", 1000);
-
-        }
-      </script>
+        </script>
 </body>
 
 

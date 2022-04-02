@@ -28,9 +28,6 @@ $doc_id = $_POST["doc_id"];
                 <td hidden><?=$row['speed_send'];?></td>
             </tr>
             <td>
-            <button class="btn btn-sm btn-success"style="width:10%; margin-left:10%" onclick="Onsent(<?= $row['Doc_id']; ?>)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal5">ส่งเอกสาร</button>
-            <button class="btn btn-sm btn-info"style="width:10%; margin-left:10%" onclick="Onsent2(<?= $row['Doc_id']; ?>)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal6">เสนอสั่งการ</button>
-
             </td>
 
         <?php

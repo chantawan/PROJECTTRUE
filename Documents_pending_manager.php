@@ -104,15 +104,15 @@ date_default_timezone_set("Asia/Bangkok");
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto  " style="font-size:25px;" href="index_Secretary.php">หน้าแรก</a></li>
+                <li><a class="nav-link scrollto  " style="font-size:25px;" href="index_manager.php">หน้าแรก</a></li>
                 <!-- Example single danger button -->
                 <div class="dropdown">
                     <button class="btn  btn-sm dropdown-toggle" style="width:100%; margin-left:5%; color:white; font-size:25px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         การจัดการเอกสาร
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="document_recive_Secretary.php">เอกสารถึงตัวท่าน</a></li>
-                        <li><a class="dropdown-item">เอกสารรอดำเนินการ</a></li>
+                        <li><a class="dropdown-item" href="document_recive_manager.php">เอกสารถึงตัวท่าน</a></li>
+                        <li><a class="dropdown-item" href="Documents_pending_manager.php">เอกสารรอดำเนินการ</a></li>
 
                     </ul>
                 </div>
@@ -318,98 +318,32 @@ date_default_timezone_set("Asia/Bangkok");
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header bg-success text-white">
-                        <h5 class="modal-title" id="exampleModalLabel">หน้าการส่ง</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-
+                        <center>
+                            <h2>คุณต้องการอนุมัติและดำเนินการต่อเอกสารนี้ใช่หรือไม่</h2>
+                        </center>
                         <div class="row">
                             <div class="col-md-10" style="color:#212529">
                                 <div class="mb-3">
                                     <label for="document_detail">เลขเอกสาร</label>
-                                    <input type="text" class="form-control" name="Doc_id2" id="Doc_id2" hidden>
-                                    <input type="text" class="form-control" name="document_number2" id="document_number2" readonly>
-                                    <input type="text" class="form-control" name="documenttype_id2" id="documenttype_id2" hidden>
-                                    <input type="text" class="form-control" name="download" id="download" hidden>
-                                    <input type="text" class="form-control" name="document_name2" id="document_name2" hidden>
-
-                                    <input type="text" class="form-control" name="documentstatus_id"2 id="documentstatus_id2" value="2"  hidden>
-                                    <input type="text" class="form-control" name="speed_send2" id="speed_send2" hidden>
-                                    <input type="text" class="form-control" name="secret_send2" id="secret_send2" hidden>
-                                    <input type="text" class="form-control" name="document_date2" id="document_date2" hidden>
-                                    <input type="text" class="form-control" name="document_dnow2" id="document_dnow2" hidden>
-
-                                    <input type="text" class="form-control" name="document_detail2" id="document_detail2" placeholder="กรอกรายละเอียดเพิ่มเติม">
-                                </div>
-                            </div>
-                            <div class="col-md-6" style="color:#212529">
-                                <div class="mb-3">
-                                    <?php
-                                    $sql = "SELECT * from divistion";
-
-                                    $result = mysqli_query($conn, $sql);
-                                    ?>
-                                    <select name="divistion_id" id="divistion_id" class="form-select" style="text-align: center; width: 70%; ">
-                                        <option value="กอง">กอง</option>
-                                        <?php
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                        ?>
-                                            <option value="<?php echo $row["divistion_id"] ?>"><?php echo $row["divistion_name"] ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6" style="color:#212529">
-                                <div class="mb-3">
-
-                                    <select name="emid" id="emid" class="form-select" style="text-align: center; width: 70%;" aria-label="Default select example">
-                                        <option value="" selected disabled>กรุณาเลือกชื่อกอง</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear_modal5">ปิด</button>
-                        <button type="button" class="btn btn-success" id="butupdatedoc">ยืนยัน</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
-                        <h5 class="modal-title" id="exampleModalLabel">เสนอสั่งการเอกสาร</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                        <div class="row">
-                            <div class="col-md-10" style="color:#212529">
-                                <div class="mb-3">
-
                                     <input type="text" class="form-control" name="Doc_id3" id="Doc_id3" hidden>
-                                    <label for="document_number3">เลขเอกสาร</label>
                                     <input type="text" class="form-control" name="document_number3" id="document_number3" readonly>
-                                    <label for="document_detail3">รายละเอียดเอกสารเพิ่มเติม</label>
-                                    <input type="text" class="form-control" name="document_detail3" id="document_detail3" placeholder="กรอกรายละเอียดเพิ่มเติม">
+
                                 </div>
                             </div>
                             <div class="col-md-6" style="color:#212529">
                                 <div class="mb-3">
-                                    <label for="emp_id3">เลือกชื่อหัวหน้า :</label>
+                                    <label for="emp_id3">เลือกชื่อเลขา :</label>
                                     <?php
-                                    $sql = "SELECT a.emp_id , a.emp_firstname , a.emp_lastname , b.Position_name from employee a , position b  Where divistion_id = 50 
-                                    And a.Position_id = b.Position_id
-                                    And a.Position_id = 2";
+                                    $sql = "SELECT a.emp_id , a.emp_firstname , a.emp_lastname , b.Position_name from employee a , position b  Where a.Position_id = 3 And a.Position_id = b.Position_id";
 
                                     $result = mysqli_query($conn, $sql);
                                     ?>
                                     <select name="emp_id3" id="emp_id3" class="form-select">
-                                        <option value="เลือกชื่อหัวหน้า"></option>
+                                        <option value="เลือกชื่อเลขา"></option>
                                         <?php
                                         while ($row = mysqli_fetch_assoc($result)) {
                                         ?>
@@ -420,19 +354,16 @@ date_default_timezone_set("Asia/Bangkok");
                                     </select>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear_modal5">ปิด</button>
-                                <button type="button" class="btn btn-success" id="butupdatedoc2">ยืนยัน</button>
-                            </div>
+
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear_modal5">ปิด</button>
+                        <button type="button" class="btn btn-success" id="butapprove">ยืนยัน</button>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
         </main><!-- End #main -->
 
 
@@ -517,7 +448,7 @@ date_default_timezone_set("Asia/Bangkok");
 
                     type: "POST",
 
-                    url: "View_docblank.php",
+                    url: "View_docblankmanager.php",
 
                     data: {
                         document_number: document_number,
@@ -596,14 +527,6 @@ date_default_timezone_set("Asia/Bangkok");
 
                             $("#Doc_id2").val(dataResult.Doc_id);
                             $("#document_number2").val(dataResult.document_number);
-                            $("#document_name2").val(dataResult.document_name);
-                            $("#speed_send2").val(dataResult.speed_send);
-                            $("#secret_send2").val(dataResult.secret_send);
-                            $("#document_date2").val(dataResult.document_date);
-                            $("#document_dnow2").val(dataResult.document_dnow);
-                            $("#documenttype_id2").val(dataResult.documenttype_id);
-                            $("#documenttype_id2").val(dataResult.documenttype_id);
-                            $("#download").val(dataResult.download);
 
                         }
                     }
@@ -634,14 +557,15 @@ date_default_timezone_set("Asia/Bangkok");
                 setTimeout("location.reload(true);", 1000);
 
             }
+
             $(document).ready(function() {
-                $("#butupdatedoc2").on('click', function() {
+                $("#butapprove").on('click', function() {
 
                     var Doc_id3 = $("#Doc_id3").val();
                     var emp_id3 = $("#emp_id3").val();
 
                     $.ajax({
-                        url: 'orderdocuments.php',
+                        url: 'approvedocuments.php',
                         method: 'post',
                         datatype: 'JSON',
                         data: {
@@ -654,75 +578,18 @@ date_default_timezone_set("Asia/Bangkok");
 
                                 Swal.fire({
                                     icon: 'success',
-                                    title: 'สั่งการเอกสารสำเร็จ'
+                                    title: 'ดำเนินการต่อ'
                                 })
                                 AutoRefresh()
                             } else if (dataResult.statusCode == 201) {
                                 Swal.fire({
                                     icon: 'error',
-                                    title: 'สั่งการเอกสารไม่สำเร็จ'
+                                    title: 'ดำเนินการต่อไม่สำเร็จ'
                                 })
                             }
                         }
                     });
-
                 });
-                $("#butupdatedoc").on('click', function() {
-
-                    var Doc_id2 = $("#Doc_id2").val();
-                    var emp_id2 = $("#emid").val();
-                    var document_number = $('#document_number2').val();
-                    var document_name = $('#document_name2').val();
-                    var documenttype_id = $('#documenttype_id2').val();
-                    var document_detail = $('#document_detail2').val();
-                    var documentstatus_id = $('#documentstatus_id2').val();
-                    var speed_send = $('#speed_send2').val();
-                    var secret_send = $('#secret_send2').val();
-                    var document_date = $('#document_date2').val();
-                    var document_dnow = $('#document_dnow2').val();
-                    var divistion_id = $('#divistion_id').val();
-                    var download = $('#download').val();
-                    
-                    
-                    $.ajax({
-                        url: 'ordersentdocuments.php',
-                        method: 'post',
-                        datatype: 'JSON',
-                        data: {
-                            Doc_id2: Doc_id2,
-                            emp_id2: emp_id2,
-                            document_number: document_number,
-                            document_name: document_name,
-                            documenttype_id: documenttype_id,
-                            document_detail: document_detail,
-                            documentstatus_id: documentstatus_id,
-                            speed_send: speed_send,
-                            secret_send: secret_send,
-                            document_date: document_date,
-                            document_dnow: document_dnow,
-                            divistion_id:divistion_id,
-                            download:download
-                        },
-                        success: function(dataResult) {
-                            var dataResult = JSON.parse(dataResult);
-                            if (dataResult.statusCode == 200) {
-
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'ส่งเอกสารสำเร็จ'
-                                })
-                                AutoRefresh()
-                            } else if (dataResult.statusCode == 201) {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'ส่งเอกสารไม่สำเร็จ'
-                                })
-                            }
-                        }
-                    });
-
-                });
-
 
                 $('#divistion_id').change(function() {
                     var divistion_id = $(this).val();

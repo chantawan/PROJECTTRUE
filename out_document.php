@@ -247,11 +247,11 @@ date_default_timezone_set("Asia/Bangkok");
                         </select>
                       </div>
                     </div>
-                    </div>
+                  </div>
                   <div class="row">
                     <div class="col-md-6">
                       <div class="mb-3">
-                      <?php
+                        <?php
                         $date = date("Y-m-d");
                         ?>
                         <input type="date" id="document_date_Out" name="document_date_Out" value="<?= $date ?>" hidden>
@@ -383,7 +383,7 @@ date_default_timezone_set("Asia/Bangkok");
             })
           }
           $('#butupdatedoc').on('click', function() {
-
+            
             var document_number = $('#document_number').val();
             var document_name = $('#document_name').val();
             var documenttype_id = $('#documenttype_id').val();
@@ -417,7 +417,7 @@ date_default_timezone_set("Asia/Bangkok");
                       title: 'เพิ่มข้อมูลสำเร็จ',
                     })
                     AutoRefresh();
-                  } 
+                  }
                 }
 
               });

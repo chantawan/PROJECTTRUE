@@ -185,7 +185,7 @@ $Position_name = $_SESSION['Position_name'];
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                       <li><a class="dropdown-item" href="upload.php">นำเข้าเอกสาร</a></li>
-                      <li><a class="dropdown-item" href="#">ส่งออกเอกสาร</a></li>
+                      <li><a class="dropdown-item" href="out_document.php">ส่งออกเอกสาร</a></li>
                       <li><a class="dropdown-item" href="add_document.php">เอกสารนำเข้า</a></li>
                     </ul>
                   </div>
@@ -315,6 +315,8 @@ $Position_name = $_SESSION['Position_name'];
         <img src="img/11.jpg" alt="">
       </div>
     </div>
+
+    
 
     <div id="show_divistion"><br>
       <center>
